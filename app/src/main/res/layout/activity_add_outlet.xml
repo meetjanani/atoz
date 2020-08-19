@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonGetCurrentLocation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Fatch Current Location"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputOutletName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Outlet Name"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/buttonGetCurrentLocation"
+        app:layout_constraintStart_toStartOf="@id/buttonGetCurrentLocation"
+        app:layout_constraintEnd_toEndOf="@id/buttonGetCurrentLocation">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextOutletName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputPersonName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Person Name"
+        android:layout_marginTop="8dp"
+       app:layout_constraintTop_toBottomOf="@id/textInputOutletName"
+        app:layout_constraintStart_toStartOf="@id/textInputOutletName"
+        app:layout_constraintEnd_toEndOf="@id/textInputOutletName">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextPersonName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputContactNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Contact Number"
+        android:layout_marginTop="8dp"
+       app:layout_constraintTop_toBottomOf="@id/textInputPersonName"
+        app:layout_constraintStart_toStartOf="@id/textInputOutletName"
+        app:layout_constraintEnd_toEndOf="@id/textInputOutletName">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextContactNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputGst"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Gst"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/textInputContactNumber"
+        app:layout_constraintStart_toStartOf="@id/textInputOutletName"
+        app:layout_constraintEnd_toEndOf="@id/textInputOutletName">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextGst"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Primary Address"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/textInputGst"
+        app:layout_constraintStart_toStartOf="@id/textInputOutletName"
+        app:layout_constraintEnd_toEndOf="@id/textInputOutletName">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextAddressPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputPinCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="PinCode"
+        android:layout_marginTop="8dp"
+       app:layout_constraintTop_toBottomOf="@id/textInputAddress"
+        app:layout_constraintStart_toStartOf="@id/textInputOutletName"
+        app:layout_constraintEnd_toEndOf="@id/textInputOutletName">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextPinCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputAddressSecondary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Secondary Address"
+        android:layout_marginTop="8dp"
+       app:layout_constraintTop_toBottomOf="@id/textInputPinCode"
+        app:layout_constraintStart_toStartOf="@id/textInputOutletName"
+        app:layout_constraintEnd_toEndOf="@id/textInputOutletName">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextAddressSecondary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonSubmitOutlet"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/textInputAddressSecondary"
+        app:layout_constraintStart_toStartOf="@id/textInputOutletName"
+        app:layout_constraintEnd_toEndOf="@id/textInputOutletName"
+        android:text="Submit"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

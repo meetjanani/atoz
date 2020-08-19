@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/rootContraintLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="4dp"
+    android:elevation="16dp"
+    android:background="@color/white"
+    android:padding="4dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewOutletId"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="top|left"
+        android:text="11"
+        android:textStyle="bold"
+        android:padding="4dp"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:background="@color/colorPrimary"
+        android:src="@drawable/ic_person_avtar_1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewBusinessName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Outlet Name"
+        android:layout_marginStart="4dp"
+        android:gravity="left"
+        android:textSize="17sp"
+        app:layout_constraintStart_toEndOf="@id/textViewOutletId"
+        app:layout_constraintEnd_toStartOf="@id/textViewContactPersonName"
+        app:layout_constraintTop_toTopOf="@id/textViewOutletId"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewContactPersonName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Person Name"
+        android:textSize="17sp"
+        android:layout_marginEnd="4dp"
+        android:textStyle="bold"
+        android:gravity="right"
+        app:layout_constraintStart_toEndOf="@id/textViewBusinessName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/textViewBusinessName"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewGSTNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Outlet Name"
+        android:layout_marginStart="4dp"
+        android:gravity="left"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="@id/textViewBusinessName"
+        app:layout_constraintEnd_toStartOf="@id/textViewContactPersonNumber"
+        app:layout_constraintTop_toBottomOf="@id/textViewBusinessName"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewContactPersonNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Sub Category"
+        android:textSize="17sp"
+        android:gravity="right"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/textViewGSTNumber"
+        app:layout_constraintEnd_toEndOf="@id/textViewContactPersonName"
+        app:layout_constraintTop_toBottomOf="@id/textViewContactPersonName"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Outlet Name"
+        android:layout_marginStart="4dp"
+        android:gravity="left"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="@id/textViewBusinessName"
+        app:layout_constraintEnd_toEndOf="@id/textViewContactPersonName"
+        app:layout_constraintTop_toBottomOf="@id/textViewGSTNumber"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

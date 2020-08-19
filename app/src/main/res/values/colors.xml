@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="button_orange">#fe5824</color>
+    <color name="button_white">@android:color/white</color>
+    <color name="button_blue">#40579b</color>
+    <color name="button_green">#43bd42</color>
+    <color name="button_gray">#f1f5f8</color>
+    <color name="button_magenta">#ea2064</color>
+    <color name="button_yellow">#ff9807</color>
+
+
+    <color name="loginSignup1colorPrimary">#fe5824</color>
+    <color name="loginSignup1colorPrimaryDark">#e94a18</color>
+    <color name="loginSignup1colorAccent">#fe5824</color>
+    <color name="loginSignup1Background">#f1f5f8</color>
+
+    <!--// Pattern Product-->
+    <color name="txt_price_color">#0AAC3A</color>
+    <color name="ripple_color">#dfdfdf</color>
+    <color name="green">#0ecf48</color>
+    <color name="red">#ff0000</color>
+    <color name="black">#000000</color>
+    <color name="grey">#999999</color>
+    <color name="grey_soft">#ededed</color>
+    <color name="separator">#efefef</color>
+    <color name="white">#ffffff</color>
+    <color name="hint">#767676</color>
+    <color name="available">#ef6c00</color>
+    <color name="sold">#767676</color>
+
+    <color name="loginSignup4colorPrimary">#fe5824</color>
+    <color name="loginSignup4colorPrimaryDark">#e94a18</color>
+    <color name="loginSignup4colorAccent">#fe5824</color>
+</resources>
