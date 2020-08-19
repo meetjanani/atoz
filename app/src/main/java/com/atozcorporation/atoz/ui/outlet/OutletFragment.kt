@@ -9,12 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.atozcorporation.atoz.R
+import com.atozcorporation.atoz.base.BaseFragment
 import com.atozcorporation.atoz.ui.addoutlet.AddOutletActivity
 import com.growinginfotech.businesshub.base.IAdapterOnClick
 import com.growinginfotech.businesshub.base.navigateTo
 import kotlinx.android.synthetic.main.fragment_outlet.*
 
-class OutletFragment : Fragment() , IAdapterOnClick{
+class OutletFragment : BaseFragment() , IAdapterOnClick{
 
     private lateinit var viewModel: OutletViewModel
     protected var adapter = OutletListAdapter(this)

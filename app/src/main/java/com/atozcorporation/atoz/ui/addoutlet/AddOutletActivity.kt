@@ -13,12 +13,13 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.atozcorporation.atoz.R
+import com.atozcorporation.atoz.base.BaseActivity
 import com.growinginfotech.businesshub.base.defaultToast
 import kotlinx.android.synthetic.main.activity_add_outlet.*
 import java.util.*
 
 
-class AddOutletActivity : AppCompatActivity() {
+class AddOutletActivity : BaseActivity() {
 
     private lateinit var viewModel: AddOutletViewModel
     private var locationManager : LocationManager? = null
@@ -32,7 +33,7 @@ class AddOutletActivity : AppCompatActivity() {
                 }
                 is  AddOutletViewModel.AddOutletAPIState.   Success -> {
                     it.data.let { response ->
-                        Toast.makeText(this, response.message.toString(), Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, response.message, Toast.LENGTH_LONG).show()
                     }
                     progressBar.visibility = View.GONE
                 }
@@ -105,7 +106,7 @@ class AddOutletActivity : AppCompatActivity() {
         LATITUDE: Double,
         LONGITUDE: Double
     ): String? {
-        var strAdd = ""
+        val strAdd = ""
         val geocoder = Geocoder(this, Locale.getDefault())
         try {
             val addresses: List<Address>? =
@@ -118,8 +119,6 @@ class AddOutletActivity : AppCompatActivity() {
                 }
                 editTextAddressPrimary.setText(strReturnedAddress)
                 editTextPinCode.setText(returnedAddress.postalCode)
-            } else {
-                // Log.w("My Current loction address", "No Address returned!")
             }
         } catch (e: Exception) {
             e.printStackTrace()
