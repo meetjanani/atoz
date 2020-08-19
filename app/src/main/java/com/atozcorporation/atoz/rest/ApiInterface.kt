@@ -1,5 +1,6 @@
 package com.growinginfotech.businesshub.rest
 
+import com.atozcorporation.atoz.rest.response.outlet.OutletCategoryResponse
 import com.atozcorporation.atoz.rest.response.outlet.OutletListResponse
 import com.growinginfotech.businesshub.rest.response.insert.InsertResponse
 import retrofit2.Call
@@ -18,6 +19,15 @@ interface ApiInterface {
         @Field("Col") Col: String,
         @Field("WhereClouse") WhereClouse: String
     ): Call<OutletListResponse>
+
+    @FormUrlEncoded
+    @POST("DynamicQuery.php")
+    fun getOutletCategory(
+        @Field("methodname") methodname: String,
+        @Field("TableName") TableName: String,
+        @Field("Col") Col: String,
+        @Field("WhereClouse") WhereClouse: String
+    ): Call<OutletCategoryResponse>
 
     @FormUrlEncoded
     @POST("DynamicQuery.php")

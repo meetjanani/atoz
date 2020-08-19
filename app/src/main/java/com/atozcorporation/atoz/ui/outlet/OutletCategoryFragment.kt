@@ -5,35 +5,36 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import com.atozcorporation.atoz.R
 import com.atozcorporation.atoz.base.BaseFragment
 import com.atozcorporation.atoz.ui.addoutlet.AddOutletActivity
 import com.growinginfotech.businesshub.base.IAdapterOnClick
 import com.growinginfotech.businesshub.base.navigateTo
-import kotlinx.android.synthetic.main.fragment_outlet.*
+import kotlinx.android.synthetic.main.activity_outlet.*
 
-class OutletFragment : BaseFragment() , IAdapterOnClick{
+class OutletCategoryFragment : BaseFragment() , IAdapterOnClick{
 
-    private lateinit var viewModel: OutletViewModel
-    protected var adapter = OutletListAdapter(this)
+    private lateinit var viewModel: OutletCategoryViewModel
+    protected var adapter = OutletCategoryAdapter(this)
 
-    fun observeState(viewModel : OutletViewModel){
+    fun observeState(viewModel : OutletCategoryViewModel){
         viewModel.outletAPIState.observe(viewLifecycleOwner, Observer {
             when(it){
-                is  OutletViewModel.OutletAPIState.Loading -> {
+                is  OutletCategoryViewModel.OutletAPIState.Loading -> {
                     progressBar.visibility = View.VISIBLE
                 }
-                is  OutletViewModel.OutletAPIState.   Success -> {
+                is  OutletCategoryViewModel.OutletAPIState.   Success -> {
                     it.data.data.let { response ->
                         adapter.OutletListAdapter(requireContext(), response, "")
+                        recycler_view_Outlet_List.layoutManager = GridLayoutManager(requireContext(), 2)
                         recycler_view_Outlet_List.setAdapter(adapter)
                     }
                     progressBar.visibility = View.GONE
                 }
-                is  OutletViewModel.OutletAPIState.Failure -> {
+                is  OutletCategoryViewModel.OutletAPIState.Failure -> {
                     Toast.makeText(requireContext(), it.throwable.message.toString(),Toast.LENGTH_SHORT).show()
                     progressBar.visibility = View.GONE
                 }
@@ -47,17 +48,9 @@ class OutletFragment : BaseFragment() , IAdapterOnClick{
             savedInstanceState: Bundle?
     ): View? {
         viewModel =
-                ViewModelProviders.of(this).get(OutletViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_outlet, container, false)
+                ViewModelProviders.of(this).get(OutletCategoryViewModel::class.java)
+        val root = inflater.inflate(R.layout.activity_outlet, container, false)
         observeState(viewModel)
-        // val textView: TextView = root.findViewById(R.id.text_home)
-//        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-//            textView.text = it
-//        })
-
-//        buttonAddOutlet.setOnClickListener {
-//            Toast.makeText(requireContext(),"Clicked", Toast.LENGTH_LONG).show()
-//        }
         return root
     }
 
@@ -69,6 +62,6 @@ class OutletFragment : BaseFragment() , IAdapterOnClick{
     }
 
     override fun onClick(item: Any, position: Int) {
-        //
+        requireActivity().navigateTo<OutletListActivity>()
     }
 }

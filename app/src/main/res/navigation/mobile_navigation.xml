@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.atozcorporation.atoz.ui.outlet.OutletFragment"
+        android:name="com.atozcorporation.atoz.ui.outlet.OutletCategoryFragment"
         android:label="@string/title_outlet"
-        tools:layout="@layout/fragment_outlet" />
+        tools:layout="@layout/activity_outlet" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
