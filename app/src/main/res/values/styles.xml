@@ -11,4 +11,18 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+
+    <style name="MyToolbar" parent="AppTheme">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
+
+    <style name="MyToolbarPopUp" parent="AppTheme">
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
+
 </resources>

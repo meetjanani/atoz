@@ -4,8 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.atozcorporation.atoz.R
@@ -17,6 +17,9 @@ class OutletListAdapter(val iAdapterOnClick: IAdapterOnClick) :
 
     private var context: Context? = null
     private var arrayList: List<OutletListResponse.Outlet> = listOf()
+    var toolbar: Toolbar? = null
+
+
 
     //private ContactsAdapterListener listener;
     class MyViewHolder(itemView: View) :
@@ -51,6 +54,10 @@ class OutletListAdapter(val iAdapterOnClick: IAdapterOnClick) :
         this.arrayList = arrayList
     }
 
+    // setting Toolbar
+
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, i: Int): MyViewHolder {
         val itemView: View = LayoutInflater.from(parent.context)
@@ -68,6 +75,7 @@ class OutletListAdapter(val iAdapterOnClick: IAdapterOnClick) :
         holder.rootContraintLayout.setOnClickListener {
             iAdapterOnClick.onClick(arrayList.get(i), i)
         }
+
     }
 
     override fun getItemCount(): Int {
