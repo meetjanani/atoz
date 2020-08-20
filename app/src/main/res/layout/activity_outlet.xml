@@ -6,14 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".ui.outlet.OutletListActivity">
 
-    <com.google.android.material.button.MaterialButton
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonAddOutlet"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/button_height"
+        android:text="Add Outlet"
+        android:textSize="@dimen/button_text_size"
+        android:textStyle="normal"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rounded_corners_button"
+        app:backgroundTint="@color/socialColorFacebook"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Add Outlet"/>
+        tools:layout_editor_absoluteX="3dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_Outlet_List"
