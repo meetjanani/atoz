@@ -44,9 +44,9 @@ class OutletListActivity : BaseActivity() , IAdapterOnClick{
         viewModel =
             ViewModelProviders.of(this).get(OutletViewModel::class.java)
         observeState(viewModel)
-        buttonAddOutlet.setOnClickListener {
-            navigateTo<AddOutletActivity> {  }
-        }
+//        buttonAddOutlet.setOnClickListener {
+//            navigateTo<AddOutletActivity> {  }
+//        }
     }
 
     override fun onClick(item: Any, position: Int) {

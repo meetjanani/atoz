@@ -59,9 +59,9 @@ class OutletCategoryFragment : BaseFragment() , IAdapterOnClick{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        buttonAddOutlet.setOnClickListener {
-           requireActivity().navigateTo<AddOutletActivity> {  }
-        }
+//        buttonAddOutlet.setOnClickListener {
+//           requireActivity().navigateTo<AddOutletActivity> {  }
+//        }
     }
 
     override fun onClick(item: Any, position: Int) {
