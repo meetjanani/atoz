@@ -66,7 +66,7 @@ class OutletListAdapter(val iAdapterOnClick: IAdapterOnClick) :
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, i: Int) {
-        holder.textViewOutletId.text = arrayList.get(i).id
+        holder.textViewOutletId.text = arrayList.get(i).batchId
         holder.textViewBusinessName.text = arrayList.get(i).name
         holder.textViewContactPersonName.text = arrayList.get(i).personName
         holder.textViewGSTNumber.text = arrayList.get(i).gst

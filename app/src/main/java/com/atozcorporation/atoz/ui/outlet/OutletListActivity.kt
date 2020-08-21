@@ -23,7 +23,7 @@ class OutletListActivity : BaseActivity() , IAdapterOnClick{
                 is  OutletViewModel.OutletAPIState.Loading -> {
                     progressBar.visibility = View.VISIBLE
                 }
-                is  OutletViewModel.OutletAPIState.   Success -> {
+                is  OutletViewModel.OutletAPIState.Success -> {
                     it.data.data.let { response ->
                         adapter.OutletListAdapter(this, response, "")
                         recycler_view_Outlet_List.setAdapter(adapter)

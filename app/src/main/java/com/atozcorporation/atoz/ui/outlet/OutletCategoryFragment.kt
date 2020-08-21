@@ -10,7 +10,10 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import com.atozcorporation.atoz.R
 import com.atozcorporation.atoz.base.BaseFragment
+import com.atozcorporation.atoz.rest.response.outlet.OutletCategoryResponse
 import com.atozcorporation.atoz.ui.addoutlet.AddOutletActivity
+import com.growinginfotech.businesshub.base.CurrentSelectedOutletCategoryId
+import com.growinginfotech.businesshub.base.CurrentSelectedOutletCategoryName
 import com.growinginfotech.businesshub.base.IAdapterOnClick
 import com.growinginfotech.businesshub.base.navigateTo
 import kotlinx.android.synthetic.main.activity_outlet.*
@@ -62,6 +65,10 @@ class OutletCategoryFragment : BaseFragment() , IAdapterOnClick{
     }
 
     override fun onClick(item: Any, position: Int) {
-        requireActivity().navigateTo<OutletListActivity>()
+        if(item is OutletCategoryResponse.Data){
+            CurrentSelectedOutletCategoryId = item.id
+            CurrentSelectedOutletCategoryName = item.name
+            requireActivity().navigateTo<OutletListActivity>()
+        }
     }
 }

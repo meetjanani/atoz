@@ -1,7 +1,7 @@
 package com.growinginfotech.businesshub.base
 
-    var CurrentSelectedMainCategoryId = 0
-    var CurrentSelectedMainCategoryName = ""
+    var CurrentSelectedOutletCategoryId = 0
+    var CurrentSelectedOutletCategoryName = ""
 
     var CurrentSelectedSubCategoryId = 0
     var CurrentSelectedSubCategoryName = ""

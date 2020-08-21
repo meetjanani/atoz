@@ -3,6 +3,7 @@ package com.atozcorporation.atoz.ui.outlet
 import androidx.lifecycle.MutableLiveData
 import com.atozcorporation.atoz.rest.response.outlet.OutletListResponse
 import com.growinginfotech.businesshub.base.BaseViewModel
+import com.growinginfotech.businesshub.base.CurrentSelectedOutletCategoryId
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,7 +25,7 @@ class OutletViewModel : BaseViewModel() {
     fun getSubCategoryAPICall() {
         outletAPIState.postValue(OutletAPIState.Loading)
         val call: Call<OutletListResponse> =
-            apiService.getOutletList("GetList", "outlet", "*", "true")
+            apiService.getOutletList("GetList", "outlet", "*", "categoryId = $CurrentSelectedOutletCategoryId")
         call.enqueue(object : Callback<OutletListResponse> {
             override fun onResponse(
                 call: Call<OutletListResponse>,

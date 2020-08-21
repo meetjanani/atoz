@@ -7,7 +7,7 @@ data class OutletCategoryResponse(
 ) {
     data class Data(
         val createdAt: String = "",
-        val id: String = "",
+        val id: Int = 0,
         val isActive: String = "",
         val name: String = "",
         val url1: String = ""
