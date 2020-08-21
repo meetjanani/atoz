@@ -7,33 +7,53 @@
     tools:context=".ui.outlet.OutletListActivity">
 
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonAddOutlet"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/button_height"
-        android:text="Add Outlet"
-        android:textSize="@dimen/button_text_size"
-        android:textStyle="normal"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textAlignment="center"
-        android:gravity="center"
-        android:layout_margin="10dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/rounded_corners_button"
-        app:backgroundTint="@color/socialColorFacebook"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/categoryName"
+        android:layout_width="130sp"
+        android:layout_height="40dp"
+        android:layout_margin="15dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/rounded_corners_edittext_dark"
+        android:gravity="start|center_vertical"
+        android:hint="Enter Outlet Name"
+        android:inputType="text|textNoSuggestions"
+        android:padding="6dp"
+        android:textAlignment="viewStart"
+        android:textColor="#000"
+        android:textColorHint="#000"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteX="3dp"/>
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/search_editText"
+        android:layout_width="200sp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rounded_corners_edittext_dark"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="5dp"
+        android:hint="Search"
+        android:imeOptions="actionSearch"
+        android:inputType="textNoSuggestions"
+        android:padding="5dp"
+        android:textColor="@color/textColorSecondaryLight"
+        android:textColorHint="@color/textColorPrimaryDark"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.905"
+        app:layout_constraintStart_toStartOf="@+id/categoryName"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_Outlet_List"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="10dp"
         android:scrollbars="none"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/buttonAddOutlet"
+        app:layout_constraintTop_toBottomOf="@id/search_editText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
