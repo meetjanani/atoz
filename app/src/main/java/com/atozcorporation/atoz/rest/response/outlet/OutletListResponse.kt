@@ -18,6 +18,9 @@ data class OutletListResponse(
         val userId: String = "",
         val userName: String = "",
         val latitude: String = "",
-        val longitude: String = ""
+        val longitude: String = "",
+        val categoryId: Int = 0,
+        val categoryName: String = "",
+        val batchId: String = ""
     )
 }
