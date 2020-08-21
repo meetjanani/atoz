@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/rootContraintLayout"
     android:orientation="vertical"
+    android:layout_margin="4dp"
     android:paddingBottom="10dp">
 
     <LinearLayout
