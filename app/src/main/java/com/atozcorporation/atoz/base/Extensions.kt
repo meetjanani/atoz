@@ -19,6 +19,13 @@ fun String.defaultToast(context : Context){
 inline fun <reified T : Activity> Activity.navigateTo() =
     this.startActivity(Intent(this, T::class.java))
 
+inline fun <reified T : Activity> Activity.navigateToAndFinish() {
+    this.apply {
+        startActivity(Intent(this, T::class.java))
+        finish()
+    }
+}
+
 fun loadImage(
     url: String?,
     imageView: ImageView,

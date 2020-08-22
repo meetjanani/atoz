@@ -1,9 +1,7 @@
 package com.atozcorporation.atoz.ui.addoutlet
 
 import androidx.lifecycle.MutableLiveData
-import com.atozcorporation.atoz.rest.response.outlet.OutletCategoryResponse
-import com.atozcorporation.atoz.rest.response.outlet.OutletListResponse
-import com.atozcorporation.atoz.ui.outlet.OutletCategoryViewModel
+import com.atozcorporation.atoz.rest.response.spinnermaster.SpinnerMasterResponse
 import com.growinginfotech.businesshub.base.BaseViewModel
 import com.growinginfotech.businesshub.rest.response.insert.InsertResponse
 import retrofit2.Call
@@ -15,16 +13,22 @@ class AddOutletViewModel : BaseViewModel() {
     /**
      * MainCategory API State
      */
-    val outletCategoryList = MutableLiveData<OutletCategoryResponse>()
+    val outletCategoryList = MutableLiveData<SpinnerMasterResponse>()
+    val outletCityList = MutableLiveData<SpinnerMasterResponse>()
+    val outletAreaList = MutableLiveData<SpinnerMasterResponse>()
     sealed class AddOutletAPIState {
         object Loading : AddOutletAPIState()
-        data class SuccessOutletCategory(val data: OutletCategoryResponse) : AddOutletAPIState()
+        data class SuccessOutletCategory(val data: SpinnerMasterResponse) : AddOutletAPIState()
+        data class SuccessCity(val data: SpinnerMasterResponse) : AddOutletAPIState()
+        data class SuccessArea(val data: SpinnerMasterResponse) : AddOutletAPIState()
         data class Success(val data: InsertResponse) : AddOutletAPIState()
         data class Failure(val throwable: Throwable) : AddOutletAPIState()
     }
 
     init {
         getOutletCategoryAPICall()
+        getCityAPICall()
+        getAreaAPICall()
     }
     fun addOutletAPICall(col : String, colData : String) {
         addOutletAPIState.postValue(AddOutletAPIState.Loading)
@@ -50,20 +54,62 @@ class AddOutletViewModel : BaseViewModel() {
 
     fun getOutletCategoryAPICall() {
         addOutletAPIState.postValue(AddOutletAPIState.Loading)
-        val call: Call<OutletCategoryResponse> =
-            apiService.getOutletCategory("GetList", "outletCategory", "*", "isActive = 1")
-        call.enqueue(object : Callback<OutletCategoryResponse> {
+        val call: Call<SpinnerMasterResponse> =
+            apiService.Fill_SpinnerData("GetList", "outletCategory", "*", "isActive = 1")
+        call.enqueue(object : Callback<SpinnerMasterResponse> {
             override fun onResponse(
-                call: Call<OutletCategoryResponse>,
-                response: Response<OutletCategoryResponse>
+                call: Call<SpinnerMasterResponse>,
+                response: Response<SpinnerMasterResponse>
 
             ) {
                 outletCategoryList.value = response.body()
-                addOutletAPIState.postValue(AddOutletAPIState.SuccessOutletCategory(response.body()))
             }
 
             override fun onFailure(
-                call: Call<OutletCategoryResponse>,
+                call: Call<SpinnerMasterResponse>,
+                t: Throwable
+            ) {
+                addOutletAPIState.postValue(AddOutletAPIState.Failure(t))
+            }
+        })
+    }
+    fun getCityAPICall() {
+        addOutletAPIState.postValue(AddOutletAPIState.Loading)
+        val call: Call<SpinnerMasterResponse> =
+            apiService.Fill_SpinnerData("GetList", "city", "*", "isActive = 1")
+        call.enqueue(object : Callback<SpinnerMasterResponse> {
+            override fun onResponse(
+                call: Call<SpinnerMasterResponse>,
+                response: Response<SpinnerMasterResponse>
+
+            ) {
+                outletCityList.value = response.body()
+            }
+
+            override fun onFailure(
+                call: Call<SpinnerMasterResponse>,
+                t: Throwable
+            ) {
+                addOutletAPIState.postValue(AddOutletAPIState.Failure(t))
+            }
+        })
+    }
+
+    fun getAreaAPICall() {
+        addOutletAPIState.postValue(AddOutletAPIState.Loading)
+        val call: Call<SpinnerMasterResponse> =
+            apiService.Fill_SpinnerData("GetList", "area", "*", "isActive = 1")
+        call.enqueue(object : Callback<SpinnerMasterResponse> {
+            override fun onResponse(
+                call: Call<SpinnerMasterResponse>,
+                response: Response<SpinnerMasterResponse>
+
+            ) {
+                outletAreaList.value = response.body()
+            }
+
+            override fun onFailure(
+                call: Call<SpinnerMasterResponse>,
                 t: Throwable
             ) {
                 addOutletAPIState.postValue(AddOutletAPIState.Failure(t))

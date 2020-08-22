@@ -1,11 +1,11 @@
-package com.atozcorporation.atoz.rest.response.outlet
+package com.atozcorporation.atoz.rest.response.login
 
-data class OutletListResponse(
-    val `data`: List<Outlet> = listOf(),
+data class LoginResponse(
+    val data: UserDetails = UserDetails(),
     val message: String = "",
     val status: Int = 0
 ) {
-    data class Outlet(
+    data class UserDetails(
         val address1: String = "",
         val address2: String = "",
         val areaId: Int = 0,

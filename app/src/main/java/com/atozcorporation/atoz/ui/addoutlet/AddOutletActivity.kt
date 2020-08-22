@@ -25,6 +25,48 @@ class AddOutletActivity : BaseActivity() {
     private var currentLocation : Location? = null
 
     fun observeState(viewModel : AddOutletViewModel){
+        viewModel.outletCategoryList.observe(this, Observer {
+            it.data.let { response ->
+                val arrayAdapter: ArrayAdapter<*> = ArrayAdapter<Any?>(
+                    this,
+                    android.R.layout.simple_spinner_item,
+                    ArrayList<String>().apply { response.map { category ->
+                        add(category.name)
+                    } } as List<String>
+                )
+                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                selectOutlet.setAdapter(arrayAdapter)
+                progressBar.visibility = View.GONE
+            }
+        })
+        viewModel.outletCityList.observe(this, Observer {
+            it.data.let { response ->
+                val arrayAdapter: ArrayAdapter<*> = ArrayAdapter<Any?>(
+                    this,
+                    android.R.layout.simple_spinner_item,
+                    ArrayList<String>().apply { response.map { city ->
+                        add(city.name)
+                    } } as List<String>
+                )
+                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                selectCity.setAdapter(arrayAdapter)
+                progressBar.visibility = View.GONE
+            }
+        })
+        viewModel.outletAreaList.observe(this, Observer {
+            it.data.let { response ->
+                val arrayAdapter: ArrayAdapter<*> = ArrayAdapter<Any?>(
+                    this,
+                    android.R.layout.simple_spinner_item,
+                    ArrayList<String>().apply { response.map { area ->
+                        add(area.name)
+                    } } as List<String>
+                )
+                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                selectArea.setAdapter(arrayAdapter)
+                progressBar.visibility = View.GONE
+            }
+        })
         viewModel.addOutletAPIState.observe(this, Observer {
             when(it){
                 is  AddOutletViewModel.AddOutletAPIState.Loading -> {
@@ -35,20 +77,7 @@ class AddOutletActivity : BaseActivity() {
                         Toast.makeText(this, response.message, Toast.LENGTH_LONG).show()
                     }
                     progressBar.visibility = View.GONE
-                }is  AddOutletViewModel.AddOutletAPIState.SuccessOutletCategory -> {
-                    it.data.let { response ->
-
-                        val aa: ArrayAdapter<*> = ArrayAdapter<Any?>(
-                            this,
-                            android.R.layout.simple_spinner_item,
-                            ArrayList<String>().apply { response.data.map { category ->
-                                add(category.name)
-                            } } as List<String>
-                        )
-                        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                        selectOutlet.setAdapter(aa)
-                    }
-                    progressBar.visibility = View.GONE
+                    finish()
                 }
                 is  AddOutletViewModel.AddOutletAPIState.Failure -> {
                     Toast.makeText(this, it.throwable.message.toString(),Toast.LENGTH_SHORT).show()
@@ -66,8 +95,12 @@ class AddOutletActivity : BaseActivity() {
             ViewModelProviders.of(this).get(AddOutletViewModel::class.java)
         observeState(viewModel)
         buttonSubmitOutlet.setOnClickListener {
-            viewModel.addOutletAPICall("`name`, `personName`, `contactNumber`, `address1`,`address2`, `pinCode`, `gst`,`latitude`,`longitude`,`categoryId`,`categoryName`,`batchId`, `userId`, `userName`",
-                "'${editTextOutletName.text}', '${editTextPersonName.text}', '${editTextContactNumber.text}', '${editTextAddressPrimary.text}','${editTextAddressSecondary.text}', '${editTextPinCode.text}', '${editTextGst.text}','${currentLocation?.latitude.toString()}','${currentLocation?.longitude.toString()}', '${viewModel.outletCategoryList.value?.data?.get(selectOutlet.selectedItemPosition)?.id}','${viewModel.outletCategoryList.value?.data?.get(selectOutlet.selectedItemPosition)?.name}','${editTextBachNumber.text}','1', 'Meet'")
+            viewModel.addOutletAPICall("`name`, `personName`, `contactNumber`, `address1`,`address2`, `pinCode`, `gst`,`latitude`,`longitude`,`categoryId`,`categoryName`,`cityId`,`cityName`,`areaId`,`areaName`,`batchId`, `userId`, `userName`, `password`",
+                "'${editTextOutletName.text}', '${editTextPersonName.text}', '${editTextContactNumber.text}', '${editTextAddressPrimary.text}','${editTextAddressSecondary.text}', '${editTextPinCode.text}', '${editTextGst.text}','${currentLocation?.latitude.toString()}','${currentLocation?.longitude.toString()}', " +
+                        "'${viewModel.outletCategoryList.value?.data?.get(selectOutlet.selectedItemPosition)?.id}','${viewModel.outletCategoryList.value?.data?.get(selectOutlet.selectedItemPosition)?.name}'," +
+                        "'${viewModel.outletCityList.value?.data?.get(selectCity.selectedItemPosition)?.id}','${viewModel.outletCityList.value?.data?.get(selectCity.selectedItemPosition)?.name}'," +
+                        "'${viewModel.outletAreaList.value?.data?.get(selectArea.selectedItemPosition)?.id}','${viewModel.outletAreaList.value?.data?.get(selectArea.selectedItemPosition)?.name}'," +
+                        "'${editTextBachNumber.text}','1', 'Meet', '${editTextBachNumber.text}'")
         }
 
         locationManager = getSystemService(LOCATION_SERVICE) as LocationManager?

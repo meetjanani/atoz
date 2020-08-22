@@ -19,10 +19,10 @@ class OutletViewModel : BaseViewModel() {
         data class Failure(val throwable: Throwable) : OutletAPIState()
     }
     init {
-        getSubCategoryAPICall()
+        getCategoryWiseOutletList()
     }
 
-    fun getSubCategoryAPICall() {
+    fun getCategoryWiseOutletList() {
         outletAPIState.postValue(OutletAPIState.Loading)
         val call: Call<OutletListResponse> =
             apiService.getOutletList("GetList", "outlet", "*", "categoryId = $CurrentSelectedOutletCategoryId")

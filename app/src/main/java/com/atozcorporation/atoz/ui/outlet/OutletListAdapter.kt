@@ -30,6 +30,9 @@ class OutletListAdapter(val iAdapterOnClick: IAdapterOnClick) :
         var textViewAddress: TextView
         var textViewGSTNumber: TextView
         var textViewOutletId: TextView
+        var city: TextView
+        var pincode: TextView
+        var area: TextView
         var rootContraintLayout: ConstraintLayout
 
         init {
@@ -39,6 +42,9 @@ class OutletListAdapter(val iAdapterOnClick: IAdapterOnClick) :
             textViewGSTNumber = itemView.findViewById(R.id.textViewGSTNumber)
             textViewAddress = itemView.findViewById(R.id.textViewAddress)
             textViewOutletId = itemView.findViewById(R.id.textViewOutletId)
+            city = itemView.findViewById(R.id.city)
+            pincode = itemView.findViewById(R.id.pincode)
+            area = itemView.findViewById(R.id.area)
             rootContraintLayout = itemView.findViewById(R.id.rootContraintLayout)
         }
     }
@@ -72,6 +78,9 @@ class OutletListAdapter(val iAdapterOnClick: IAdapterOnClick) :
         holder.textViewGSTNumber.text = arrayList.get(i).gst
         holder.textViewAddress.text = "${arrayList.get(i).address1}\n${arrayList.get(i).address2}"
         holder.textViewContactPersonNumber.text = arrayList.get(i).contactNumber
+        holder.city.text = arrayList.get(i).cityName
+        holder.pincode.text = arrayList.get(i).pinCode
+        holder.area.text = arrayList.get(i).areaName
         holder.rootContraintLayout.setOnClickListener {
             iAdapterOnClick.onClick(arrayList.get(i), i)
         }

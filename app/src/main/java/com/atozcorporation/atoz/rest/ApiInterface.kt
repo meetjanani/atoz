@@ -1,5 +1,6 @@
 package com.growinginfotech.businesshub.rest
 
+import com.atozcorporation.atoz.rest.response.login.LoginResponse
 import com.atozcorporation.atoz.rest.response.outlet.OutletCategoryResponse
 import com.atozcorporation.atoz.rest.response.outlet.OutletListResponse
 import com.atozcorporation.atoz.rest.response.spinnermaster.SpinnerMasterResponse
@@ -12,6 +13,15 @@ import retrofit2.http.POST
 interface ApiInterface {
 
     // Display Patch
+    @FormUrlEncoded
+    @POST("DynamicQuery.php")
+    fun login(
+        @Field("methodname") methodname: String,
+        @Field("TableName") TableName: String,
+        @Field("Col") Col: String,
+        @Field("WhereClouse") WhereClouse: String
+    ): Call<LoginResponse>
+
     @FormUrlEncoded
     @POST("DynamicQuery.php")
     fun getOutletList(

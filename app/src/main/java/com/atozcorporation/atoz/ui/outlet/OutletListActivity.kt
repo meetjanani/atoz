@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.atozcorporation.atoz.R
 import com.atozcorporation.atoz.base.BaseActivity
 import com.atozcorporation.atoz.ui.addoutlet.AddOutletActivity
+import com.growinginfotech.businesshub.base.CurrentSelectedOutletCategoryName
 import com.growinginfotech.businesshub.base.IAdapterOnClick
 import com.growinginfotech.businesshub.base.navigateTo
 import kotlinx.android.synthetic.main.activity_outlet.*
@@ -44,6 +45,7 @@ class OutletListActivity : BaseActivity() , IAdapterOnClick{
         viewModel =
             ViewModelProviders.of(this).get(OutletViewModel::class.java)
         observeState(viewModel)
+        categoryName.text = CurrentSelectedOutletCategoryName
 //        buttonAddOutlet.setOnClickListener {
 //            navigateTo<AddOutletActivity> {  }
 //        }

@@ -6,8 +6,8 @@
     android:id="@+id/rootContraintLayout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="16dp"
-    android:background="@color/white"
-    android:padding="4dp">
+    android:layout_margin="4dp"
+    android:background="@color/white">
 
 
     <androidx.cardview.widget.CardView

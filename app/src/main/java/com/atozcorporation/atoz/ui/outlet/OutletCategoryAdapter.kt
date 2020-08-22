@@ -4,17 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.atozcorporation.atoz.R
 import com.atozcorporation.atoz.rest.response.outlet.OutletCategoryResponse
-import com.atozcorporation.atoz.rest.response.outlet.OutletListResponse
 import com.growinginfotech.businesshub.base.IAdapterOnClick
 import com.growinginfotech.businesshub.base.loadImage
-import kotlinx.coroutines.test.withTestContext
 
 class OutletCategoryAdapter(val iAdapterOnClick: IAdapterOnClick) :
     RecyclerView.Adapter<OutletCategoryAdapter.MyViewHolder>() {

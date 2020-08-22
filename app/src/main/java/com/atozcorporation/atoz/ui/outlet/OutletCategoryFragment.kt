@@ -17,6 +17,9 @@ import com.growinginfotech.businesshub.base.CurrentSelectedOutletCategoryName
 import com.growinginfotech.businesshub.base.IAdapterOnClick
 import com.growinginfotech.businesshub.base.navigateTo
 import kotlinx.android.synthetic.main.activity_outlet.*
+import kotlinx.android.synthetic.main.activity_outlet.progressBar
+import kotlinx.android.synthetic.main.activity_outlet.recycler_view_Outlet_List
+import kotlinx.android.synthetic.main.fragment_outlet_category.*
 
 class OutletCategoryFragment : BaseFragment() , IAdapterOnClick{
 
@@ -32,8 +35,8 @@ class OutletCategoryFragment : BaseFragment() , IAdapterOnClick{
                 is  OutletCategoryViewModel.OutletAPIState.   Success -> {
                     it.data.data.let { response ->
                         adapter.OutletListAdapter(requireContext(), response, "")
-                        recycler_view_Outlet_List.layoutManager = GridLayoutManager(requireContext(), 2)
-                        recycler_view_Outlet_List.setAdapter(adapter)
+                        recycler_view_Outlet_CategoryList.layoutManager = GridLayoutManager(requireContext(), 2)
+                        recycler_view_Outlet_CategoryList.setAdapter(adapter)
                     }
                     progressBar.visibility = View.GONE
                 }
@@ -52,16 +55,16 @@ class OutletCategoryFragment : BaseFragment() , IAdapterOnClick{
     ): View? {
         viewModel =
                 ViewModelProviders.of(this).get(OutletCategoryViewModel::class.java)
-        val root = inflater.inflate(R.layout.activity_outlet, container, false)
+        val root = inflater.inflate(R.layout.fragment_outlet_category, container, false)
         observeState(viewModel)
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        buttonAddOutlet.setOnClickListener {
-//           requireActivity().navigateTo<AddOutletActivity> {  }
-//        }
+        buttonAddOutlet.setOnClickListener {
+           requireActivity().navigateTo<AddOutletActivity> {  }
+        }
     }
 
     override fun onClick(item: Any, position: Int) {

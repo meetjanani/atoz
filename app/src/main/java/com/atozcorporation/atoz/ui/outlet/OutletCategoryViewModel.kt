@@ -2,7 +2,6 @@ package com.atozcorporation.atoz.ui.outlet
 
 import androidx.lifecycle.MutableLiveData
 import com.atozcorporation.atoz.rest.response.outlet.OutletCategoryResponse
-import com.atozcorporation.atoz.rest.response.outlet.OutletListResponse
 import com.growinginfotech.businesshub.base.BaseViewModel
 import retrofit2.Call
 import retrofit2.Callback
