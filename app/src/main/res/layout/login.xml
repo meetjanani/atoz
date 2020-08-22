@@ -25,7 +25,7 @@
                 android:background="@drawable/rounded_corners_edittext_dark"
                 android:padding="6dp"
                 android:gravity="start|center_vertical"
-                android:hint="Enter Email Address"
+                android:hint="Enter Bach Number Or Email Address"
                 android:inputType="text|textNoSuggestions"
                 android:layout_margin="15dp"
                 android:textAlignment="viewStart"
