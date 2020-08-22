@@ -4,4 +4,15 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_outlet">Outlet</string>
+    <string name="enter_outlet_name">Enter Outlet Name</string>
+    <string name="enter_person_name">Enter Person Name</string>
+    <string name="enter_contact_number">Enter Contact Number</string>
+    <string name="enter_gst_number">Enter GST Number</string>
+    <string name="enter_bach_number">Enter Bach Number</string>
+    <string name="enter_primary_address">Enter Primary Address</string>
+    <string name="enter_pin_code">Enter Pin Code</string>
+    <string name="enter_secondary_address">Enter Secondary Address</string>
+    <string name="enter_email_address">Enter Email Address</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="register">Register</string>
 </resources>

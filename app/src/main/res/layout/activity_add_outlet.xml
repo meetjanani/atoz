@@ -24,7 +24,7 @@
         app:backgroundTint="@color/socialColorFacebook"
         tools:ignore="MissingConstraints" />
 
-    <Spinner
+    <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/selectOutlet"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -40,7 +40,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonGetCurrentLocation" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/editTextOutletName"
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_field_height"
@@ -58,7 +58,7 @@
         app:layout_constraintTop_toBottomOf="@+id/selectOutlet" />
 
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/editTextPersonName"
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_field_height"
@@ -76,7 +76,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextOutletName" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/editTextContactNumber"
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_field_height"
@@ -94,7 +94,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextPersonName" />
 
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/editTextGst"
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_field_height"
@@ -113,7 +113,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextContactNumber" />
 
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/editTextBachNumber"
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_field_height"
@@ -131,7 +131,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextGst" />
 
-    <Spinner
+    <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/selectCity"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -148,7 +148,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextBachNumber" />
 
 
-    <Spinner
+    <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/selectArea"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -165,7 +165,7 @@
         app:layout_constraintTop_toBottomOf="@+id/selectCity" />
 
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/editTextAddressPrimary"
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_field_height"
@@ -183,7 +183,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/selectArea" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/editTextPinCode"
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_field_height"
@@ -201,7 +201,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextAddressPrimary" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/editTextAddressSecondary"
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_field_height"
