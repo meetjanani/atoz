@@ -12,6 +12,7 @@ import com.atozcorporation.atoz.R
 import com.atozcorporation.atoz.base.BaseFragment
 import com.atozcorporation.atoz.rest.response.outlet.OutletCategoryResponse
 import com.atozcorporation.atoz.ui.addoutlet.AddOutletActivity
+import com.atozcorporation.atoz.ui.product.addproductcategory.AddProductCategoryActivity
 import com.growinginfotech.businesshub.base.CurrentSelectedOutletCategoryId
 import com.growinginfotech.businesshub.base.CurrentSelectedOutletCategoryName
 import com.growinginfotech.businesshub.base.IAdapterOnClick

@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -23,14 +24,14 @@ class ProductCategoryAdapter(val iAdapterOnClick: IAdapterOnClick) :
     //private ContactsAdapterListener listener;
     class MyViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        var textViewOutletCategory: TextView
-        var imageViewOutletCategory: AppCompatImageView
-        var rootContraintLayout: ConstraintLayout
+        var category_title: TextView
+        var category_icon: AppCompatImageView
+        var category_card: LinearLayout
 
         init {
-            textViewOutletCategory = itemView.findViewById(R.id.textViewOutletCategory)
-            imageViewOutletCategory = itemView.findViewById(R.id.imageViewOutletCategory)
-            rootContraintLayout = itemView.findViewById(R.id.rootContraintLayout)
+            category_title = itemView.findViewById(R.id.category_title)
+            category_icon = itemView.findViewById(R.id.category_icon)
+            category_card = itemView.findViewById(R.id.category_card)
         }
     }
 
@@ -48,14 +49,14 @@ class ProductCategoryAdapter(val iAdapterOnClick: IAdapterOnClick) :
 
     override fun onCreateViewHolder(parent: ViewGroup, i: Int): MyViewHolder {
         val itemView: View = LayoutInflater.from(parent.context)
-            .inflate(R.layout.pattern_outlet_category, parent, false)
+            .inflate(R.layout.pattern_product_category, parent, false)
         return MyViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, i: Int) {
-        holder.textViewOutletCategory.text = arrayList.get(i).name
-        context?.let { loadImage(arrayList.get(i).url1, holder.imageViewOutletCategory, it) }
-        holder.rootContraintLayout.setOnClickListener {
+        holder.category_title.text = arrayList.get(i).name
+        context?.let { loadImage(arrayList.get(i).url1, holder.category_icon, it) }
+        holder.category_card.setOnClickListener {
             iAdapterOnClick.onClick(arrayList.get(i), i)
         }
     }

@@ -10,7 +10,9 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import com.atozcorporation.atoz.R
 import com.atozcorporation.atoz.base.BaseFragment
+import com.atozcorporation.atoz.ui.product.addproductcategory.AddProductCategoryActivity
 import com.growinginfotech.businesshub.base.IAdapterOnClick
+import com.growinginfotech.businesshub.base.navigateTo
 import kotlinx.android.synthetic.main.activity_outlet.progressBar
 import kotlinx.android.synthetic.main.fragment_product_category.*
 
@@ -28,8 +30,6 @@ class ProductCategoryFragment : BaseFragment(), IAdapterOnClick {
                 is ProductCategoryViewModel.ProductCategoryAPIState.Success -> {
                     it.data.data.let { response ->
                         adapter.ProductCategoryAdapter(requireContext(), response, "")
-                        recycler_view_Product_CategoryList.layoutManager =
-                            GridLayoutManager(requireContext(), 2)
                         recycler_view_Product_CategoryList.adapter = adapter
                     }
                     progressBar.visibility = View.GONE
@@ -58,6 +58,12 @@ class ProductCategoryFragment : BaseFragment(), IAdapterOnClick {
         return root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        buttonAddProductCategory.setOnClickListener {
+            requireActivity().navigateTo<AddProductCategoryActivity> {  }
+        }
+    }
     override fun onClick(item: Any, position: Int) {
 
     }

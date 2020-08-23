@@ -2,7 +2,7 @@
     <string name="app_name">AtoZ</string>
     <string name="title_home">Home</string>
     <string name="title_product">Product</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_profile">Profile</string>
     <string name="title_outlet">Outlet</string>
     <string name="enter_outlet_name">Enter Outlet Name</string>
     <string name="enter_person_name">Enter Person Name</string>

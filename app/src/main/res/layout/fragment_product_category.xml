@@ -6,13 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".ui.product.ProductCategoryFragment">
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonAddProductCategory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Add Product Category"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_Product_CategoryList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scrollbars="none"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/buttonAddProductCategory"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

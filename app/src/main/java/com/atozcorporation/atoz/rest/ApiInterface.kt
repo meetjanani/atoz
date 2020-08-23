@@ -6,10 +6,12 @@ import com.atozcorporation.atoz.rest.response.outlet.OutletListResponse
 import com.atozcorporation.atoz.rest.response.product.ProductCategoryResponse
 import com.atozcorporation.atoz.rest.response.spinnermaster.SpinnerMasterResponse
 import com.growinginfotech.businesshub.rest.response.insert.InsertResponse
+import kotlinx.coroutines.Deferred
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.Response
+import retrofit2.http.*
 
 interface ApiInterface {
 
@@ -68,4 +70,12 @@ interface ApiInterface {
         @Field("Col") Col: String,
         @Field("WhereClouse") WhereClouse: String
     ): Call<ProductCategoryResponse>
+
+    @Multipart
+    @POST("master.php   ")
+    fun addNewProductCategory(
+        @Part("methodname") methodname: RequestBody,
+        @Part("name") name: RequestBody,
+        @Part imageFile: MultipartBody.Part?
+    ): Call<InsertResponse>
 }
