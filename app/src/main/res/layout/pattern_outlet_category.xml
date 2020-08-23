@@ -7,8 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="20dp"
     android:layout_margin="4dp"
-    android:background="#FFF2F2F2"
-    android:layout_margin="8dp">
+    android:background="#FFF2F2F2">
 
 
     <androidx.cardview.widget.CardView
