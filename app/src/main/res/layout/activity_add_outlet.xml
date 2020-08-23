@@ -32,12 +32,25 @@
             app:backgroundTint="@color/socialColorFacebook"
             tools:ignore="MissingConstraints" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/select_outlet_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="10sp"
+            android:text="Select Product Category"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonGetCurrentLocation"
+            />
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/selectOutlet"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_margin="15dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15sp"
+            android:layout_marginRight="15sp"
+            android:layout_marginTop="5sp"
             android:autofillHints="Outlet"
             android:background="@drawable/rounded_corners_edittext_dark"
             android:gravity="center"
@@ -46,7 +59,7 @@
             android:textColorHint="@color/textColorPrimaryDark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonGetCurrentLocation" />
+            app:layout_constraintTop_toBottomOf="@+id/select_outlet_text_view" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/editTextOutletName"
@@ -140,12 +153,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextGst" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/select_city_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15sp"
+            android:layout_marginTop="10sp"
+            android:text="Select City"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextBachNumber"
+            />
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/selectCity"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_margin="15dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15sp"
+            android:layout_marginRight="15sp"
+            android:layout_marginTop="5dp"
             android:autofillHints="Outlet"
             android:background="@drawable/rounded_corners_edittext_dark"
             android:gravity="center"
@@ -154,15 +179,28 @@
             android:textColorHint="@color/textColorPrimaryDark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextBachNumber" />
+            app:layout_constraintTop_toBottomOf="@+id/select_city_text_view" />
 
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/select_area_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15sp"
+            android:layout_marginTop="10sp"
+            android:text="Select City"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/selectCity"
+            />
 
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/selectArea"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_margin="15dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15sp"
+            android:layout_marginRight="15sp"
+            android:layout_marginTop="5dp"
             android:autofillHints="Outlet"
             android:background="@drawable/rounded_corners_edittext_dark"
             android:gravity="center"
@@ -171,7 +209,7 @@
             android:textColorHint="@color/textColorPrimaryDark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/selectCity" />
+            app:layout_constraintTop_toBottomOf="@+id/select_area_text_view" />
 
 
         <androidx.appcompat.widget.AppCompatEditText

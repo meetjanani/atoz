@@ -10,10 +10,26 @@
         android:id="@+id/buttonAddOutlet"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Add Outlet"
+        android:text="@string/add_outlet"
+        android:textSize="20sp"
+        android:layout_margin="10sp"
+        android:textColor="@color/white"
+        android:background="@color/socialColorFacebook"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonAddOutlet"
+        app:layout_constraintVertical_bias="0.019" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_Outlet_CategoryList"
@@ -22,7 +38,7 @@
         android:layout_marginTop="10dp"
         android:scrollbars="none"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/buttonAddOutlet"
+        app:layout_constraintTop_toBottomOf="@id/view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
