@@ -5,9 +5,10 @@
     android:layout_height="wrap_content"
     android:id="@+id/rootContraintLayout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:elevation="16dp"
+    android:elevation="20dp"
     android:layout_margin="4dp"
-    android:background="@color/white">
+    android:background="#FFF2F2F2"
+    android:layout_margin="8dp">
 
 
     <androidx.cardview.widget.CardView
@@ -19,7 +20,7 @@
         app:cardCornerRadius="5dp"
         android:layout_gravity="center"
         app:cardMaxElevation="1dp"
-        android:layout_margin="3dp"
+        android:layout_margin="4dp"
         app:cardElevation="0.7dp"
         app:contentPaddingBottom="0dp"
         app:cardPreventCornerOverlap="true"
