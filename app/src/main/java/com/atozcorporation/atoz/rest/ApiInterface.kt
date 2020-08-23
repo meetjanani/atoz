@@ -3,6 +3,7 @@ package com.growinginfotech.businesshub.rest
 import com.atozcorporation.atoz.rest.response.login.LoginResponse
 import com.atozcorporation.atoz.rest.response.outlet.OutletCategoryResponse
 import com.atozcorporation.atoz.rest.response.outlet.OutletListResponse
+import com.atozcorporation.atoz.rest.response.product.ProductCategoryResponse
 import com.atozcorporation.atoz.rest.response.spinnermaster.SpinnerMasterResponse
 import com.growinginfotech.businesshub.rest.response.insert.InsertResponse
 import retrofit2.Call
@@ -58,4 +59,13 @@ interface ApiInterface {
         @Field("Col") Col: String?,
         @Field("WhereClouse") WhereClouse: String?
     ): Call<SpinnerMasterResponse>
+
+    @FormUrlEncoded
+    @POST("DynamicQuery.php")
+    fun getProductCategory(
+        @Field("methodname") methodname: String,
+        @Field("TableName") TableName: String,
+        @Field("Col") Col: String,
+        @Field("WhereClouse") WhereClouse: String
+    ): Call<ProductCategoryResponse>
 }
