@@ -15,4 +15,10 @@
     <string name="enter_email_address">Enter Email Address</string>
     <string name="enter_password">Enter Password</string>
     <string name="register">Register</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
 </resources>
