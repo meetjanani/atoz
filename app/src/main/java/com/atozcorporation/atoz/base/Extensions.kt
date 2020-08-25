@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.lifecycle.MutableLiveData
 import com.atozcorporation.atoz.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -40,4 +41,8 @@ fun loadImage(
         .diskCacheStrategy(DiskCacheStrategy.ALL)
         .skipMemoryCache(true)
         .into(imageView)
+}
+
+fun <T> MutableLiveData<T>.initWith(data: T): MutableLiveData<T> = this.apply {
+    value = data
 }

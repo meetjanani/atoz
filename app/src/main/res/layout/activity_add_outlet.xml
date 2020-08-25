@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="AddOutletBinidng">
+
+        <variable
+            name="viewModel"
+            type="com.atozcorporation.atoz.ui.addoutlet.AddOutletViewModel" />
+    </data>
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layout_constraintEnd_toEndOf="parent"
@@ -69,6 +78,7 @@
             android:background="@drawable/rounded_corners_edittext_dark"
             android:gravity="start|center_vertical"
             android:hint="Enter Outlet Name"
+            android:text="@{viewModel.outletDetails.name}"
             android:inputType="text|textNoSuggestions"
             android:padding="6dp"
             android:textAlignment="viewStart"
@@ -296,3 +306,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
+</layout>

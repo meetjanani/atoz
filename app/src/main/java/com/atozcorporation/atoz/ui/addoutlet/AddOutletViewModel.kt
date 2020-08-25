@@ -1,6 +1,7 @@
 package com.atozcorporation.atoz.ui.addoutlet
 
 import androidx.lifecycle.MutableLiveData
+import com.atozcorporation.atoz.rest.response.outlet.OutletListResponse
 import com.atozcorporation.atoz.rest.response.spinnermaster.SpinnerMasterResponse
 import com.growinginfotech.businesshub.base.BaseViewModel
 import com.growinginfotech.businesshub.rest.response.insert.InsertResponse
@@ -10,6 +11,8 @@ import retrofit2.Response
 
 class AddOutletViewModel : BaseViewModel() {
     val addOutletAPIState = MutableLiveData<AddOutletAPIState>()
+    val isEditOutlet = MutableLiveData<Boolean>()
+    val outletDetails = MutableLiveData<OutletListResponse.Outlet>()
     /**
      * MainCategory API State
      */
@@ -26,6 +29,7 @@ class AddOutletViewModel : BaseViewModel() {
     }
 
     init {
+        isEditOutlet.value = false
         getOutletCategoryAPICall()
         getCityAPICall()
         getAreaAPICall()
@@ -34,6 +38,28 @@ class AddOutletViewModel : BaseViewModel() {
         addOutletAPIState.postValue(AddOutletAPIState.Loading)
         val call: Call<InsertResponse> =
             apiService.Common_Master_Insert("Insert", "outlet", col, colData)
+        call.enqueue(object : Callback<InsertResponse> {
+            override fun onResponse(
+                call: Call<InsertResponse>,
+                response: Response<InsertResponse>
+
+            ) {
+                addOutletAPIState.postValue(AddOutletAPIState.Success(response.body()))
+            }
+
+            override fun onFailure(
+                call: Call<InsertResponse>,
+                t: Throwable
+            ) {
+                addOutletAPIState.postValue(AddOutletAPIState.Failure(t))
+            }
+        })
+    }
+
+    fun updateOutletAPICall(colAndData : String, whereClouse : String) {
+        addOutletAPIState.postValue(AddOutletAPIState.Loading)
+        val call: Call<InsertResponse> =
+            apiService.Common_Master_Update("Update", "outlet", colAndData, whereClouse)
         call.enqueue(object : Callback<InsertResponse> {
             override fun onResponse(
                 call: Call<InsertResponse>,

@@ -30,6 +30,7 @@
         <activity android:name=".ui.addoutlet.AddOutletActivity"/>
         <activity android:name=".ui.outlet.OutletListActivity"/>
         <activity android:name=".ui.product.addproductcategory.AddProductCategoryActivity"/>
+        <activity android:name=".ui.outlet.outletdetails.OutletDetailsActivity"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

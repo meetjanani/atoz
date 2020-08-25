@@ -1,5 +1,7 @@
 package com.atozcorporation.atoz.rest.response.outlet
 
+import java.io.Serializable
+
 data class OutletListResponse(
     val `data`: List<Outlet> = listOf(),
     val message: String = "",
@@ -29,5 +31,5 @@ data class OutletListResponse(
         val rollId: Int = 0,
         val userId: Int = 0,
         val userName: String = ""
-    )
+    ) : Serializable
 }

@@ -4,15 +4,15 @@ import androidx.lifecycle.MutableLiveData
 import com.atozcorporation.atoz.rest.response.outlet.OutletListResponse
 import com.growinginfotech.businesshub.base.BaseViewModel
 import com.growinginfotech.businesshub.base.CurrentSelectedOutletCategoryId
+import com.growinginfotech.businesshub.base.initWith
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class OutletViewModel : BaseViewModel() {
     val outletAPIState = MutableLiveData<OutletAPIState>()
-    /**
-     * MainCategory API State
-     */
+    val outletListRecords = MutableLiveData<MutableList<OutletListResponse.Outlet>>().initWith(
+        mutableListOf())
     sealed class OutletAPIState {
         object Loading : OutletAPIState()
         data class Success(val data: OutletListResponse) : OutletAPIState()
@@ -32,6 +32,7 @@ class OutletViewModel : BaseViewModel() {
                 response: Response<OutletListResponse>
 
             ) {
+                outletListRecords.value?.addAll(response.body().data)
                 outletAPIState.postValue(OutletAPIState.Success(response.body()))
             }
 

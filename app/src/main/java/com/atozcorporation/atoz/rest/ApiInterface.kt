@@ -52,6 +52,15 @@ interface ApiInterface {
         @Field("ColData") ColData: String?
     ): Call<InsertResponse>
 
+    @FormUrlEncoded
+    @POST("DynamicQuery.php")
+    fun Common_Master_Update(
+        @Field("methodname") methodname: String,
+        @Field("TableName") TableName: String,
+        @Field("ColAndData") Col: String,
+        @Field("WhereClouse") WhereClouse: String
+    ): Call<InsertResponse>
+
     // Fill Spinner Data
     @FormUrlEncoded
     @POST("DynamicQuery.php")
@@ -74,6 +83,14 @@ interface ApiInterface {
     @Multipart
     @POST("master.php   ")
     fun addNewProductCategory(
+        @Part("methodname") methodname: RequestBody,
+        @Part("name") name: RequestBody,
+        @Part imageFile: MultipartBody.Part?
+    ): Call<InsertResponse>
+
+    @Multipart
+    @POST("master.php   ")
+    fun addNewProductBrand(
         @Part("methodname") methodname: RequestBody,
         @Part("name") name: RequestBody,
         @Part imageFile: MultipartBody.Part?
