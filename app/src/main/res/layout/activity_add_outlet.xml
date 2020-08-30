@@ -253,12 +253,16 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewOutletSince"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="40dp"
             android:layout_marginLeft="15sp"
             android:layout_marginTop="10sp"
             android:text="Outlet Since Date"
             android:textStyle="bold"
             android:textSize="20sp"
+            android:padding="6dp"
+            android:textColor="@color/textColorSecondary"
+            android:textColorHint="@color/textColorPrimaryDark"
+            android:background="@drawable/rounded_corners_edittext_dark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/selectOutletOn"
@@ -320,6 +324,60 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextPinCode" />
 
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/editTextPanCard"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/input_field_height"
+            android:layout_margin="15dp"
+            android:background="@drawable/rounded_corners_edittext_dark"
+            android:gravity="start|center_vertical"
+            android:hint="Enter Pan Card Number"
+            android:inputType="text|textNoSuggestions"
+            android:padding="6dp"
+            android:textAlignment="viewStart"
+            android:textColor="@color/textColorSecondary"
+            android:textColorHint="@color/textColorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.888"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextAddressSecondary" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/editTextAadharCard"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/input_field_height"
+            android:layout_margin="15dp"
+            android:background="@drawable/rounded_corners_edittext_dark"
+            android:gravity="start|center_vertical"
+            android:hint="Enter Aadhar Card Number"
+            android:inputType="text|textNoSuggestions"
+            android:padding="6dp"
+            android:textAlignment="viewStart"
+            android:textColor="@color/textColorSecondary"
+            android:textColorHint="@color/textColorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.888"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextPanCard" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/editTextOtherDetail"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/input_field_height"
+            android:layout_margin="15dp"
+            android:background="@drawable/rounded_corners_edittext_dark"
+            android:gravity="start|center_vertical"
+            android:hint="Enter Other Details"
+            android:inputType="text|textNoSuggestions"
+            android:padding="6dp"
+            android:textAlignment="viewStart"
+            android:textColor="@color/textColorSecondary"
+            android:textColorHint="@color/textColorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.888"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextAadharCard" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonSubmitOutlet"
             android:layout_width="match_parent"
@@ -332,8 +390,9 @@
             android:textColor="@color/white"
             android:textSize="@dimen/button_text_size"
             app:backgroundTint="@color/colorAccentGreen"
-            app:layout_constraintTop_toBottomOf="@+id/editTextAddressSecondary"
+            app:layout_constraintTop_toBottomOf="@+id/editTextOtherDetail"
             tools:layout_editor_absoluteX="0dp" />
+
 
 
         <ProgressBar

@@ -43,7 +43,7 @@
                 android:padding="6dp"
                 android:gravity="start|center_vertical"
                 android:hint="Enter Password"
-                android:inputType="text|textNoSuggestions"
+                android:inputType="textPassword|textNoSuggestions"
                 android:layout_margin="15dp"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textColorSecondary"
