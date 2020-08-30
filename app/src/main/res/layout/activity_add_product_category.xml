@@ -32,12 +32,10 @@
 
 
             <ImageView
-                android:id="@+id/select_table_image"
+                android:id="@+id/imageViewProductCategory"
                 android:layout_width="350dp"
-                android:layout_height="200dp"
-                android:cropToPadding="false"
+                android:layout_height="350dp"
                 android:src="@drawable/ic_add_image"
-                android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="30dp"
                 />
@@ -75,6 +73,7 @@
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
 
 </RelativeLayout>

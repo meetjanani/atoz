@@ -25,7 +25,7 @@
 
 
                 <TextView
-                    android:id="@+id/myDashboard"
+                    android:id="@+id/textViewPersonName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Anilbhai "
@@ -35,13 +35,13 @@
                     android:textColor="@android:color/white"
                     />
                 <TextView
-                    android:id="@+id/dashboard_adminName"
+                    android:id="@+id/textViewShopName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Praksha Shop "
                     android:textSize="15sp"
-                    android:layout_below="@id/myDashboard"
-                    android:layout_alignEnd="@id/myDashboard"
+                    android:layout_below="@id/textViewPersonName"
+                    android:layout_alignEnd="@id/textViewPersonName"
                     android:layout_marginTop="-20dp"
                     android:textStyle="bold"
                     android:textColor="@android:color/white"
@@ -52,8 +52,8 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_margin="10dp"
-                    android:src="@drawable/profile"
-                    android:layout_toRightOf="@id/myDashboard"
+                    android:src="@drawable/logo_atoz"
+                    android:layout_toRightOf="@id/textViewPersonName"
                     />
 
 
@@ -70,7 +70,7 @@
                 >
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/driverManager"
+                    android:id="@+id/cardViewProductCatelog"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
@@ -96,7 +96,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Driver Manager"
+                            android:text="Product Catelog"
                             android:textSize="15sp"
                             android:layout_gravity="center_horizontal"
                             android:textStyle="bold"
@@ -107,7 +107,7 @@
 
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/parkingManager"
+                    android:id="@+id/cardViewMyCart"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
@@ -133,7 +133,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Parking Manager"
+                            android:text="My Cart"
                             android:textSize="15sp"
                             android:layout_gravity="center_horizontal"
                             android:textStyle="bold"
@@ -142,7 +142,7 @@
 
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/history"
+                    android:id="@+id/cardViewPastOrder"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
@@ -169,121 +169,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="History"
+                            android:text="Past Order"
                             android:textSize="15sp"
                             android:layout_gravity="center_horizontal"
                             android:textStyle="bold"
                             />
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/feedback"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="10dp"
-                    app:cardElevation="7dp"
-                    app:cardCornerRadius="10dp"
-                    >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:layout_margin="2dp"
-                        android:padding="10dp"
-                        >
-
-                        <ImageView
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:src="@drawable/profile"
-                            android:layout_gravity="center_horizontal|center_vertical"
-
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Feedback/Bugs"
-                            android:textSize="15sp"
-                            android:layout_gravity="center_horizontal"
-                            android:textStyle="bold"
-                            />
-                    </LinearLayout>
-
-
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/support"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="10dp"
-                    app:cardElevation="7dp"
-                    app:cardCornerRadius="10dp"
-                    >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:layout_margin="2dp"
-                        android:padding="10dp"
-                        >
-
-                        <ImageView
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:src="@drawable/profile"
-                            android:layout_gravity="center_horizontal|center_vertical"
-
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Support"
-                            android:textSize="15sp"
-                            android:layout_gravity="center_horizontal"
-                            android:textStyle="bold"
-                            />
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/setting"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="10dp"
-                    app:cardElevation="7dp"
-                    app:cardCornerRadius="10dp"
-                    >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:layout_margin="2dp"
-                        android:padding="10dp"
-                        >
-
-                        <ImageView
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:src="@drawable/profile"
-                            android:layout_gravity="center_horizontal|center_vertical"
-
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Setting"
-                            android:textSize="15sp"
-                            android:layout_gravity="center_horizontal"
-                            android:textStyle="bold"
-                            />
-                    </LinearLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
                     android:id="@+id/logout"
@@ -314,6 +206,116 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Logout"
+                            android:textSize="15sp"
+                            android:layout_gravity="center_horizontal"
+                            android:textStyle="bold"
+                            />
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewOutlet"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="10dp"
+                    app:cardElevation="7dp"
+                    android:visibility="gone"
+                    app:cardCornerRadius="10dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_margin="2dp"
+                        android:padding="10dp"
+                        >
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/profile"
+                            android:layout_gravity="center_horizontal|center_vertical"
+
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Manage Outlet"
+                            android:textSize="15sp"
+                            android:layout_gravity="center_horizontal"
+                            android:textStyle="bold"
+                            />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewAddSalseMan"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:visibility="gone"
+                    android:layout_margin="10dp"
+                    app:cardElevation="7dp"
+                    app:cardCornerRadius="10dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_margin="2dp"
+                        android:padding="10dp"
+                        >
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/profile"
+                            android:layout_gravity="center_horizontal|center_vertical"
+
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Add SalseMan"
+                            android:textSize="15sp"
+                            android:layout_gravity="center_horizontal"
+                            android:textStyle="bold"
+                            />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/feedback"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="10dp"
+                    android:visibility="gone"
+                    app:cardElevation="7dp"
+                    app:cardCornerRadius="10dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_margin="2dp"
+                        android:padding="10dp"
+                        >
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/profile"
+                            android:layout_gravity="center_horizontal|center_vertical"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Feedback/Bugs"
                             android:textSize="15sp"
                             android:layout_gravity="center_horizontal"
                             android:textStyle="bold"

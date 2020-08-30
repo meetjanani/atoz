@@ -12,14 +12,8 @@ import com.atozcorporation.atoz.R
 import com.atozcorporation.atoz.base.BaseFragment
 import com.atozcorporation.atoz.rest.response.outlet.OutletCategoryResponse
 import com.atozcorporation.atoz.ui.addoutlet.AddOutletActivity
-import com.atozcorporation.atoz.ui.product.addproductcategory.AddProductCategoryActivity
-import com.growinginfotech.businesshub.base.CurrentSelectedOutletCategoryId
-import com.growinginfotech.businesshub.base.CurrentSelectedOutletCategoryName
-import com.growinginfotech.businesshub.base.IAdapterOnClick
-import com.growinginfotech.businesshub.base.navigateTo
-import kotlinx.android.synthetic.main.activity_outlet.*
+import com.growinginfotech.businesshub.base.*
 import kotlinx.android.synthetic.main.activity_outlet.progressBar
-import kotlinx.android.synthetic.main.activity_outlet.recycler_view_Outlet_List
 import kotlinx.android.synthetic.main.fragment_outlet_category.*
 
 class OutletCategoryFragment : BaseFragment() , IAdapterOnClick{
@@ -63,8 +57,14 @@ class OutletCategoryFragment : BaseFragment() , IAdapterOnClick{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setActivityContext(requireActivity())
+        if(loginUser?.rollId != 3 ){
+            buttonAddOutlet.visibility = View.VISIBLE
+        }
         buttonAddOutlet.setOnClickListener {
-           requireActivity().navigateTo<AddOutletActivity> {  }
+           requireActivity().navigateTo<AddOutletActivity> {
+               putExtra("outletUserRoll", "3")
+           }
         }
     }
 

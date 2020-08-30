@@ -13,6 +13,7 @@
         android:text="@string/add_outlet"
         android:textSize="20sp"
         android:layout_margin="10sp"
+        android:visibility="gone"
         android:textColor="@color/white"
         android:background="@color/socialColorFacebook"
         app:layout_constraintTop_toTopOf="parent"

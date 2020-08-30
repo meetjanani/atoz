@@ -19,17 +19,19 @@
         android:usesCleartextTraffic="true"
         android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ui.spalsh.SplashScreenActivity">
+        <activity android:name=".ui.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.login.LoginActivity"/>
+        <activity android:name=".ui.spalsh.SplashScreenActivity"/>
+        <activity android:name=".ui.dashboard.DashboardActivity"/>
         <activity android:name=".MainActivity"/>
+        <activity android:name=".ui.manageproduct.ProductCategoryActivity"/>
         <activity android:name=".ui.addoutlet.AddOutletActivity"/>
         <activity android:name=".ui.outlet.OutletListActivity"/>
-        <activity android:name=".ui.product.addproductcategory.AddProductCategoryActivity"/>
+        <activity android:name=".ui.manageproduct.addproductcategory.AddProductCategoryActivity"/>
         <activity android:name=".ui.outlet.outletdetails.OutletDetailsActivity"/>
 
         <provider

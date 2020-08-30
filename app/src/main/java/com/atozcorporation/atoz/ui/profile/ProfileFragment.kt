@@ -9,8 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.atozcorporation.atoz.R
+import com.atozcorporation.atoz.base.BaseFragment
+import com.atozcorporation.atoz.ui.login.LoginActivity
+import com.growinginfotech.businesshub.base.navigateToAndFinish
+import kotlinx.android.synthetic.main.fragment_profile.*
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : BaseFragment() {
 
     private lateinit var notificationsViewModel: ProfileViewModel
 
@@ -22,10 +26,15 @@ class ProfileFragment : Fragment() {
         notificationsViewModel =
                 ViewModelProviders.of(this).get(ProfileViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_profile, container, false)
-        val textView: TextView = root.findViewById(R.id.text_notifications)
-        notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+        setActivityContext(requireActivity())
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        buttonLogout.setOnClickListener {
+            setSharedPreferenceloginUser(null, false)
+            activity?.navigateToAndFinish<LoginActivity>()
+        }
     }
 }

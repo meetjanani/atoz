@@ -2,6 +2,7 @@ package com.growinginfotech.businesshub.rest
 
 import com.atozcorporation.atoz.rest.response.login.LoginResponse
 import com.atozcorporation.atoz.rest.response.outlet.OutletCategoryResponse
+import com.atozcorporation.atoz.rest.response.outlet.OutletDetailsResponse
 import com.atozcorporation.atoz.rest.response.outlet.OutletListResponse
 import com.atozcorporation.atoz.rest.response.product.ProductCategoryResponse
 import com.atozcorporation.atoz.rest.response.spinnermaster.SpinnerMasterResponse
@@ -95,4 +96,13 @@ interface ApiInterface {
         @Part("name") name: RequestBody,
         @Part imageFile: MultipartBody.Part?
     ): Call<InsertResponse>
+
+    @FormUrlEncoded
+    @POST("DynamicQuery.php")
+    fun verifyOutletDetails(
+        @Field("methodname") methodname: String,
+        @Field("TableName") TableName: String,
+        @Field("Col") Col: String,
+        @Field("WhereClouse") WhereClouse: String
+    ): Call<OutletDetailsResponse>
 }

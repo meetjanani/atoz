@@ -9,6 +9,7 @@ import com.atozcorporation.atoz.MainActivity
 import com.atozcorporation.atoz.R
 import com.atozcorporation.atoz.base.BaseActivity
 import com.atozcorporation.atoz.base.SharedPref
+import com.atozcorporation.atoz.ui.dashboard.DashboardActivity
 import com.growinginfotech.businesshub.base.defaultToast
 import com.growinginfotech.businesshub.base.navigateToAndFinish
 import kotlinx.android.synthetic.main.activity_login.*
@@ -25,8 +26,8 @@ class LoginActivity : BaseActivity() {
                 is LoginViewModel.LoginAPIState.SuccessLogin -> {
                     it.data.let { response ->
                         if (response.status == 1) {
-                            SharedPref().Save_Login_Data(this, response.data)
-                            navigateToAndFinish<MainActivity>()
+                            setSharedPreferenceloginUser(response.data, true)
+                            navigateToAndFinish<DashboardActivity>()
                         } else {
                             "Please Provide Valid Credentials".defaultToast(this)
                         }
@@ -44,6 +45,7 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        setActivityContext(this)
 
         viewModel =
             ViewModelProviders.of(this).get(LoginViewModel::class.java)
@@ -51,9 +53,6 @@ class LoginActivity : BaseActivity() {
 
         loginBtn.setOnClickListener {
             viewModel.loginAPICall(user_email.text.toString(), user_password.text.toString())
-        }
-        if (SharedPref().getIs_Login(this)) {
-            navigateToAndFinish<MainActivity>()
         }
     }
 }

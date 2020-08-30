@@ -30,6 +30,9 @@ data class OutletListResponse(
         val pinCode: String = "",
         val rollId: Int = 0,
         val userId: Int = 0,
-        val userName: String = ""
+        val userName: String = "",
+        val outletOnId: Int = 0,
+        val outletOnName: String = "",
+        val outletSince: String = ""
     ) : Serializable
 }

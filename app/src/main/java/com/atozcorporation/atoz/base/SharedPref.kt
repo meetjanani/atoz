@@ -1,5 +1,6 @@
 package com.atozcorporation.atoz.base
 
+import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import com.atozcorporation.atoz.rest.response.login.LoginResponse
@@ -34,12 +35,12 @@ class SharedPref {
         return pref.getBoolean(
             "islogin",
             false
-        ) // getting String
+        ) ?: false // getting String
     }
 
-    fun getLoginResponse(ctx: Context): LoginResponse.UserDetails {
-        val pref =
-            ctx.getSharedPreferences("session", 0)
-        return Gson().fromJson(pref.getString("loginResponse", null), LoginResponse.UserDetails::class.java)
+    fun getLoginResponse(ctx: Activity): LoginResponse.UserDetails? {
+        val pref = ctx.getSharedPreferences("session", 0)
+        pref.getString("loginResponse", null)?.let {
+            return Gson().fromJson(pref.getString("loginResponse", null), LoginResponse.UserDetails::class.java)} ?: return null
     }
 }

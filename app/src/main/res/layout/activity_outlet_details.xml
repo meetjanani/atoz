@@ -11,4 +11,12 @@
         android:text="Edit Outlet Details"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnNavigationOutlet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Navigate"
+        app:layout_constraintTop_toBottomOf="@id/btnEditOutletDetails"
+        app:layout_constraintStart_toStartOf="@id/btnEditOutletDetails"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

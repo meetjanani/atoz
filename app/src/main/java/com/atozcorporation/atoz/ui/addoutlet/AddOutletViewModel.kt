@@ -1,40 +1,45 @@
 package com.atozcorporation.atoz.ui.addoutlet
 
 import androidx.lifecycle.MutableLiveData
+import com.atozcorporation.atoz.rest.response.outlet.OutletDetailsResponse
 import com.atozcorporation.atoz.rest.response.outlet.OutletListResponse
 import com.atozcorporation.atoz.rest.response.spinnermaster.SpinnerMasterResponse
 import com.growinginfotech.businesshub.base.BaseViewModel
+import com.growinginfotech.businesshub.base.initWith
 import com.growinginfotech.businesshub.rest.response.insert.InsertResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class AddOutletViewModel : BaseViewModel() {
+    val outletUserRoll = MutableLiveData<String>().initWith("3")
     val addOutletAPIState = MutableLiveData<AddOutletAPIState>()
     val isEditOutlet = MutableLiveData<Boolean>()
     val outletDetails = MutableLiveData<OutletListResponse.Outlet>()
+
     /**
      * MainCategory API State
      */
     val outletCategoryList = MutableLiveData<SpinnerMasterResponse>()
     val outletCityList = MutableLiveData<SpinnerMasterResponse>()
     val outletAreaList = MutableLiveData<SpinnerMasterResponse>()
+    val outletOnList = MutableLiveData<SpinnerMasterResponse>()
+
     sealed class AddOutletAPIState {
         object Loading : AddOutletAPIState()
-        data class SuccessOutletCategory(val data: SpinnerMasterResponse) : AddOutletAPIState()
-        data class SuccessCity(val data: SpinnerMasterResponse) : AddOutletAPIState()
-        data class SuccessArea(val data: SpinnerMasterResponse) : AddOutletAPIState()
         data class Success(val data: InsertResponse) : AddOutletAPIState()
+        data class SuccessVerifyOutlet(val data: Boolean) : AddOutletAPIState()
         data class Failure(val throwable: Throwable) : AddOutletAPIState()
     }
 
     init {
         isEditOutlet.value = false
-        getOutletCategoryAPICall()
         getCityAPICall()
         getAreaAPICall()
+        getOutletOnAPICall()
     }
-    fun addOutletAPICall(col : String, colData : String) {
+
+    fun addOutletAPICall(col: String, colData: String) {
         addOutletAPIState.postValue(AddOutletAPIState.Loading)
         val call: Call<InsertResponse> =
             apiService.Common_Master_Insert("Insert", "outlet", col, colData)
@@ -56,7 +61,34 @@ class AddOutletViewModel : BaseViewModel() {
         })
     }
 
-    fun updateOutletAPICall(colAndData : String, whereClouse : String) {
+    fun verifyOutletAPICall(batchId: String, contactNumber: String) {
+        addOutletAPIState.postValue(AddOutletAPIState.Loading)
+        val call: Call<OutletDetailsResponse> =
+            apiService.verifyOutletDetails(
+                "GetByID",
+                "outlet",
+                "*",
+                "batchId = '${batchId}' or contactNumber = '${contactNumber}' "
+            )
+        call.enqueue(object : Callback<OutletDetailsResponse> {
+            override fun onResponse(
+                call: Call<OutletDetailsResponse>,
+                response: Response<OutletDetailsResponse>
+
+            ) {
+                addOutletAPIState.postValue(AddOutletAPIState.SuccessVerifyOutlet(response.body().status == 1))
+            }
+
+            override fun onFailure(
+                call: Call<OutletDetailsResponse>,
+                t: Throwable
+            ) {
+                addOutletAPIState.postValue(AddOutletAPIState.Failure(t))
+            }
+        })
+    }
+
+    fun updateOutletAPICall(colAndData: String, whereClouse: String) {
         addOutletAPIState.postValue(AddOutletAPIState.Loading)
         val call: Call<InsertResponse> =
             apiService.Common_Master_Update("Update", "outlet", colAndData, whereClouse)
@@ -79,9 +111,13 @@ class AddOutletViewModel : BaseViewModel() {
     }
 
     fun getOutletCategoryAPICall() {
+        var whereCondition = "isActive = 1"
+        if(outletUserRoll.value != "3"){
+            whereCondition = "true"
+        }
         addOutletAPIState.postValue(AddOutletAPIState.Loading)
         val call: Call<SpinnerMasterResponse> =
-            apiService.Fill_SpinnerData("GetList", "outletCategory", "*", "isActive = 1")
+            apiService.Fill_SpinnerData("GetList", "outletCategory", "*", whereCondition)
         call.enqueue(object : Callback<SpinnerMasterResponse> {
             override fun onResponse(
                 call: Call<SpinnerMasterResponse>,
@@ -99,6 +135,7 @@ class AddOutletViewModel : BaseViewModel() {
             }
         })
     }
+
     fun getCityAPICall() {
         addOutletAPIState.postValue(AddOutletAPIState.Loading)
         val call: Call<SpinnerMasterResponse> =
@@ -132,6 +169,28 @@ class AddOutletViewModel : BaseViewModel() {
 
             ) {
                 outletAreaList.value = response.body()
+            }
+
+            override fun onFailure(
+                call: Call<SpinnerMasterResponse>,
+                t: Throwable
+            ) {
+                addOutletAPIState.postValue(AddOutletAPIState.Failure(t))
+            }
+        })
+    }
+
+    private fun getOutletOnAPICall() {
+        addOutletAPIState.postValue(AddOutletAPIState.Loading)
+        val call: Call<SpinnerMasterResponse> =
+            apiService.Fill_SpinnerData("GetList", "outletOn", "*", "isActive = 1")
+        call.enqueue(object : Callback<SpinnerMasterResponse> {
+            override fun onResponse(
+                call: Call<SpinnerMasterResponse>,
+                response: Response<SpinnerMasterResponse>
+
+            ) {
+                outletOnList.value = response.body()
             }
 
             override fun onFailure(
