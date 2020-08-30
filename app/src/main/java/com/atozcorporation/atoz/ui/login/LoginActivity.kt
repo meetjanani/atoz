@@ -54,5 +54,9 @@ class LoginActivity : BaseActivity() {
         loginBtn.setOnClickListener {
             viewModel.loginAPICall(user_email.text.toString(), user_password.text.toString())
         }
+
+        if(getIs_Login()){
+            navigateToAndFinish<DashboardActivity>()
+        }
     }
 }

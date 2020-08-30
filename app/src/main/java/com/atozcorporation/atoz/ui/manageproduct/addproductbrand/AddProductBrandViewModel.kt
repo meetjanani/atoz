@@ -23,7 +23,7 @@ class AddProductBrandViewModel : BaseViewModel() {
         data class Failure(val throwable: Throwable) : AddProductBrandAPIState()
     }
 
-    fun addProductBrandAPICall(categoryName: String) {
+    fun addProductBrandAPICall(brandName: String, categoryId: Int, categoryName: String) {
         val imageFile = File(imageFilePath)
         val requestFile = RequestBody.create(MediaType.parse("image/png"), imageFile)
         var uploadedImage = MultipartBody.Part.createFormData(
@@ -31,11 +31,13 @@ class AddProductBrandViewModel : BaseViewModel() {
             imageFile.name,
             requestFile
         )
+        val brandName: RequestBody = RequestBody.create(MultipartBody.FORM, brandName)
+        val categoryId: RequestBody = RequestBody.create(MultipartBody.FORM, categoryId.toString())
         val categoryName: RequestBody = RequestBody.create(MultipartBody.FORM, categoryName)
         val methodName: RequestBody = RequestBody.create(MultipartBody.FORM, "Insert_Product_Brand")
         addProductBrandAPIState.postValue(AddProductBrandAPIState.Loading)
         val call: Call<InsertResponse> =
-            apiService.addNewProductBrand(methodName, categoryName, uploadedImage)
+            apiService.addNewProductBrand(methodName, brandName,categoryId, categoryName, uploadedImage)
         call.enqueue(object : Callback<InsertResponse> {
             override fun onResponse(
                 call: Call<InsertResponse>,

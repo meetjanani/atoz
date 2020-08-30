@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_product"
-        android:name="com.atozcorporation.atoz.ui.manageproduct.ProductCategoryFragment"
+        android:name="com.atozcorporation.atoz.ui.manageproduct.productcategorylist.ProductCategoryFragment"
         android:label="@string/title_product"
         tools:layout="@layout/fragment_product_category" />
 

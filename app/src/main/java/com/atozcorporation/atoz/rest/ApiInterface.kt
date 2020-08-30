@@ -4,6 +4,7 @@ import com.atozcorporation.atoz.rest.response.login.LoginResponse
 import com.atozcorporation.atoz.rest.response.outlet.OutletCategoryResponse
 import com.atozcorporation.atoz.rest.response.outlet.OutletDetailsResponse
 import com.atozcorporation.atoz.rest.response.outlet.OutletListResponse
+import com.atozcorporation.atoz.rest.response.product.ProductBrandListResponse
 import com.atozcorporation.atoz.rest.response.product.ProductCategoryResponse
 import com.atozcorporation.atoz.rest.response.spinnermaster.SpinnerMasterResponse
 import com.growinginfotech.businesshub.rest.response.insert.InsertResponse
@@ -81,6 +82,15 @@ interface ApiInterface {
         @Field("WhereClouse") WhereClouse: String
     ): Call<ProductCategoryResponse>
 
+    @FormUrlEncoded
+    @POST("DynamicQuery.php")
+    fun getProductBrand(
+        @Field("methodname") methodname: String,
+        @Field("TableName") TableName: String,
+        @Field("Col") Col: String,
+        @Field("WhereClouse") WhereClouse: String
+    ): Call<ProductBrandListResponse>
+
     @Multipart
     @POST("master.php   ")
     fun addNewProductCategory(
@@ -94,6 +104,8 @@ interface ApiInterface {
     fun addNewProductBrand(
         @Part("methodname") methodname: RequestBody,
         @Part("name") name: RequestBody,
+        @Part("productCategoryId") productCategoryId: RequestBody,
+        @Part("productCategoryName") productCategoryName: RequestBody,
         @Part imageFile: MultipartBody.Part?
     ): Call<InsertResponse>
 

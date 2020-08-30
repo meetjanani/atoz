@@ -1,16 +1,12 @@
-package com.atozcorporation.atoz.ui.manageproduct
+package com.atozcorporation.atoz.ui.manageproduct.productcategorylist
 
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.atozcorporation.atoz.R
 import com.atozcorporation.atoz.base.BaseActivity
-import com.atozcorporation.atoz.base.BaseFragment
 import com.atozcorporation.atoz.ui.manageproduct.addproductcategory.AddProductCategoryActivity
 import com.growinginfotech.businesshub.base.IAdapterOnClick
 import com.growinginfotech.businesshub.base.navigateTo

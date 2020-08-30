@@ -1,4 +1,4 @@
-package com.atozcorporation.atoz.ui.manageproduct
+package com.atozcorporation.atoz.ui.manageproduct.productcategorylist
 
 import androidx.lifecycle.MutableLiveData
 import com.atozcorporation.atoz.rest.response.product.ProductCategoryResponse

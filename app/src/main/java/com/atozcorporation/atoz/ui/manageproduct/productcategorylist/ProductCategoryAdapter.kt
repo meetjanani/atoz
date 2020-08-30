@@ -1,4 +1,4 @@
-package com.atozcorporation.atoz.ui.manageproduct
+package com.atozcorporation.atoz.ui.manageproduct.productcategorylist
 
 import android.content.Context
 import android.view.LayoutInflater

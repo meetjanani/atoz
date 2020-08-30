@@ -1,18 +1,16 @@
 package com.atozcorporation.atoz.ui.dashboard
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.View
 import com.atozcorporation.atoz.MainActivity
 import com.atozcorporation.atoz.R
 import com.atozcorporation.atoz.base.BaseActivity
 import com.atozcorporation.atoz.ui.addoutlet.AddOutletActivity
 import com.atozcorporation.atoz.ui.login.LoginActivity
-import com.atozcorporation.atoz.ui.manageproduct.ProductCategoryActivity
+import com.atozcorporation.atoz.ui.manageproduct.productcategorylist.ProductCategoryActivity
 import com.growinginfotech.businesshub.base.navigateTo
 import com.growinginfotech.businesshub.base.navigateToAndFinish
 import kotlinx.android.synthetic.main.activity_dashboard.*
-import kotlinx.android.synthetic.main.fragment_product_category.*
 
 class DashboardActivity : BaseActivity() {
 
