@@ -256,6 +256,7 @@
             android:layout_height="40dp"
             android:layout_marginLeft="15sp"
             android:layout_marginTop="10sp"
+            android:layout_marginRight="15sp"
             android:text="Outlet Since Date"
             android:textStyle="bold"
             android:textSize="20sp"
