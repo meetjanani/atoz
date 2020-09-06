@@ -177,10 +177,14 @@ class AddOutletActivity : BaseActivity() {
             currentLocation?.latitude = viewModel.outletDetails.value?.latitude?.toDouble() ?: 0.0
             currentLocation?.longitude = viewModel.outletDetails.value?.longitude?.toDouble() ?: 0.0
             textViewOutletSince.text = viewModel.outletDetails.value?.outletSince
+            editTextAadharCard.setText(viewModel.outletDetails.value?.aadharCard)
+            editTextPanCard.setText(viewModel.outletDetails.value?.panCard)
+            editTextOtherDetail.setText(viewModel.outletDetails.value?.other1)
             isoutletSinceSelected = true
 
-            editTextBachNumber.isEnabled = false
-            editTextContactNumber.isEnabled = false
+            // will again block below for update
+//            editTextBachNumber.isEnabled = false
+//            editTextContactNumber.isEnabled = false
         }
 
 
@@ -336,14 +340,17 @@ class AddOutletActivity : BaseActivity() {
                         )?.name
                     }'," +
                     "`batchId` = '${editTextBachNumber.text}'," +
-                    "`outletSince` = '${textViewOutletSince.text}'",
+                    "`outletSince` = '${textViewOutletSince.text}'," +
+            "`aadharCard` = '${editTextAadharCard.text}'," +
+            "`panCard` = '${editTextPanCard.text}'," +
+            "`other1` = '${editTextOtherDetail.text}'",
             "`id`= ${viewModel.outletDetails.value?.id}"
         )
     }
 
     fun insertOutletAPICall(){
             viewModel.addOutletAPICall(
-                "`name`, `personName`, `contactNumber`, `address1`,`address2`, `pinCode`, `gst`,`latitude`,`longitude`,`categoryId`,`categoryName`,`cityId`,`cityName`,`areaId`,`areaName`,`batchId`, `userId`, `userName`, `password`,`rollId`, `outletOnId`,`outletOnName`, `outletSince`",
+                "`name`, `personName`, `contactNumber`, `address1`,`address2`, `pinCode`, `gst`,`latitude`,`longitude`,`categoryId`,`categoryName`,`cityId`,`cityName`,`areaId`,`areaName`,`batchId`, `userId`, `userName`, `password`,`rollId`, `outletOnId`,`outletOnName`, `outletSince`,`aadharCard`,`panCard`,`other1`",
                 "'${editTextOutletName.text}', '${editTextPersonName.text}', '${editTextContactNumber.text}', '${editTextAddressPrimary.text}','${editTextAddressSecondary.text}', '${editTextPinCode.text}', '${editTextGst.text}','${currentLocation?.latitude.toString()}','${currentLocation?.longitude.toString()}', " +
                         "'${viewModel.outletCategoryList.value?.data?.get(selectOutlet.selectedItemPosition)?.id}','${
                             viewModel.outletCategoryList.value?.data?.get(
@@ -370,7 +377,10 @@ class AddOutletActivity : BaseActivity() {
                                 selectOutletOn.selectedItemPosition
                             )?.name
                         }'," +
-                        "'${textViewOutletSince.text}'"
+                        "'${textViewOutletSince.text}'," +
+                        "'${editTextAadharCard.text}'," +
+                        "'${editTextPanCard.text}'," +
+                        "'${editTextOtherDetail.text}'"
             )
     }
 }

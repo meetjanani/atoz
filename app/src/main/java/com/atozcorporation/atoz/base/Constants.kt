@@ -13,3 +13,4 @@ const val  REQUEST_GALLERY = 2
 const val PERMISSION_REQUEST_CODE = 1
 const val BITMAP_COMPRESS_QUALITY = 90
 const val PROFILE_IMAGE = "imageFile"
+var total_amount = 0

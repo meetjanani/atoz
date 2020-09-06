@@ -6,6 +6,7 @@ import com.atozcorporation.atoz.rest.response.outlet.OutletDetailsResponse
 import com.atozcorporation.atoz.rest.response.outlet.OutletListResponse
 import com.atozcorporation.atoz.rest.response.product.ProductBrandListResponse
 import com.atozcorporation.atoz.rest.response.product.ProductCategoryResponse
+import com.atozcorporation.atoz.rest.response.product.ProductListResponse
 import com.atozcorporation.atoz.rest.response.spinnermaster.SpinnerMasterResponse
 import com.growinginfotech.businesshub.rest.response.insert.InsertResponse
 import kotlinx.coroutines.Deferred
@@ -91,8 +92,17 @@ interface ApiInterface {
         @Field("WhereClouse") WhereClouse: String
     ): Call<ProductBrandListResponse>
 
+    @FormUrlEncoded
+    @POST("DynamicQuery.php")
+    fun getProductsList(
+        @Field("methodname") methodname: String,
+        @Field("TableName") TableName: String,
+        @Field("Col") Col: String,
+        @Field("WhereClouse") WhereClouse: String
+    ): Call<ProductListResponse>
+
     @Multipart
-    @POST("master.php   ")
+    @POST("master.php")
     fun addNewProductCategory(
         @Part("methodname") methodname: RequestBody,
         @Part("name") name: RequestBody,
@@ -100,8 +110,18 @@ interface ApiInterface {
     ): Call<InsertResponse>
 
     @Multipart
-    @POST("master.php   ")
+    @POST("master.php")
     fun addNewProductBrand(
+        @Part("methodname") methodname: RequestBody,
+        @Part("name") name: RequestBody,
+        @Part("productCategoryId") productCategoryId: RequestBody,
+        @Part("productCategoryName") productCategoryName: RequestBody,
+        @Part imageFile: MultipartBody.Part?
+    ): Call<InsertResponse>
+
+    @Multipart
+    @POST("master.php")
+    fun addNewProducts(
         @Part("methodname") methodname: RequestBody,
         @Part("name") name: RequestBody,
         @Part("productCategoryId") productCategoryId: RequestBody,

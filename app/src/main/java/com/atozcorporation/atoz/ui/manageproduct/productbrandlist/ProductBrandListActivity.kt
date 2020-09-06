@@ -78,7 +78,7 @@ class ProductBrandListActivity : BaseActivity(), IAdapterOnClick {
                 putExtra("productCategoryId", productCategoryId)
                 putExtra("productCategoryName", productCategoryName)
                 putExtra("productBrandId", item.id)
-                putExtra("productBrandyName", item.name)
+                putExtra("productBrandName", item.name)
             }
         }
     }

@@ -34,7 +34,9 @@
         <activity android:name=".ui.manageproduct.addproductcategory.AddProductCategoryActivity"/>
         <activity android:name=".ui.manageproduct.addproductbrand.AddProductBrandActivity"/>
         <activity android:name=".ui.manageproduct.productbrandlist.ProductBrandListActivity"/>
+        <activity android:name=".ui.manageproduct.productlist.ProductListActivity"/>
         <activity android:name=".ui.outlet.outletdetails.OutletDetailsActivity"/>
+        <activity android:name=".ui.manageproduct.addproduct.AddProductsActivity"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

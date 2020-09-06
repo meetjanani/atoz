@@ -7,7 +7,7 @@
     tools:context=".ui.manageproduct.productcategorylist.ProductCategoryFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/productBrandName"
+        android:id="@+id/textViewProductBrandName"
         android:layout_width="160sp"
         android:layout_height="40dp"
         android:layout_margin="15dp"
@@ -26,7 +26,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/searchProductBrand"
+        android:id="@+id/searchProducts"
         android:layout_width="200sp"
         android:layout_height="40dp"
         android:layout_marginTop="15dp"
@@ -42,7 +42,7 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.905"
-        app:layout_constraintStart_toStartOf="@+id/productBrandName"
+        app:layout_constraintStart_toStartOf="@+id/textViewProductBrandName"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
@@ -54,22 +54,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchProductBrand"
+        app:layout_constraintTop_toBottomOf="@id/searchProducts"
         app:layout_constraintVertical_bias="0.019" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewProductBrandList"
+        android:id="@+id/recyclerViewProductsList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scrollbars="none"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAddProductBrand"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAddProducts"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonAddProductBrand"
+        android:id="@+id/buttonAddProducts"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Add Product Brand"

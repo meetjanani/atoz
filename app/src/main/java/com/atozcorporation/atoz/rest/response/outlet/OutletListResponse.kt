@@ -33,6 +33,9 @@ data class OutletListResponse(
         val userName: String = "",
         val outletOnId: Int = 0,
         val outletOnName: String = "",
-        val outletSince: String = ""
+        val outletSince: String = "",
+        val aadharCard: String = "",
+        val panCard: String = "",
+        val other1: String = ""
     ) : Serializable
 }
