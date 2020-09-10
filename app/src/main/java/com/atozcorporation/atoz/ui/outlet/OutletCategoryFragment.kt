@@ -52,6 +52,9 @@ class OutletCategoryFragment : BaseFragment() , IAdapterOnClick{
                 ViewModelProviders.of(this).get(OutletCategoryViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_outlet_category, container, false)
         observeState(viewModel)
+        setActivityContext(requireActivity())
+        viewModel.outletUserRoll.value = loginUser?.rollId.toString() ?: "3"
+        viewModel.getOutletCategoryAPICall()
         return root
     }
 

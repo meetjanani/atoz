@@ -3,11 +3,13 @@ package com.atozcorporation.atoz.ui.outlet
 import androidx.lifecycle.MutableLiveData
 import com.atozcorporation.atoz.rest.response.outlet.OutletCategoryResponse
 import com.growinginfotech.businesshub.base.BaseViewModel
+import com.growinginfotech.businesshub.base.initWith
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class OutletCategoryViewModel : BaseViewModel() {
+    val outletUserRoll = MutableLiveData<String>().initWith("3")
     val outletAPIState = MutableLiveData<OutletAPIState>()
     /**
      * MainCategory API State
@@ -17,14 +19,15 @@ class OutletCategoryViewModel : BaseViewModel() {
         data class Success(val data: OutletCategoryResponse) : OutletAPIState()
         data class Failure(val throwable: Throwable) : OutletAPIState()
     }
-    init {
-        getOutletCategoryAPICall()
-    }
 
     fun getOutletCategoryAPICall() {
+        var whereCondition = "isActive = 1"
+        if(outletUserRoll.value == "1"){
+            whereCondition = "true"
+        }
         outletAPIState.postValue(OutletAPIState.Loading)
         val call: Call<OutletCategoryResponse> =
-            apiService.getOutletCategory("GetList", "outletCategory", "*", "isActive = 1")
+            apiService.getOutletCategory("GetList", "outletCategory", "*", whereCondition)
         call.enqueue(object : Callback<OutletCategoryResponse> {
             override fun onResponse(
                 call: Call<OutletCategoryResponse>,

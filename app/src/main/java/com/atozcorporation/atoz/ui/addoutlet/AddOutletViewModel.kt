@@ -112,7 +112,7 @@ class AddOutletViewModel : BaseViewModel() {
 
     fun getOutletCategoryAPICall() {
         var whereCondition = "isActive = 1"
-        if(outletUserRoll.value != "3"){
+        if(outletUserRoll.value == "1"){
             whereCondition = "true"
         }
         addOutletAPIState.postValue(AddOutletAPIState.Loading)

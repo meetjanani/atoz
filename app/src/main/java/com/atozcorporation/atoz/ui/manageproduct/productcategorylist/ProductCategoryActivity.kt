@@ -7,7 +7,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.atozcorporation.atoz.R
 import com.atozcorporation.atoz.base.BaseActivity
+import com.atozcorporation.atoz.rest.response.product.ProductCategoryResponse
 import com.atozcorporation.atoz.ui.manageproduct.addproductcategory.AddProductCategoryActivity
+import com.atozcorporation.atoz.ui.manageproduct.productbrandlist.ProductBrandListActivity
 import com.growinginfotech.businesshub.base.IAdapterOnClick
 import com.growinginfotech.businesshub.base.navigateTo
 import kotlinx.android.synthetic.main.activity_outlet.progressBar
@@ -59,6 +61,11 @@ class ProductCategoryActivity : BaseActivity(), IAdapterOnClick {
     }
 
     override fun onClick(item: Any, position: Int) {
-
+        if(item is ProductCategoryResponse.ProductCategory){
+            activity?.navigateTo<ProductBrandListActivity> {
+                putExtra("productCategoryId", item.id)
+                putExtra("productCategoryName", item.name)
+            }
+        }
     }
 }

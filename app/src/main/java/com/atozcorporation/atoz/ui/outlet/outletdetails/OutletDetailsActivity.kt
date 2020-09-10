@@ -34,5 +34,15 @@ class OutletDetailsActivity : BaseActivity() {
             )
             startActivity(intent)
         }
+
+        textViewBusinessName.text = outletDetails.name
+        textViewContactPersonName.text = outletDetails.personName
+        textViewContactPersonNumber.text = outletDetails.contactNumber
+        textViewOutletId.text = "${outletDetails.batchId} | ${outletDetails.password}"
+        textViewGSTNumber.text = outletDetails.gst
+        city.text = outletDetails.cityName
+        area.text = outletDetails.areaName
+        textViewAddress.text = "${outletDetails.address1} \n ${outletDetails.address2}"
+        pincode.text = outletDetails.pinCode
     }
 }

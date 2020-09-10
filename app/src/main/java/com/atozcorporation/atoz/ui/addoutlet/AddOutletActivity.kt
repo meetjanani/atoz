@@ -161,7 +161,7 @@ class AddOutletActivity : BaseActivity() {
         observeState(viewModel)
 
         viewModel.isEditOutlet.value = intent.extras?.getBoolean("isEditMode") ?: false
-        viewModel.outletUserRoll.value = intent.extras?.getString("outletUserRoll") ?: "3"
+        viewModel.outletUserRoll.value = loginUser?.rollId.toString() ?: "3"
         viewModel.getOutletCategoryAPICall()
         if (viewModel.isEditOutlet.value == true) {
             viewModel.outletDetails.value =
@@ -340,6 +340,7 @@ class AddOutletActivity : BaseActivity() {
                         )?.name
                     }'," +
                     "`batchId` = '${editTextBachNumber.text}'," +
+                    "`password` = '${editTextBachNumber.text}'," +
                     "`outletSince` = '${textViewOutletSince.text}'," +
             "`aadharCard` = '${editTextAadharCard.text}'," +
             "`panCard` = '${editTextPanCard.text}'," +

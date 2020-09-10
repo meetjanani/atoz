@@ -49,7 +49,11 @@ class OutletListActivity : BaseActivity() , IAdapterOnClick{
         viewModel =
             ViewModelProviders.of(this).get(OutletViewModel::class.java)
         observeState(viewModel)
+        setActivityContext(this)
         categoryName.text = CurrentSelectedOutletCategoryName
+        viewModel.outletUserRoll.value = loginUser?.rollId.toString() ?: "3"
+        viewModel.loginUserDetails.value = loginUser
+        viewModel.getCategoryWiseOutletList()
         search_editText.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(
                 s: CharSequence, start: Int, before: Int,

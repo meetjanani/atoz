@@ -10,6 +10,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class OutletViewModel : BaseViewModel() {
+    val outletUserRoll = MutableLiveData<String>().initWith("3")
     val outletAPIState = MutableLiveData<OutletAPIState>()
     val outletListRecords = MutableLiveData<MutableList<OutletListResponse.Outlet>>().initWith(
         mutableListOf())
@@ -18,14 +19,15 @@ class OutletViewModel : BaseViewModel() {
         data class Success(val data: OutletListResponse) : OutletAPIState()
         data class Failure(val throwable: Throwable) : OutletAPIState()
     }
-    init {
-        getCategoryWiseOutletList()
-    }
 
     fun getCategoryWiseOutletList() {
+        var whereCondition = "AND `userId` = ${loginUserDetails.value?.id} "
+        if(outletUserRoll.value == "1"){
+            whereCondition = " "
+        }
         outletAPIState.postValue(OutletAPIState.Loading)
         val call: Call<OutletListResponse> =
-            apiService.getOutletList("GetList", "outlet", "*", "categoryId = $CurrentSelectedOutletCategoryId")
+            apiService.getOutletList("GetList", "outlet", "*", " `categoryId` = $CurrentSelectedOutletCategoryId $whereCondition ")
         call.enqueue(object : Callback<OutletListResponse> {
             override fun onResponse(
                 call: Call<OutletListResponse>,
