@@ -13,6 +13,7 @@
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/gradient"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
@@ -20,8 +21,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/gradient"
+
         android:layout_marginTop="10dp"
-        android:background="#FFF2F2F2">
+>
 
 
         <androidx.appcompat.widget.AppCompatButton
@@ -38,7 +41,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/button_text_size"
             android:textStyle="normal"
-            app:backgroundTint="@color/socialColorFacebook"
+            app:backgroundTint="@color/socialColorLinkedin"
             tools:ignore="MissingConstraints" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -50,6 +53,7 @@
             android:layout_marginBottom="10sp"
             android:text="Select Product Category"
             app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonGetCurrentLocation"
             />
@@ -170,6 +174,7 @@
             android:layout_marginLeft="15sp"
             android:layout_marginTop="10sp"
             android:text="Select City"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextBachNumber"
@@ -199,6 +204,7 @@
             android:layout_marginLeft="15sp"
             android:layout_marginTop="10sp"
             android:text="Select Area"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/selectCity"
@@ -228,6 +234,7 @@
             android:layout_marginLeft="15sp"
             android:layout_marginTop="10sp"
             android:text="Outlet On"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/selectArea"
@@ -254,9 +261,7 @@
             android:id="@+id/textViewOutletSince"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginLeft="15sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginRight="15sp"
+            android:layout_margin="15dp"
             android:text="Outlet Since Date"
             android:textStyle="bold"
             android:textSize="20sp"
