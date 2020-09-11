@@ -11,11 +11,13 @@ abstract class BaseFragment : Fragment() {
     var activity: Activity? = null
     var preferences: SharedPreferences? = null
     var loginUser: LoginResponse.UserDetails? = null
+    var orderFor: LoginResponse.UserDetails? = null
 
     open fun setActivityContext(activity: Activity?) {
         this.activity = activity
         preferences = requireActivity().getSharedPreferences("shared_preference", 0)
         getSharedPreferenceloginUser()
+        getOrderForUser()
     }
     //  protected val loginUser = SharedPref().getLoginResponse(this)
 
@@ -33,6 +35,22 @@ abstract class BaseFragment : Fragment() {
         this.loginUser =
             Gson().fromJson(
                 preferences?.getString("loginUser", ""),
+                LoginResponse.UserDetails::class.java
+            )
+    }
+    open fun setOrderForUser(value: LoginResponse.UserDetails?) {
+        val gson = Gson()
+        val loginUserDetails = gson.toJson(value)
+        val editor: SharedPreferences.Editor = preferences?.edit()!!
+        editor.putString("orderForUser", loginUserDetails)
+        editor.commit()
+        getOrderForUser()
+    }
+
+    open fun getOrderForUser() {
+        this.orderFor =
+            Gson().fromJson(
+                preferences?.getString("orderForUser", ""),
                 LoginResponse.UserDetails::class.java
             )
     }

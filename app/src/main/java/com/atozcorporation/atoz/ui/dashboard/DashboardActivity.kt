@@ -7,7 +7,9 @@ import com.atozcorporation.atoz.R
 import com.atozcorporation.atoz.base.BaseActivity
 import com.atozcorporation.atoz.ui.addoutlet.AddOutletActivity
 import com.atozcorporation.atoz.ui.login.LoginActivity
+import com.atozcorporation.atoz.ui.manageorder.CartActivity
 import com.atozcorporation.atoz.ui.manageproduct.productcategorylist.ProductCategoryActivity
+import com.growinginfotech.businesshub.base.defaultToast
 import com.growinginfotech.businesshub.base.navigateTo
 import com.growinginfotech.businesshub.base.navigateToAndFinish
 import kotlinx.android.synthetic.main.activity_dashboard.*
@@ -43,7 +45,15 @@ class DashboardActivity : BaseActivity() {
             cardViewAddSalseMan.visibility = View.VISIBLE
         }
         cardViewProductCatelog.setOnClickListener {
-            navigateTo<ProductCategoryActivity> {  }
+            if(loginUser?.rollId == 3){
+                setOrderForUser(loginUser)
+                navigateTo<ProductCategoryActivity> {  }
+            } else {
+                "Please login with as an  Outlet user for place order".defaultToast(this)
+            }
+        }
+        cardViewMyCart.setOnClickListener {
+            navigateTo<CartActivity> {  }
         }
         cardViewAddSalseMan.setOnClickListener {
             navigateTo<AddOutletActivity> {

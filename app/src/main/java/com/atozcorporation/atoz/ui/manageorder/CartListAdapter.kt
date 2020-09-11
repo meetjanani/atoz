@@ -1,4 +1,4 @@
-package com.atozcorporation.atoz.ui.manageproduct.productlist
+package com.atozcorporation.atoz.ui.manageorder
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -15,11 +15,11 @@ import com.growinginfotech.businesshub.base.IAdapterOnClick
 import com.growinginfotech.businesshub.base.loadImage
 import com.growinginfotech.businesshub.base.total_amount
 
-class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
-    RecyclerView.Adapter<ProductListAdapter.MyViewHolder>() {
+class CartListAdapter(val iAdapterOnClick: IAdapterOnClick) :
+    RecyclerView.Adapter<CartListAdapter.MyViewHolder>() {
 
     private lateinit var context: Context
-    private var arrayList: List<ProductListResponse.ProductDetails> = listOf()
+    private var arrayList: List<Order_Summery_Ofline_Bean> = listOf()
     private lateinit var db_helper : Order_Summery_Db_Helper
 
     //private ContactsAdapterListener listener;
@@ -45,9 +45,9 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
     }
 
     // Removed ContactsAdapterListener listener
-    fun ProductListAdapter(
+    fun CartListAdapter(
         context: Context,
-        arrayList: List<ProductListResponse.ProductDetails>,
+        arrayList: List<Order_Summery_Ofline_Bean>,
         string: String?
     ) {
         this.context = context
@@ -68,17 +68,18 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
         holder.TextViewCategoryBrandName.text = "${arrayList.get(i).productCategoryName}, ${arrayList.get(
             i
         ).productBrandName}"
-        holder.TextViewProductName.text = "${arrayList.get(i).Name}"
-        context?.let { loadImage(arrayList.get(i).URL_1, holder.Img_Item, it) }
+        holder.TextViewProductName.text = "${arrayList.get(i).productName}"
+        context?.let { loadImage(arrayList.get(i).productUrl1, holder.Img_Item, it) }
 //        holder.category_card.setOnClickListener {
 //            iAdapterOnClick.onClick(arrayList.get(i), i)
 //        }
 //        Glide.with(context)
 //                .load(Records.get(i).getImageUrl1() +"")
 //                .into(holder.draweeView);
-        val itemprice: Int = arrayList.get(i).MRP_2.toInt()
+        // val db_helper = Order_Summery_Db_Helper(context, null)
+        val itemprice: Int = arrayList.get(i).productPrice.toInt()
 
-        if ((arrayList.get(i).MRP_2.toInt().toString() + "").toInt() > 0) {
+        if ((arrayList.get(i).productPrice.toInt().toString() + "").toInt() > 0) {
 
             // itemprice = Records.get(i).getProductPrice();
             holder.TextViewProductPrice.setText(itemprice.toString() + "")
@@ -88,7 +89,7 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
         val finalItemprice = itemprice
 
         //Toast.makeText(context, Records.get(i).getId() + "", Toast.LENGTH_SHORT).show();
-        item_count[0] = db_helper.getQtyByProductId(arrayList.get(i).ID)
+        item_count[0] = db_helper.getQtyByProductId(arrayList.get(i).productId.toInt())
         if (item_count[0] >= 1) {
             holder.Btn_Display_Item.text = "" + item_count[0]
             holder.Btn_Remove_Item.text = "-"
@@ -108,7 +109,7 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
                 total_amount = total_amount - finalItemprice;
                // holder.Tv_total_amount.setText("₹ " + total_amount)
             } else {
-                if ((arrayList.get(i).MRP_2.toInt().toString() + "").toInt() > 0) {
+                if ((arrayList.get(i).productPrice.toInt().toString() + "").toInt() > 0) {
                     item_count[0]--
                     holder.Btn_Display_Item.text = item_count[0].toString() + ""
                     total_amount = total_amount + -finalItemprice
@@ -120,29 +121,29 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
                     }
                     //}
                     if (item_count[0] == 0) {
-                        db_helper.deleteByItemID(arrayList.get(i).ID)
+                        db_helper.deleteByItemID(arrayList.get(i).productId.toInt())
                         getOrderTotal()
                     } else {
                         val total: String = total_amount.toString() + ""
                         db_helper.updateProduct(
                             Order_Summery_Ofline_Bean(
-                                productId = arrayList.get(i).ID.toString() + "",
+                                productId = arrayList.get(i).productId.toString() + "",
                                 productQty = item_count[0].toString() + "",
                                 productPrice = itemprice.toString() + "",
                                 productTotal =  (   item_count[0] * itemprice).toString() + ""
-                            ), arrayList.get(i).ID.toString()
+                            ), arrayList.get(i).productId.toString()
                         )
                         getOrderTotal()
                     }
                 } else {
 //                    val deductable_price: Int =
-//                        db_helper.get_Varient_Price_By_Item_ID(Records.get(i).ID)
+//                        db_helper.get_Varient_Price_By_Item_ID(Records.get(i).productId)
 //                    Common_Class.total_amount = Common_Class.total_amount - deductable_price
 //                    item_count[0]--
 //                    holder.Btn_Display_Item.text = item_count[0].toString() + ""
 //                    holder.Tv_total_amount.setText("₹ " + Common_Class.total_amount)
 //                    if (item_count[0] == 0) {
-//                        db_helper.deleteByItemID(Records.get(i).ID)
+//                        db_helper.deleteByItemID(Records.get(i).productId)
 //                        holder.Btn_Display_Item.text = "Add"
 //                        holder.Btn_Remove_Item.text = " "
 //                        holder.Btn_Add_Item.text = " "
@@ -166,25 +167,25 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
                 total_amount =
                     total_amount + item_count[0] * finalItemprice
                 // holder.Tv_total_amount.setText("₹ " + total_amount)
-                val total: Int = item_count[0] * arrayList.get(i).MRP_2.toInt()
+                val total: Int = item_count[0] * arrayList.get(i).productPrice.toInt()
                 //Toast.makeText(context, item_count[0] + " : " + arrayList.get(i).getId() , Toast.LENGTH_SHORT).show();
-                val productId: String = arrayList.get(i).ID.toString() + ""
+                val productId: String = arrayList.get(i).productId.toString() + ""
                 db_helper.addProduct(
                     Order_Summery_Ofline_Bean(
-                        arrayList.get(i).ID.toString() + "",
-                        arrayList.get(i).Name, item_count[0].toString() + "",
+                        arrayList.get(i).productId.toString() + "",
+                        arrayList.get(i).productName, item_count[0].toString() + "",
                         itemprice.toString(),
                         total.toString() + "",
                         arrayList.get(i).productCategoryId.toString(),
                         arrayList.get(i).productCategoryName,
                         arrayList.get(i).productBrandId.toString(),
                         arrayList.get(i).productBrandName,
-                        arrayList.get(i).URL_1
+                        arrayList.get(i).productUrl1
                     ), productId
                 )
                 getOrderTotal()
                 if (item_count[0] == 0) {
-                    db_helper.deleteByItemID(arrayList.get(i).ID)
+                    db_helper.deleteByItemID(arrayList.get(i).productId.toInt())
                     getOrderTotal()
                 }
             }
@@ -200,7 +201,7 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
 //                {
 //                    item_count[0] = 1;
 //                }
-            if ((arrayList.get(i).MRP_2.toInt().toString() + "").toInt() > 0) {
+            if ((arrayList.get(i).productPrice.toInt().toString() + "").toInt() > 0) {
                 item_count[0] = item_count[0] + 1
                 if (item_count[0] == 0) {
                     item_count[0] = 1
@@ -213,12 +214,12 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
                     //LL_Order_Details.setVisibility(View.VISIBLE);
                     total_amount = total_amount + finalItemprice
                     // holder.Tv_total_amount.setText("₹ " + total_amount)
-                    val productId: String = arrayList.get(i).ID.toString() + ""
+                    val productId: String = arrayList.get(i).productId.toString() + ""
                     //
                     db_helper.addProduct(
                         Order_Summery_Ofline_Bean(
-                            arrayList.get(i).ID.toString() + "",
-                            arrayList.get(i).Name,
+                            arrayList.get(i).productId.toString() + "",
+                            arrayList.get(i).productName,
                             item_count[0].toString() + "",
                             itemprice.toString(),
                             itemprice.toString(),
@@ -226,7 +227,7 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
                             arrayList.get(i).productCategoryName,
                             arrayList.get(i).productBrandId.toString(),
                             arrayList.get(i).productBrandName,
-                            arrayList.get(i).URL_1
+                            arrayList.get(i).productUrl1
                         ), productId
                     )
                     getOrderTotal()
@@ -240,7 +241,7 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
                     // holder.Tv_total_amount.setText("₹ " + total_amount)
                     val total = itemprice * item_count[0]
                     //Toast.makeText(context, item_count[0] + " : " + total  + " : " + Records.get(i).getId().toString(), Toast.LENGTH_SHORT).show();
-                    val productId: String = arrayList.get(i).ID.toString() + ""
+                    val productId: String = arrayList.get(i).productId.toString() + ""
                     db_helper.updateProduct(
                         Order_Summery_Ofline_Bean(
                             productId = productId,

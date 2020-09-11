@@ -10,5 +10,6 @@ data class Order_Summery_Ofline_Bean(
     var productCategoryName : String = "",
     var productBrandId : String = "",
     var productBrandName : String = "",
-    var productUrl1 : String = ""
+    var productUrl1 : String = "",
+    var orderTotal : String = ""
 )

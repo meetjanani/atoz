@@ -9,11 +9,9 @@ import com.atozcorporation.atoz.rest.response.product.ProductCategoryResponse
 import com.atozcorporation.atoz.rest.response.product.ProductListResponse
 import com.atozcorporation.atoz.rest.response.spinnermaster.SpinnerMasterResponse
 import com.growinginfotech.businesshub.rest.response.insert.InsertResponse
-import kotlinx.coroutines.Deferred
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.*
 
 interface ApiInterface {
@@ -137,4 +135,38 @@ interface ApiInterface {
         @Field("Col") Col: String,
         @Field("WhereClouse") WhereClouse: String
     ): Call<OutletDetailsResponse>
+
+    @FormUrlEncoded
+    @POST("Shooping_Order.php")
+    fun Fetch_New_Order_ID(
+        @Field("methodname") methodname: String?,
+        @Field("ID") ID: String?
+    ): Call<InsertResponse>
+
+    // Insert New Order
+    @FormUrlEncoded
+    @POST("Shooping_Order.php")
+    fun Add_New_Order(
+        @Field("methodname") methodname: String?,
+        @Field("Order_ID") Order_ID: String?,
+        @Field("Order_Status") Order_Status: String?,
+        @Field("Order_Type") Order_Type: String?,
+        @Field("Product_ID") Product_ID: String?,
+        @Field("Product_Name") Product_Name: String?,
+        @Field("ProductCategoryId") ProductCategoryId: String?,
+        @Field("Product_Category") Product_Category: String?,
+        @Field("ProductBrandId") ProductBrandId: String?,
+        @Field("ProductBrandName") ProductBrandName: String?,
+        @Field("Qty") Qty: String?,
+        @Field("Product_Price") Product_Price: String?,
+        @Field("Product_Total") Product_Total: String?,
+        @Field("Order_Total") Order_Total: String?,
+        @Field("User_Mobile_No") User_Mobile_No: String?,
+        @Field("Address_1") Address_1: String?,
+        @Field("User_Name") User_Name: String?,
+        @Field("User_ID") User_ID: String?,
+        @Field("URL_1") URL_1: String?,
+        @Field("comments") comments: String?,
+        @Field("Pincode") Pincode: String?
+    ): Call<InsertResponse>
 }

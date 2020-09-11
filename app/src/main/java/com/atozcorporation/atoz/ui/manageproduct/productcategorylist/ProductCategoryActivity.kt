@@ -11,6 +11,7 @@ import com.atozcorporation.atoz.rest.response.product.ProductCategoryResponse
 import com.atozcorporation.atoz.ui.manageproduct.addproductcategory.AddProductCategoryActivity
 import com.atozcorporation.atoz.ui.manageproduct.productbrandlist.ProductBrandListActivity
 import com.growinginfotech.businesshub.base.IAdapterOnClick
+import com.growinginfotech.businesshub.base.defaultToast
 import com.growinginfotech.businesshub.base.navigateTo
 import kotlinx.android.synthetic.main.activity_outlet.progressBar
 import kotlinx.android.synthetic.main.fragment_product_category.*

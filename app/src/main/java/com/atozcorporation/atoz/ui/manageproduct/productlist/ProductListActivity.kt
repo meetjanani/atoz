@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.atozcorporation.atoz.R
 import com.atozcorporation.atoz.base.BaseActivity
+import com.atozcorporation.atoz.rest.response.login.LoginResponse
 import com.atozcorporation.atoz.ui.manageproduct.addproduct.AddProductsActivity
 import com.atozcorporation.atoz.ui.manageproduct.addproductbrand.AddProductBrandActivity
 import com.atozcorporation.atoz.ui.manageproduct.addproductcategory.AddProductCategoryActivity
@@ -14,9 +15,13 @@ import com.atozcorporation.atoz.ui.manageproduct.productbrandlist.ProductBrandLi
 import com.growinginfotech.businesshub.base.IAdapterOnClick
 import com.growinginfotech.businesshub.base.defaultToast
 import com.growinginfotech.businesshub.base.navigateTo
+import kotlinx.android.synthetic.main.activity_cart_list.*
 import kotlinx.android.synthetic.main.activity_outlet.progressBar
 import kotlinx.android.synthetic.main.activity_product_brand.*
 import kotlinx.android.synthetic.main.activity_product_list.*
+import kotlinx.android.synthetic.main.activity_product_list.buttonAddProducts
+import kotlinx.android.synthetic.main.activity_product_list.recyclerViewProductsList
+import kotlinx.android.synthetic.main.activity_product_list.textViewProductBrandName
 import kotlinx.android.synthetic.main.fragment_product_category.buttonAddProductCategory
 
 class ProductListActivity : BaseActivity(), IAdapterOnClick {
@@ -27,6 +32,7 @@ class ProductListActivity : BaseActivity(), IAdapterOnClick {
     var productCategoryName = ""
     var productBrandId = 0
     var productBrandName = ""
+    val orderForUserDetails = LoginResponse.UserDetails()
 
     fun observeState(viewModel: ProductListViewModel) {
         viewModel.productListAPIState.observe(this, Observer {
@@ -81,6 +87,8 @@ class ProductListActivity : BaseActivity(), IAdapterOnClick {
     }
 
     override fun onClick(item: Any, position: Int) {
-
+        if(item is Int){
+            // item.toString().defaultToast(this)
+        }
     }
 }

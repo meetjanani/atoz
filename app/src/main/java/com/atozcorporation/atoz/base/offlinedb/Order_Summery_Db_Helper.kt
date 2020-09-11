@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import java.util.*
 
 class Order_Summery_Db_Helper(
     context: Context,
@@ -54,6 +55,39 @@ class Order_Summery_Db_Helper(
         onCreate(db)
     }
 
+    // code to get all contacts in a list view
+    fun getAllProduct(): List<Order_Summery_Ofline_Bean>? {
+        val Product_list: MutableList<Order_Summery_Ofline_Bean> =
+            ArrayList<Order_Summery_Ofline_Bean>()
+        // Select All Query
+        val selectQuery =
+            "SELECT  * FROM " + Table_Name
+        val db = this.writableDatabase
+        val cursor = db.rawQuery(selectQuery, null)
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                val product = Order_Summery_Ofline_Bean()
+                product.productId = (cursor.getString(1))
+                product.productName = (cursor.getString(2))
+                product.productQty = (cursor.getString(3))
+                product.productPrice = (cursor.getString(4))
+                product.productTotal = (cursor.getString(5))
+                product.productCategoryId = (cursor.getString(6))
+                product.productCategoryName = (cursor.getString(7))
+                product.productBrandId = (cursor.getString(8))
+                product.productBrandName = (cursor.getString(9))
+                product.productUrl1 = (cursor.getString(10))
+                // Adding contact to list
+                Product_list.add(product)
+            } while (cursor.moveToNext())
+        }
+
+        // return contact list
+        return Product_list
+    }
+
     fun addProduct(order_items: Order_Summery_Ofline_Bean, productId: String?) {
         val db = this.writableDatabase
         val cv = ContentValues()
@@ -85,7 +119,6 @@ class Order_Summery_Db_Helper(
             productID + "=?",
             arrayOf(productId)
         )
-        getOrderTotal()
     }
 
     fun getQtyByProductId(productId: Int): Int {
@@ -121,7 +154,7 @@ class Order_Summery_Db_Helper(
         return Total
     }
 
-    fun updateOrderTotal(orderTotal : Int): Int {
+    fun updateOrderTotal(orderTotal: Int): Int {
         val db = this.writableDatabase
         val cv = ContentValues()
         cv.put(productorderTotal, orderTotal.toString())
@@ -130,7 +163,7 @@ class Order_Summery_Db_Helper(
             Table_Name,
             cv,
             null,
-           null
+            null
         )
     }
 
@@ -139,6 +172,15 @@ class Order_Summery_Db_Helper(
         val db = this.writableDatabase
         db.delete(
             Table_Name, productID + " = " + id,
+            null
+        )
+        db.close()
+    }
+    // Deleting single order by itemid
+    fun deleteAll() {
+        val db = this.writableDatabase
+        db.delete(
+            Table_Name, null,
             null
         )
         db.close()
