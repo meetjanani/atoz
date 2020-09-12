@@ -1,13 +1,9 @@
-package com.atozcorporation.atoz.ui.manageorder
+package com.atozcorporation.atoz.ui.manageorder.cart
 
-import android.app.ProgressDialog
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.atozcorporation.atoz.base.offlinedb.Order_Summery_Ofline_Bean
 import com.atozcorporation.atoz.rest.response.login.LoginResponse
-import com.atozcorporation.atoz.ui.login.LoginViewModel
-import com.atozcorporation.atoz.ui.manageproduct.productlist.ProductListViewModel
 import com.growinginfotech.businesshub.base.BaseViewModel
 import com.growinginfotech.businesshub.base.OrderId
 import com.growinginfotech.businesshub.rest.response.insert.InsertResponse
@@ -18,12 +14,14 @@ import retrofit2.Response
 class CartViewModel : BaseViewModel() {
 
     val productsListForPlaceOrder = MutableLiveData<List<Order_Summery_Ofline_Bean>>()
-    val userDetailsOfOrderPlacer = MutableLiveData<LoginResponse.UserDetails>()
+    val userDetailsOfOrderBy = MutableLiveData<LoginResponse.UserDetails>()
+    val userDetailsOfOrderFor = MutableLiveData<LoginResponse.UserDetails>()
     val placeOrderAPIState = MutableLiveData<PlaceOrderAPIState>()
 
     sealed class PlaceOrderAPIState {
         object Loading : PlaceOrderAPIState()
         data class Success(val data: InsertResponse) : PlaceOrderAPIState()
+        data class SuccessProductSubmited(val productId: Int) : PlaceOrderAPIState()
         data class Failure(val throwable: Throwable) : PlaceOrderAPIState()
     }
 
@@ -70,20 +68,28 @@ class CartViewModel : BaseViewModel() {
                     productDetails.productPrice,
                     productDetails.productTotal,
                     productDetails.orderTotal, // orderTotal
-                    userDetailsOfOrderPlacer.value?.contactNumber,
-                    userDetailsOfOrderPlacer.value?.address1 + " \n" + userDetailsOfOrderPlacer.value?.address2,
-                    userDetailsOfOrderPlacer.value?.name,
-                    userDetailsOfOrderPlacer.value?.id.toString(),
+                    userDetailsOfOrderBy.value?.contactNumber,
+                    userDetailsOfOrderBy.value?.address1 + " \n" + userDetailsOfOrderBy.value?.address2,
+                    "${userDetailsOfOrderBy.value?.name},${userDetailsOfOrderBy.value?.personName}", // order By
+                    userDetailsOfOrderBy.value?.id.toString(),
+                    userDetailsOfOrderBy.value?.batchId,
+                    "${userDetailsOfOrderFor.value?.name},${userDetailsOfOrderFor.value?.personName}", // order For
+                    userDetailsOfOrderFor.value?.id.toString(),
+                    userDetailsOfOrderFor.value?.batchId,
                     productDetails.productUrl1,
                     "",
-                    userDetailsOfOrderPlacer.value?.pinCode + ""
+                    userDetailsOfOrderBy.value?.pinCode + ""
                 )
                 call.enqueue(object : Callback<InsertResponse> {
                     override fun onResponse(
                         call: Call<InsertResponse>,
                         response: Response<InsertResponse>
                     ) {
-                        placeOrderAPIState.postValue(PlaceOrderAPIState.Success(response.body()))
+                        placeOrderAPIState.postValue(
+                            PlaceOrderAPIState.SuccessProductSubmited(
+                                productDetails.productId.toInt()
+                            )
+                        )
                     }
 
                     override fun onFailure(call: Call<InsertResponse>, t: Throwable) {
@@ -104,7 +110,7 @@ class CartViewModel : BaseViewModel() {
                 response: Response<LoginResponse>
 
             ) {
-                userDetailsOfOrderPlacer.value = response.body().data
+                userDetailsOfOrderBy.value = response.body().data
                 Log.v("userDetails", response.body().data.batchId.toString())
             }
 

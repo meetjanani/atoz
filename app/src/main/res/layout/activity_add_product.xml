@@ -123,7 +123,7 @@
                 android:background="@drawable/rounded_corners_edittext_dark"
                 android:gravity="start|center_vertical"
                 android:hint="Enter MRP 2"
-                android:inputType="text|textNoSuggestions"
+                android:inputType="number|textNoSuggestions"
                 android:padding="6dp"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textColorSecondary"
@@ -142,7 +142,7 @@
                 android:background="@drawable/rounded_corners_edittext_dark"
                 android:gravity="start|center_vertical"
                 android:hint="Enter Min Qty"
-                android:inputType="text|textNoSuggestions"
+                android:inputType="number|textNoSuggestions"
                 android:padding="6dp"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textColorSecondary"
@@ -179,7 +179,7 @@
                 android:inputType="text"
                 android:layout_marginTop="20dp"
                 android:padding="20dp"
-                android:hint="Select Product URL Image"
+                android:hint="Select Product Image"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 android:textAlignment="center"
@@ -192,7 +192,7 @@
                 tools:ignore="RtlCompat" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageViewURL"
+                android:id="@+id/imageViewProduct"
                 android:layout_width="350dp"
                 android:layout_height="200dp"
                 android:layout_centerHorizontal="true"
@@ -204,7 +204,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textViewURL" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/buttonSubmitOutlet"
+                android:id="@+id/buttonSubmitProduct"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
                 android:layout_margin="15dp"
@@ -215,7 +215,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/button_text_size"
                 app:backgroundTint="@color/colorAccentGreen"
-                app:layout_constraintTop_toBottomOf="@+id/imageViewURL"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewProduct"
                 tools:layout_editor_absoluteX="0dp" />
 
 

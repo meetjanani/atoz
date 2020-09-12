@@ -7,7 +7,8 @@ import com.atozcorporation.atoz.R
 import com.atozcorporation.atoz.base.BaseActivity
 import com.atozcorporation.atoz.ui.addoutlet.AddOutletActivity
 import com.atozcorporation.atoz.ui.login.LoginActivity
-import com.atozcorporation.atoz.ui.manageorder.CartActivity
+import com.atozcorporation.atoz.ui.manageorder.cart.CartActivity
+import com.atozcorporation.atoz.ui.manageorder.pastorderheader.PastOrderHeaderActivity
 import com.atozcorporation.atoz.ui.manageproduct.productcategorylist.ProductCategoryActivity
 import com.growinginfotech.businesshub.base.defaultToast
 import com.growinginfotech.businesshub.base.navigateTo
@@ -54,6 +55,9 @@ class DashboardActivity : BaseActivity() {
         }
         cardViewMyCart.setOnClickListener {
             navigateTo<CartActivity> {  }
+        }
+        cardViewPastOrder.setOnClickListener {
+            navigateTo<PastOrderHeaderActivity> {  }
         }
         cardViewAddSalseMan.setOnClickListener {
             navigateTo<AddOutletActivity> {

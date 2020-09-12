@@ -109,7 +109,7 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
                // holder.Tv_total_amount.setText("₹ " + total_amount)
             } else {
                 if ((arrayList.get(i).MRP_2.toInt().toString() + "").toInt() > 0) {
-                    item_count[0]--
+                    item_count[0] = item_count[0] - arrayList.get(i).Min_Qty
                     holder.Btn_Display_Item.text = item_count[0].toString() + ""
                     total_amount = total_amount + -finalItemprice
                     // holder.Tv_total_amount.setText("₹ " + total_amount)
@@ -134,19 +134,6 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
                         )
                         getOrderTotal()
                     }
-                } else {
-//                    val deductable_price: Int =
-//                        db_helper.get_Varient_Price_By_Item_ID(Records.get(i).ID)
-//                    Common_Class.total_amount = Common_Class.total_amount - deductable_price
-//                    item_count[0]--
-//                    holder.Btn_Display_Item.text = item_count[0].toString() + ""
-//                    holder.Tv_total_amount.setText("₹ " + Common_Class.total_amount)
-//                    if (item_count[0] == 0) {
-//                        db_helper.deleteByItemID(Records.get(i).ID)
-//                        holder.Btn_Display_Item.text = "Add"
-//                        holder.Btn_Remove_Item.text = " "
-//                        holder.Btn_Add_Item.text = " "
-//                    }
                 }
             }
         }
@@ -158,7 +145,7 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
         holder.Btn_Display_Item.setOnClickListener {
             if (item_count[0] == 0) {
                 holder.Btn_Display_Item.text = "Add"
-                item_count[0] = item_count[0] + 1
+                item_count[0] = item_count[0] + arrayList.get(i).Min_Qty
                 holder.Btn_Display_Item.text = item_count[0].toString() + ""
                 holder.Btn_Remove_Item.text = "-"
                 holder.Btn_Add_Item.text = "+"
@@ -167,7 +154,6 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
                     total_amount + item_count[0] * finalItemprice
                 // holder.Tv_total_amount.setText("₹ " + total_amount)
                 val total: Int = item_count[0] * arrayList.get(i).MRP_2.toInt()
-                //Toast.makeText(context, item_count[0] + " : " + arrayList.get(i).getId() , Toast.LENGTH_SHORT).show();
                 val productId: String = arrayList.get(i).ID.toString() + ""
                 db_helper.addProduct(
                     Order_Summery_Ofline_Bean(
@@ -182,11 +168,10 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
                         arrayList.get(i).URL_1
                     ), productId
                 )
-                getOrderTotal()
                 if (item_count[0] == 0) {
                     db_helper.deleteByItemID(arrayList.get(i).ID)
-                    getOrderTotal()
                 }
+                getOrderTotal()
             }
         }
 
@@ -194,18 +179,12 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
 
         // Button Add ( + )
         holder.Btn_Add_Item.setOnClickListener {
-            //                item_count[0] = item_count[0] + 1;
-//
-//                if (item_count[0]==0)
-//                {
-//                    item_count[0] = 1;
-//                }
             if ((arrayList.get(i).MRP_2.toInt().toString() + "").toInt() > 0) {
-                item_count[0] = item_count[0] + 1
+                item_count[0] = item_count[0] + arrayList.get(i).Min_Qty
                 if (item_count[0] == 0) {
-                    item_count[0] = 1
+                    item_count[0] = arrayList.get(i).Min_Qty
                 }
-                if (item_count[0] == 1) {
+                if (item_count[0] == arrayList.get(i).Min_Qty) {
                     //Btn_Display_Item.setText("Add");
                     holder.Btn_Remove_Item.text = "-"
                     holder.Btn_Add_Item.text = "+"
@@ -214,6 +193,7 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
                     total_amount = total_amount + finalItemprice
                     // holder.Tv_total_amount.setText("₹ " + total_amount)
                     val productId: String = arrayList.get(i).ID.toString() + ""
+                    val total: Int = item_count[0] * arrayList.get(i).MRP_2.toInt()
                     //
                     db_helper.addProduct(
                         Order_Summery_Ofline_Bean(
@@ -221,7 +201,7 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
                             arrayList.get(i).Name,
                             item_count[0].toString() + "",
                             itemprice.toString(),
-                            itemprice.toString(),
+                            total.toString(),
                             arrayList.get(i).productCategoryId.toString(),
                             arrayList.get(i).productCategoryName,
                             arrayList.get(i).productBrandId.toString(),
@@ -239,7 +219,6 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
                     total_amount = total_amount + finalItemprice
                     // holder.Tv_total_amount.setText("₹ " + total_amount)
                     val total = itemprice * item_count[0]
-                    //Toast.makeText(context, item_count[0] + " : " + total  + " : " + Records.get(i).getId().toString(), Toast.LENGTH_SHORT).show();
                     val productId: String = arrayList.get(i).ID.toString() + ""
                     db_helper.updateProduct(
                         Order_Summery_Ofline_Bean(

@@ -1,4 +1,4 @@
-package com.atozcorporation.atoz.ui.manageorder
+package com.atozcorporation.atoz.ui.manageorder.cart
 
 import android.os.Bundle
 import android.view.View
@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_cart_list.*
 class CartActivity : BaseActivity(), IAdapterOnClick {
     private lateinit var viewModel: CartViewModel
     protected var adapter = CartListAdapter(this)
+    private lateinit var dbHelper : Order_Summery_Db_Helper
 
     fun observeState(viewModel: CartViewModel) {
         viewModel.placeOrderAPIState.observe(this, Observer {
@@ -24,6 +25,9 @@ class CartActivity : BaseActivity(), IAdapterOnClick {
                 }
                 is CartViewModel.PlaceOrderAPIState.Success -> {
                     progressBar.visibility = View.GONE
+                }
+                is CartViewModel.PlaceOrderAPIState.SuccessProductSubmited -> {
+                    deleteProductByProductId(it.productId)
                 }
                 is CartViewModel.PlaceOrderAPIState.Failure -> {
                     Toast.makeText(
@@ -45,14 +49,14 @@ class CartActivity : BaseActivity(), IAdapterOnClick {
         viewModel =
             ViewModelProviders.of(this).get(CartViewModel::class.java)
         observeState(viewModel)
+        recyclerViewProductsList.adapter = adapter
         viewModel.getUserDetailsAPICall(loginUser?.batchId.toString())
+        viewModel.userDetailsOfOrderBy.value = loginUser
+        viewModel.userDetailsOfOrderFor.value = orderFor
         textViewOrderForUserDetails.text = "Order For ::> ${orderFor?.batchId} : ${orderFor?.name} : ${orderFor?.contactNumber}"
 
-        val dbHelper = Order_Summery_Db_Helper(this, null)
-        dbHelper.getAllProduct()?.let {
-            adapter.CartListAdapter(this, it, "")
-        }
-        recyclerViewProductsList.adapter = adapter
+        dbHelper = Order_Summery_Db_Helper(this, null)
+        prepareProductList()
         buttonSubmitOrder.setOnClickListener {
             "Submit Order".defaultToast(this)
             dbHelper.getAllProduct()?.let {
@@ -67,5 +71,17 @@ class CartActivity : BaseActivity(), IAdapterOnClick {
         if (item is Int) {
             textViewOrderAmount.text = "₹ " + item.toString()
         }
+    }
+
+    fun prepareProductList(){
+        val productList = dbHelper.getAllProduct()
+        adapter.CartListAdapter(this, productList, "")
+        if(productList.isEmpty()){
+            recyclerViewProductsList.visibility = View.GONE
+        }
+    }
+    fun deleteProductByProductId(productId : Int){
+        dbHelper.deleteByItemID(productId)
+        prepareProductList()
     }
 }

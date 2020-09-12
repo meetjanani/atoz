@@ -56,7 +56,7 @@ class Order_Summery_Db_Helper(
     }
 
     // code to get all contacts in a list view
-    fun getAllProduct(): List<Order_Summery_Ofline_Bean>? {
+    fun getAllProduct(): List<Order_Summery_Ofline_Bean> {
         val Product_list: MutableList<Order_Summery_Ofline_Bean> =
             ArrayList<Order_Summery_Ofline_Bean>()
         // Select All Query

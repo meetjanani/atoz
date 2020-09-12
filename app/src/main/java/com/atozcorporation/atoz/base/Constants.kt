@@ -15,3 +15,5 @@ const val BITMAP_COMPRESS_QUALITY = 90
 const val PROFILE_IMAGE = "imageFile"
 var total_amount = 0
 var OrderId = ""
+var dateFormatJoinedAt = "yyyy-MM-dd HH:mm:ss"
+var dateFormatSimpleDate = "MM/dd/yyyy"

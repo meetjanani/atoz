@@ -23,7 +23,7 @@ class AddProductsViewModel : BaseViewModel() {
         data class Failure(val throwable: Throwable) : AddProductsAPIState()
     }
 
-    fun addProductsAPICall(brandName: String, categoryId: Int, categoryName: String) {
+    fun addProductsAPICall(name: String,packSize: String,mrp1: String,mrp2: String,mimQty: String, categoryId: Int, categoryName: String, brandId: Int,brandName: String, description : String) {
         val imageFile = File(imageFilePath)
         val requestFile = RequestBody.create(MediaType.parse("image/png"), imageFile)
         var uploadedImage = MultipartBody.Part.createFormData(
@@ -31,13 +31,20 @@ class AddProductsViewModel : BaseViewModel() {
             imageFile.name,
             requestFile
         )
-        val brandName: RequestBody = RequestBody.create(MultipartBody.FORM, brandName)
+        val name: RequestBody = RequestBody.create(MultipartBody.FORM, name)
+        val packSize: RequestBody = RequestBody.create(MultipartBody.FORM, packSize)
+        val mrp1: RequestBody = RequestBody.create(MultipartBody.FORM, mrp1)
+        val mrp2: RequestBody = RequestBody.create(MultipartBody.FORM, mrp2)
+        val mimQty: RequestBody = RequestBody.create(MultipartBody.FORM, mimQty)
         val categoryId: RequestBody = RequestBody.create(MultipartBody.FORM, categoryId.toString())
         val categoryName: RequestBody = RequestBody.create(MultipartBody.FORM, categoryName)
-        val methodName: RequestBody = RequestBody.create(MultipartBody.FORM, "Insert_Product")
+        val brandId: RequestBody = RequestBody.create(MultipartBody.FORM, brandId.toString())
+        val brandName: RequestBody = RequestBody.create(MultipartBody.FORM, brandName)
+        val description: RequestBody = RequestBody.create(MultipartBody.FORM, description)
+        val methodName: RequestBody = RequestBody.create(MultipartBody.FORM, "Insert_New_Product")
         addProductsAPIState.postValue(AddProductsAPIState.Loading)
         val call: Call<InsertResponse> =
-            apiService.addNewProducts(methodName, brandName,categoryId, categoryName, uploadedImage)
+            apiService.addNewProducts(methodName, name, packSize, mrp1, mrp2,mimQty,categoryId, categoryName,brandId,brandName,description, uploadedImage)
         call.enqueue(object : Callback<InsertResponse> {
             override fun onResponse(
                 call: Call<InsertResponse>,

@@ -7,13 +7,13 @@
     tools:context=".ui.manageproduct.productcategorylist.ProductCategoryFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/textViewProductBrandName"
+        android:id="@+id/productBrandName"
         android:layout_width="160sp"
         android:layout_height="40dp"
         android:layout_margin="15dp"
         android:layout_marginTop="12dp"
         android:gravity="start|center_vertical"
-        android:hint="Category Product"
+        android:hint="Past Orders"
         android:inputType="text|textNoSuggestions"
         android:textSize="20sp"
         android:padding="4dp"
@@ -26,7 +26,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/searchProducts"
+        android:id="@+id/searchProductBrand"
         android:layout_width="200sp"
         android:layout_height="40dp"
         android:layout_marginTop="15dp"
@@ -34,6 +34,7 @@
         android:drawableStart="@drawable/ic_search"
         android:drawablePadding="5dp"
         android:hint="Search"
+        android:visibility="invisible"
         android:imeOptions="actionSearch"
         android:inputType="textNoSuggestions"
         android:padding="4dp"
@@ -42,7 +43,7 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.905"
-        app:layout_constraintStart_toStartOf="@+id/textViewProductBrandName"
+        app:layout_constraintStart_toStartOf="@+id/productBrandName"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
@@ -54,33 +55,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchProducts"
+        app:layout_constraintTop_toBottomOf="@id/searchProductBrand"
         app:layout_constraintVertical_bias="0.019" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewProductsList"
+        android:id="@+id/recyclerViewPastOrdersList"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:scrollbars="none"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAddProducts"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonAddProducts"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Add Product"
-        android:textSize="20sp"
-        android:layout_margin="10sp"
-        android:visibility="gone"
-        android:textColor="@color/white"
-        android:background="@color/socialColorFacebook"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
     <ProgressBar

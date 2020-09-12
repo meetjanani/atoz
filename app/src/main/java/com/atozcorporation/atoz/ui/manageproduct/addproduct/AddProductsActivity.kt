@@ -18,6 +18,7 @@ import com.growinginfotech.businesshub.base.defaultToast
 import com.growinginfotech.businesshub.base.imageFilePath
 import com.growinginfotech.businesshub.base.loadImage
 import com.mediacentric.app.extension.file.FileUtils
+import kotlinx.android.synthetic.main.activity_add_product.*
 import kotlinx.android.synthetic.main.activity_add_product_brand.*
 import kotlinx.android.synthetic.main.activity_add_product_category.progressBar
 import java.io.IOException
@@ -28,6 +29,8 @@ class AddProductsActivity : BaseActivity() {
     var isImageSelected = false
     var productCategoryId = 0
     var productCategoryName = ""
+    var productBrandId = 0
+    var productBrandName = ""
 
     fun observeState(viewModel : AddProductsViewModel){
         viewModel.addProductsAPIState.observe(this, Observer {
@@ -51,21 +54,26 @@ class AddProductsActivity : BaseActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_product_brand)
+        setContentView(R.layout.activity_add_product)
         viewModel =
             ViewModelProviders.of(this).get(AddProductsViewModel::class.java)
         observeState(viewModel)
 
         productCategoryId = intent.extras?.getInt("productCategoryId") ?: 0
         productCategoryName =  intent.extras?.getString("productCategoryName").toString()
-        textViewProductCategoryName.text = productCategoryName
-        imageViewProductBrand.setOnClickListener {
+        productBrandId = intent.extras?.getInt("productBrandId") ?: 0
+        productBrandName =  intent.extras?.getString("productBrandName").toString()
+        textViewCategory.text = productCategoryName
+        textViewCategoryBrand.text = productBrandName
+        imageViewProduct.setOnClickListener {
             checkForPermission()
         }
 
-        buttonSubmitProductBrand.setOnClickListener {
+        buttonSubmitProduct.setOnClickListener {
             if(isImageSelected){
-                viewModel.addProductsAPICall(editTextProductBrandName.text.toString(),productCategoryId, productCategoryName)
+                viewModel.addProductsAPICall(editTextProductName.text.toString(), editTextPackSize.text.toString(), editTextMRP1.text.toString(), editTextMRP2.text.toString(),
+                    editTextMinQty.text.toString(), productCategoryId, textViewCategory.text.toString(), productBrandId, textViewCategoryBrand.text.toString(),
+                    editTextDescription.text.toString())
             } else{
                 "Please Select Image".defaultToast(this)
             }
@@ -101,7 +109,7 @@ class AddProductsActivity : BaseActivity() {
                     contentURI?.let {
                         imageFilePath = FileUtils.getPath(this, it).toString()
                         isImageSelected = true
-                        loadImage(imageFilePath, imageViewProductBrand,this)
+                        loadImage(imageFilePath, imageViewProduct,this)
 
                     }
                 } catch (e: IOException) {

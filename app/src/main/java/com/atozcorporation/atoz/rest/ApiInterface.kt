@@ -4,6 +4,8 @@ import com.atozcorporation.atoz.rest.response.login.LoginResponse
 import com.atozcorporation.atoz.rest.response.outlet.OutletCategoryResponse
 import com.atozcorporation.atoz.rest.response.outlet.OutletDetailsResponse
 import com.atozcorporation.atoz.rest.response.outlet.OutletListResponse
+import com.atozcorporation.atoz.rest.response.pastorder.OrderDetailsResponse
+import com.atozcorporation.atoz.rest.response.pastorder.PastOrderHeaderResponse
 import com.atozcorporation.atoz.rest.response.product.ProductBrandListResponse
 import com.atozcorporation.atoz.rest.response.product.ProductCategoryResponse
 import com.atozcorporation.atoz.rest.response.product.ProductListResponse
@@ -121,9 +123,16 @@ interface ApiInterface {
     @POST("master.php")
     fun addNewProducts(
         @Part("methodname") methodname: RequestBody,
-        @Part("name") name: RequestBody,
+        @Part("Name") Name: RequestBody,
+        @Part("Pack_Size") Pack_Size: RequestBody,
+        @Part("MRP_1") MRP_1: RequestBody,
+        @Part("MRP_2") MRP_2: RequestBody,
+        @Part("Min_Qty") Min_Qty: RequestBody,
         @Part("productCategoryId") productCategoryId: RequestBody,
         @Part("productCategoryName") productCategoryName: RequestBody,
+        @Part("productBrandId") productBrandId: RequestBody,
+        @Part("productBrandName") productBrandName: RequestBody,
+        @Part("Description") Description: RequestBody,
         @Part imageFile: MultipartBody.Part?
     ): Call<InsertResponse>
 
@@ -163,10 +172,28 @@ interface ApiInterface {
         @Field("Order_Total") Order_Total: String?,
         @Field("User_Mobile_No") User_Mobile_No: String?,
         @Field("Address_1") Address_1: String?,
-        @Field("User_Name") User_Name: String?,
-        @Field("User_ID") User_ID: String?,
+        @Field("orderByName") orderByName: String?,
+        @Field("orderById") orderByID: String?,
+        @Field("orderByBatchId") orderByBatchId: String?,
+        @Field("orderForName") orderForName: String?,
+        @Field("orderForId") orderForId: String?,
+        @Field("orderForBatchId") orderForBatchId: String?,
         @Field("URL_1") URL_1: String?,
         @Field("comments") comments: String?,
         @Field("Pincode") Pincode: String?
     ): Call<InsertResponse>
+
+    @FormUrlEncoded
+    @POST("Shooping_Order.php")
+    fun getPastOrdersByLoginUser(
+        @Field("methodname") methodname: String?,
+        @Field("orderByBatchId") orderByBatchId: String?
+    ): Call<PastOrderHeaderResponse>
+
+    @FormUrlEncoded
+    @POST("Shooping_Order.php")
+    fun getOrderWiseProducs(
+        @Field("methodname") methodname: String?,
+        @Field("Order_ID") Order_ID: String?
+    ): Call<OrderDetailsResponse>
 }

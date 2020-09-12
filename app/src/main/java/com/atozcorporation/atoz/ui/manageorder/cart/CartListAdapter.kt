@@ -1,4 +1,4 @@
-package com.atozcorporation.atoz.ui.manageorder
+package com.atozcorporation.atoz.ui.manageorder.cart
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.atozcorporation.atoz.R
 import com.atozcorporation.atoz.base.offlinedb.Order_Summery_Db_Helper
 import com.atozcorporation.atoz.base.offlinedb.Order_Summery_Ofline_Bean
-import com.atozcorporation.atoz.rest.response.product.ProductListResponse
 import com.growinginfotech.businesshub.base.IAdapterOnClick
 import com.growinginfotech.businesshub.base.loadImage
 import com.growinginfotech.businesshub.base.total_amount
