@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient"
+            android:layout_marginTop="10dp"
+            >
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/indicator_corner_bg"
+                android:hint="Namkin"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.249"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints,RtlCompat"
+                tools:layout_editor_absoluteY="-2dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewCategoryBrand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginStart="196dp"
+                android:hint="Balaji"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:background="@drawable/indicator_corner_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textViewCategory"
+                tools:ignore="MissingConstraints,RtlCompat"
+                tools:layout_editor_absoluteY="-3dp" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextProductName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_field_height"
+                android:layout_margin="15dp"
+                android:background="@drawable/rounded_corners_edittext_dark"
+                android:gravity="start|center_vertical"
+                android:hint="Enter Product Name"
+                android:text=""
+                android:inputType="text|textNoSuggestions"
+                android:padding="6dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColorSecondary"
+                android:textColorHint="@color/textColorPrimaryDark"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewCategoryBrand"
+                tools:ignore="MissingConstraints" />
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextPackSize"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_field_height"
+                android:layout_margin="15dp"
+                android:background="@drawable/rounded_corners_edittext_dark"
+                android:gravity="start|center_vertical"
+                android:hint="Enter Pack Size"
+                android:inputType="text|textNoSuggestions"
+                android:padding="6dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColorSecondary"
+                android:textColorHint="@color/textColorPrimaryDark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.888"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextProductName" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextMRP1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_field_height"
+                android:layout_margin="15dp"
+                android:background="@drawable/rounded_corners_edittext_dark"
+                android:gravity="start|center_vertical"
+                android:hint="Enter MRP 1"
+                android:inputType="number|textNoSuggestions"
+                android:padding="6dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColorSecondary"
+                android:textColorHint="@color/textColorPrimaryDark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.888"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextPackSize" />
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextMRP2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_field_height"
+                android:layout_margin="15dp"
+                android:background="@drawable/rounded_corners_edittext_dark"
+                android:gravity="start|center_vertical"
+                android:hint="Enter MRP 2"
+                android:inputType="text|textNoSuggestions"
+                android:padding="6dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColorSecondary"
+                android:textColorHint="@color/textColorPrimaryDark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.888"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextMRP1" />
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextMinQty"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_field_height"
+                android:layout_margin="15dp"
+                android:background="@drawable/rounded_corners_edittext_dark"
+                android:gravity="start|center_vertical"
+                android:hint="Enter Min Qty"
+                android:inputType="text|textNoSuggestions"
+                android:padding="6dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColorSecondary"
+                android:textColorHint="@color/textColorPrimaryDark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.888"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextMRP2" />
+
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextDescription"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_field_height"
+                android:layout_margin="15dp"
+                android:background="@drawable/rounded_corners_edittext_dark"
+                android:gravity="start|center_vertical"
+                android:hint="Enter Description"
+                android:inputType="text|textNoSuggestions"
+                android:padding="6dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColorSecondary"
+                android:textColorHint="@color/textColorPrimaryDark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.888"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextMinQty" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewURL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:layout_marginTop="20dp"
+                android:padding="20dp"
+                android:hint="Select Product URL Image"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textAlignment="center"
+                android:layout_gravity="center_vertical"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_margin="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextDescription"
+                tools:ignore="RtlCompat" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageViewURL"
+                android:layout_width="350dp"
+                android:layout_height="200dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="8dp"
+                android:cropToPadding="false"
+                android:src="@drawable/ic_add_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewURL" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonSubmitOutlet"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height"
+                android:layout_margin="15dp"
+                android:layout_marginTop="@dimen/button_margin"
+                android:background="@drawable/rounded_corners_button"
+                android:text="Submit"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/button_text_size"
+                app:backgroundTint="@color/colorAccentGreen"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewURL"
+                tools:layout_editor_absoluteX="0dp" />
+
+
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
