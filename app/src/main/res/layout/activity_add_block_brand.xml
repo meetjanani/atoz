@@ -62,13 +62,13 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonSubmitProductBrand"
+            android:id="@+id/buttonBlockProductBrand"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
             android:layout_margin="15dp"
             android:layout_marginTop="@dimen/button_margin"
             android:background="@drawable/rounded_corners_button"
-            android:text="Submit"
+            android:text="Block Brand"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/button_text_size"

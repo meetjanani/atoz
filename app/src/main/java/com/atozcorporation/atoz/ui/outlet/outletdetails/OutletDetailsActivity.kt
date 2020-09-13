@@ -11,9 +11,9 @@ import com.atozcorporation.atoz.base.offlinedb.Order_Summery_Db_Helper
 import com.atozcorporation.atoz.rest.response.login.LoginResponse
 import com.atozcorporation.atoz.rest.response.outlet.OutletListResponse
 import com.atozcorporation.atoz.ui.addoutlet.AddOutletActivity
+import com.atozcorporation.atoz.ui.manageproduct.blockedbrandlist.BlockedBrandListActivity
 import com.atozcorporation.atoz.ui.manageorder.pastorderheader.PastOrderHeaderActivity
 import com.atozcorporation.atoz.ui.manageproduct.productcategorylist.ProductCategoryActivity
-import com.growinginfotech.businesshub.base.defaultToast
 import com.growinginfotech.businesshub.base.navigateTo
 import kotlinx.android.synthetic.main.activity_outlet_details.*
 
@@ -42,22 +42,26 @@ class OutletDetailsActivity : BaseActivity() {
             )
             startActivity(intent)
         }
-//        buttonPastOrder.setOnClickListener {
-//            navigateTo<PastOrderHeaderActivity> {
-//                putExtra("batchId", outletDetails.batchId)
-//            }
-//        }
+        btnBlockedBrand.setOnClickListener {
+            navigateTo<BlockedBrandListActivity> {
+                putExtra("batchId", outletDetails.batchId)
+                putExtra("id", outletDetails.id)
+            }
+        }
+        buttonPastOrder.setOnClickListener {
+            navigateTo<PastOrderHeaderActivity> {
+                putExtra("batchId", outletDetails.batchId)
+            }
+        }
         buttonPlaceOrder.setOnClickListener {
-            if(orderFor?.id != outletDetails.id){
+            if (orderFor?.id != outletDetails.id) {
                 val builder = AlertDialog.Builder(this)
-                builder.setTitle("Title")
-                builder.setMessage("Details")
+                builder.setTitle("Are you want to place order for ${outletDetails.batchId} ?")
+                builder.setMessage("cart items for other outlet ${orderFor?.batchId} will be deleted ! Are you sure ?")
                 builder.setIcon(android.R.drawable.ic_dialog_alert)
-
-                //performing positive action
-                builder.setPositiveButton("Yes"){dialogInterface, which ->
-                    Toast.makeText(applicationContext,"clicked yes",Toast.LENGTH_LONG).show()
-                    val dbHelper = Order_Summery_Db_Helper(this, null);
+                builder.setPositiveButton("Yes") { dialogInterface, which ->
+                    Toast.makeText(applicationContext, "clicked yes", Toast.LENGTH_LONG).show()
+                    val dbHelper = Order_Summery_Db_Helper(this, null)
                     dbHelper.deleteAll()
                     val orderForUser = LoginResponse.UserDetails()
                     orderForUser.id = outletDetails.id
@@ -66,17 +70,16 @@ class OutletDetailsActivity : BaseActivity() {
                     orderForUser.personName = outletDetails.personName
                     orderForUser.contactNumber = outletDetails.contactNumber
                     setOrderForUser(orderForUser)
-                    navigateTo<ProductCategoryActivity> {  }
+                    navigateTo<ProductCategoryActivity> { }
                 }
-                //performing negative action
-                builder.setNegativeButton("No"){dialogInterface, which ->
+                builder.setNegativeButton("No") { dialogInterface, which ->
                     //
                 }
                 val alertDialog: AlertDialog = builder.create()
                 alertDialog.setCancelable(false)
                 alertDialog.show()
             } else {
-                navigateTo<ProductCategoryActivity> {  }
+                navigateTo<ProductCategoryActivity> { }
             }
         }
 

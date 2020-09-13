@@ -70,7 +70,7 @@ class PastOrderListAdapter(val iAdapterOnClick: IAdapterOnClick) :
     override fun onBindViewHolder(holder: MyViewHolder, i: Int) {
         holder.textViewOrderId.text = arrayList.get(i).Order_ID
         holder.textViewProductsCount.text = arrayList.get(i).Product_Count
-        holder.textViewOrderPrice.text = arrayList.get(i).Order_Total
+        holder.textViewOrderPrice.text = "₹ ${arrayList.get(i).Order_Total}"
         holder.textViewOrderDate.text = arrayList.get(i).Created_Date.getFormatedDateTime(dateFormatJoinedAt, dateFormatSimpleDate)
         holder.textViewOrderStatus.text = arrayList.get(i).Order_Status
         holder.textViewOrderFor.text = "${arrayList.get(i).orderForBatchId},${arrayList.get(i).orderForName}"

@@ -62,11 +62,7 @@ class PastOrderedProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
         context?.let { loadImage(arrayList.get(i).URL_1, holder.product_image, it) }
         holder.product_name.text = arrayList.get(i).Product_Name
         holder.product_price.text = arrayList.get(i).Product_Total
-        holder.product_quantity.text = arrayList.get(i).Product_Price + " ₹ X" + arrayList.get(i).Qty
-//        holder.rootContraintLayout.setOnClickListener {
-//            iAdapterOnClick.onClick(arrayList.get(i), i)
-//        }
-
+        holder.product_quantity.text = "₹ ${arrayList.get(i).Product_Price} X ${arrayList.get(i).Qty}"
     }
 
     override fun getItemCount(): Int {

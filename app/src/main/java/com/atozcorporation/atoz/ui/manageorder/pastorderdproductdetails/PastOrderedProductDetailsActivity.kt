@@ -65,7 +65,7 @@ class PastOrderedProductDetailsActivity : BaseActivity(), IAdapterOnClick {
         textViewOrderStatus.text = orderDetails.Order_Status
         textViewOrderId.text = orderDetails.Order_ID
         textViewProductsCount.text = productsCount.toString()
-        textViewOrderPrice.text = orderDetails.Order_Total
+        textViewOrderPrice.text = "₹ ${orderDetails.Order_Total}"
         textViewOrderDate.text = orderDetails.Created_Date.getFormatedDateTime(dateFormatJoinedAt, dateFormatSimpleDate)
         textViewOrderFor.text = "${ orderDetails.orderForBatchId},${ orderDetails.orderForName}"
         textViewOrderBy.text = "${ orderDetails.orderByBatchId},${ orderDetails.orderByName}"

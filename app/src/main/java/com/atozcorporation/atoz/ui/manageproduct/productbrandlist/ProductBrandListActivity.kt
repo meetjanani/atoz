@@ -32,7 +32,7 @@ class ProductBrandListActivity : BaseActivity(), IAdapterOnClick {
                     progressBar.visibility = View.VISIBLE
                 }
                 is ProductBrandListViewModel.ProductBrandAPIState.Success -> {
-                    it.data.data.let { response ->
+                    it.data.let { response ->
                         adapter.ProductBrandListAdapter(this, response, "")
                         recyclerViewProductBrandList.adapter = adapter
                     }
@@ -57,10 +57,10 @@ class ProductBrandListActivity : BaseActivity(), IAdapterOnClick {
         viewModel =
             ViewModelProviders.of(this).get(ProductBrandListViewModel::class.java)
         observeState(viewModel)
-        productCategoryId = intent.extras?.getInt("productCategoryId") ?: 0
+        viewModel.productCategory.value = intent.extras?.getInt("productCategoryId") ?: 0
         productCategoryName =  intent.extras?.getString("productCategoryName").toString()
         productBrandName.text =  productCategoryName
-        viewModel.getProductBrandAPICall(productCategoryId)
+        viewModel.getUserDetailsAPICall(orderFor?.batchId.toString())
         if (loginUser?.rollId != 3) {
             buttonAddProductBrand.visibility = View.VISIBLE
         }

@@ -1,7 +1,7 @@
 package com.atozcorporation.atoz.rest.response.product
 
 data class ProductBrandListResponse(
-    val data: List<ProductBrand> = listOf(),
+    val data: MutableList<ProductBrand> = mutableListOf(),
     val message: String = "",
     val status: Int = 0
 ) {

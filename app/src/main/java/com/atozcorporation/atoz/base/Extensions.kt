@@ -18,10 +18,17 @@ import java.util.*
 inline fun <reified T : Activity> Activity.navigateTo(func: Intent.() -> Unit = {}) =
     this.startActivity(Intent(this, T::class.java).apply(func))
 
+inline fun <reified T : Activity> Activity.
+        navigateForResultTo(requestCode: Int) =
+    this.startActivityForResult(Intent(this, T::class.java), requestCode)
 fun String.defaultToast(context: Context){
     Toast.makeText(context, this, Toast.LENGTH_LONG).show()
 }
 
+inline fun Activity.navigateToPrevious(func: Intent.() -> Unit = {}) {
+    setResult(Activity.RESULT_OK, Intent().apply(func))
+    finish()
+}
 inline fun <reified T : Activity> Activity.navigateTo() =
     this.startActivity(Intent(this, T::class.java))
 
