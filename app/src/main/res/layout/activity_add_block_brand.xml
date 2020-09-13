@@ -9,8 +9,9 @@
 
 
     <LinearLayout
+        android:id="@+id/mainLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:orientation="vertical"
         >
@@ -77,8 +78,12 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        android:layout_width="75dp"
+        android:layout_height="49dp"
+        android:layout_below="@+id/mainLayout"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="130dp"
+        android:visibility="gone"
+        android:layout_marginEnd="167dp" />
 
 </RelativeLayout>
