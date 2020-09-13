@@ -7,8 +7,9 @@
     android:layout_height="wrap_content"
     android:background="@color/red"
     android:layout_margin="3dp"
-    card_view:cardElevation="0dp"
+    card_view:cardElevation="3dp"
     card_view:cardCornerRadius="2dp"
+    android:layout_marginBottom="5dp"
     card_view:cardUseCompatPadding="true"
     card_view:cardPreventCornerOverlap="false" >
 
@@ -37,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:text="Order Id"
                 android:textSize="16sp"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/black"
                 android:layout_marginEnd="5dp"
                 android:layout_alignParentEnd="true" />
 
@@ -74,6 +75,7 @@
                     android:maxLines="1"
                     android:text="No. of Products"
                     android:textSize="14sp"
+                    android:textStyle="bold"
                     android:textColor="@color/textColorSecondary"
                     android:textAlignment="textEnd"
                     android:gravity="end"
@@ -102,6 +104,7 @@
                     android:layout_height="wrap_content"
                     android:maxLines="1"
                     android:text="$00.0"
+                    android:textStyle="bold"
                     android:textSize="14sp"
                     android:textColor="@color/textColorSecondary"
                     android:textAlignment="textEnd"
@@ -131,7 +134,8 @@
                     android:maxLines="1"
                     android:text="Order Date"
                     android:textSize="14sp"
-                    android:textColor="@color/colorAccentBlue"
+                    android:textStyle="bold"
+                    android:textColor="@color/button_blue"
                     android:textAlignment="textEnd"
                     android:gravity="end"
                     android:layout_alignParentEnd="true" />
@@ -159,7 +163,8 @@
                     android:maxLines="1"
                     android:text="Order For"
                     android:textSize="14sp"
-                    android:textColor="@color/colorAccentBlue"
+                    android:textStyle="bold"
+                    android:textColor="@color/button_blue"
                     android:textAlignment="textEnd"
                     android:gravity="end"
                     android:layout_alignParentEnd="true" />
@@ -187,9 +192,10 @@
                     android:maxLines="1"
                     android:text="Order By"
                     android:textSize="14sp"
-                    android:textColor="@color/colorAccentBlue"
+                    android:textColor="@color/button_blue"
                     android:textAlignment="textEnd"
                     android:gravity="end"
+                    android:textStyle="bold"
                     android:layout_alignParentEnd="true" />
 
             </RelativeLayout>
