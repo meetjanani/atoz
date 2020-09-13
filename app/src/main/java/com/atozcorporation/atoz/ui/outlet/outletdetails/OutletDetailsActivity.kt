@@ -11,6 +11,7 @@ import com.atozcorporation.atoz.base.offlinedb.Order_Summery_Db_Helper
 import com.atozcorporation.atoz.rest.response.login.LoginResponse
 import com.atozcorporation.atoz.rest.response.outlet.OutletListResponse
 import com.atozcorporation.atoz.ui.addoutlet.AddOutletActivity
+import com.atozcorporation.atoz.ui.manageorder.pastorderheader.PastOrderHeaderActivity
 import com.atozcorporation.atoz.ui.manageproduct.productcategorylist.ProductCategoryActivity
 import com.growinginfotech.businesshub.base.defaultToast
 import com.growinginfotech.businesshub.base.navigateTo
@@ -41,6 +42,11 @@ class OutletDetailsActivity : BaseActivity() {
             )
             startActivity(intent)
         }
+//        buttonPastOrder.setOnClickListener {
+//            navigateTo<PastOrderHeaderActivity> {
+//                putExtra("batchId", outletDetails.batchId)
+//            }
+//        }
         buttonPlaceOrder.setOnClickListener {
             if(orderFor?.id != outletDetails.id){
                 val builder = AlertDialog.Builder(this)

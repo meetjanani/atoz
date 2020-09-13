@@ -25,22 +25,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/searchProductBrand"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewOrderForBatchId"
         android:layout_width="200sp"
         android:layout_height="40dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/rounded_corners_edittext_dark"
-        android:drawableStart="@drawable/ic_search"
-        android:drawablePadding="5dp"
-        android:hint="Search"
-        android:visibility="invisible"
-        android:imeOptions="actionSearch"
-        android:inputType="textNoSuggestions"
+        android:hint="For"
         android:padding="4dp"
         android:textColor="@color/textColorSecondaryLight"
         android:textColorHint="@color/textColorPrimaryDark"
         android:textSize="14sp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.905"
         app:layout_constraintStart_toStartOf="@+id/productBrandName"
@@ -55,7 +51,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchProductBrand"
+        app:layout_constraintTop_toBottomOf="@id/textViewOrderForBatchId"
         app:layout_constraintVertical_bias="0.019" />
 
     <androidx.recyclerview.widget.RecyclerView

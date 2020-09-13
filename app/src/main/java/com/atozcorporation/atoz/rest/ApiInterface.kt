@@ -187,7 +187,7 @@ interface ApiInterface {
     @POST("Shooping_Order.php")
     fun getPastOrdersByLoginUser(
         @Field("methodname") methodname: String?,
-        @Field("orderByBatchId") orderByBatchId: String?
+        @Field("batchId") orderByBatchId: String?
     ): Call<PastOrderHeaderResponse>
 
     @FormUrlEncoded

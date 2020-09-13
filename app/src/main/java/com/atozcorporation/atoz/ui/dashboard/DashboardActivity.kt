@@ -57,7 +57,9 @@ class DashboardActivity : BaseActivity() {
             navigateTo<CartActivity> {  }
         }
         cardViewPastOrder.setOnClickListener {
-            navigateTo<PastOrderHeaderActivity> {  }
+            navigateTo<PastOrderHeaderActivity> {
+                putExtra("batchId", loginUser?.batchId.toString())
+            }
         }
         cardViewAddSalseMan.setOnClickListener {
             navigateTo<AddOutletActivity> {

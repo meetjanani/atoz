@@ -34,6 +34,7 @@ data class LoginResponse(
         val outletSince: String = "",
         val aadharCard: String = "",
         val panCard: String = "",
-        val other1: String = ""
+        val other1: String = "",
+        val blockBrand: String = ""
     )
 }

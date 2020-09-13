@@ -24,8 +24,10 @@ class PastOrderHeaderActivity : BaseActivity(), IAdapterOnClick {
                 }
                 is PastOrderHeaderViewModel.PastOrderAPIState.Success -> {
                     progressBar.visibility = View.GONE
-                    adapter.PastOrderListAdapter(this, it.data.data, "")
-                    adapter.notifyDataSetChanged()
+                    if(it.data.data.isNotEmpty()){
+                        adapter.PastOrderListAdapter(this, it.data.data, "")
+                        adapter.notifyDataSetChanged()
+                    }
                 }
                 is PastOrderHeaderViewModel.PastOrderAPIState.Failure -> {
                     Toast.makeText(
@@ -47,7 +49,9 @@ class PastOrderHeaderActivity : BaseActivity(), IAdapterOnClick {
             ViewModelProviders.of(this).get(PastOrderHeaderViewModel::class.java)
         observeState(viewModel)
         recyclerViewPastOrdersList.adapter = adapter
-        viewModel.getPastOrderAPICall(loginUser?.batchId.toString())
+        val batchId = intent?.extras?.getString("batchId").toString()
+        textViewOrderForBatchId.text = batchId
+        viewModel.getPastOrderAPICall(batchId)
     }
 
     override fun onClick(item: Any, position: Int) {
