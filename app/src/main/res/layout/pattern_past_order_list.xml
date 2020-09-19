@@ -131,14 +131,14 @@
                     android:id="@+id/textViewOrderDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="end"
                     android:maxLines="1"
                     android:text="Order Date"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/button_blue"
                     android:textAlignment="textEnd"
-                    android:gravity="end"
-                    android:layout_alignParentEnd="true" />
+                    android:textColor="@color/button_blue"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
             <RelativeLayout
@@ -160,14 +160,14 @@
                     android:id="@+id/textViewOrderFor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxLines="1"
-                    android:text="Order For"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/button_blue"
-                    android:textAlignment="textEnd"
+                    android:layout_alignParentEnd="true"
                     android:gravity="end"
-                    android:layout_alignParentEnd="true" />
+                    android:maxLines="2"
+                    android:text="Order For"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/button_blue"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
             <RelativeLayout
@@ -189,7 +189,7 @@
                     android:id="@+id/textViewOrderBy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxLines="1"
+                    android:maxLines="2"
                     android:text="Order By"
                     android:textSize="14sp"
                     android:textColor="@color/button_blue"
