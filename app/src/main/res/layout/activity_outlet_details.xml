@@ -309,7 +309,12 @@
                                 android:id="@+id/btnEditOutletDetails"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:textSize="15sp"
+                                android:padding="10dp"
+                                android:layout_margin="5sp"
                                 android:text="Edit Outlet Details"
+                                android:textColor="@color/white"
+                                android:background="@drawable/buttons"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"/>
 
@@ -317,6 +322,11 @@
                                 android:id="@+id/btnNavigationOutlet"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:background="@drawable/buttons"
+                                android:textSize="15sp"
+                                android:padding="10dp"
+                                android:layout_margin="5sp"
                                 android:text="Navigate"
                                 app:layout_constraintTop_toBottomOf="@id/btnEditOutletDetails"
                                 app:layout_constraintStart_toStartOf="@id/btnEditOutletDetails"/>
@@ -335,6 +345,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Place Order"
+                                android:textColor="@color/white"
+                                android:background="@drawable/buttons"
+                                android:textSize="15sp"
+                                android:padding="10dp"
+                                android:layout_margin="5sp"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"/>
 
@@ -342,6 +357,11 @@
                                 android:id="@+id/btnBlockedBrand"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                android:background="@drawable/buttons"
+                                android:padding="10dp"
+                                android:layout_margin="5sp"
                                 android:text="Blocked Brand"
                                 app:layout_constraintTop_toBottomOf="@id/buttonPlaceOrder"
                                 app:layout_constraintStart_toStartOf="@id/buttonPlaceOrder"/>
@@ -360,6 +380,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Outlet Past Order"
+                                android:textColor="@color/white"
+                                android:background="@drawable/buttons"
+                                android:textSize="15sp"
+                                android:padding="10dp"
+                                android:layout_margin="5sp"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"/>
 
