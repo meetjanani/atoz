@@ -9,7 +9,7 @@ data class OrderDetailsResponse(
         val ID: String,
         val Order_ID: String,
         val Order_Status: String,
-        val Order_Type: String,
+        val Order_Type: Int,
         val Product_ID: String,
         val Product_Name: String,
         val ProductCategoryId: String,

@@ -3,7 +3,9 @@ package com.atozcorporation.atoz.ui.manageorder.pastorderdproductdetails
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.atozcorporation.atoz.R
 import com.atozcorporation.atoz.base.BaseActivity
@@ -14,6 +16,7 @@ import com.growinginfotech.businesshub.base.IAdapterOnClick
 import com.growinginfotech.businesshub.base.dateFormatJoinedAt
 import com.growinginfotech.businesshub.base.dateFormatSimpleDate
 import com.growinginfotech.businesshub.base.getFormatedDateTime
+import kotlinx.android.synthetic.main.activity_add_outlet.*
 import kotlinx.android.synthetic.main.activity_past_order_header.*
 import kotlinx.android.synthetic.main.activity_past_order_header.progressBar
 import kotlinx.android.synthetic.main.activity_past_ordered_products.*
@@ -45,6 +48,22 @@ class PastOrderedProductDetailsActivity : BaseActivity(), IAdapterOnClick {
                 }
             }
         })
+
+        viewModel.orderStatus.observe(this, Observer {
+            it.data.let { response ->
+                val arrayAdapter: ArrayAdapter<*> = ArrayAdapter<Any?>(
+                    this,
+                    android.R.layout.simple_spinner_item,
+                    ArrayList<String>().apply {
+                        response.map { orderStatus ->
+                            add(orderStatus.name)
+                        }
+                    } as List<String>
+                )
+                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                spinnerOrderStatus.adapter = arrayAdapter
+            }
+        })
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,13 +73,30 @@ class PastOrderedProductDetailsActivity : BaseActivity(), IAdapterOnClick {
             ViewModelProviders.of(this).get(PastOrderedProductDetailsViewModel::class.java)
         observeState(viewModel)
        recyclerViewPastOrderdProductList.adapter = adapter
-        viewModel.getOrderWiseProductListAPICall(intent.extras?.getString("orderId").toString())
+        viewModel.orderId.value = intent.extras?.getString("orderId").toString()
+
+        buttonUpdateOrderStatus.setOnClickListener {
+            viewModel.updateOrderStatusAPICall(viewModel.orderStatus.value?.data?.get(spinnerOrderStatus.selectedItemPosition)?.id ?: 0,
+                viewModel.orderStatus.value?.data?.get(spinnerOrderStatus.selectedItemPosition)?.name.toString())
+        }
+
+        if(loginUser?.rollId != 3){
+            textViewOrderStatusLable.visibility = View.VISIBLE
+            spinnerOrderStatus.visibility = View.VISIBLE
+            buttonUpdateOrderStatus.visibility = View.VISIBLE
+        }
     }
     override fun onClick(item: Any, position: Int) {
         //
     }
 
     fun orderBasicDetails(orderDetails : OrderDetailsResponse.OrderDetails, productsCount : Int){
+        spinnerOrderStatus.setSelection(
+            viewModel.orderStatus.value?.data?.indexOf(
+                viewModel.orderStatus.value?.data?.singleOrNull { it.id == orderDetails.Order_Type})
+                ?: 0
+        )
+
         // textViewOrderAmount.text = "₹ ${orderDetails.Order_Total}"
         textViewOrderStatus.text = orderDetails.Order_Status
         textViewOrderId.text = orderDetails.Order_ID
