@@ -41,7 +41,8 @@
         <activity android:name=".ui.manageorder.pastorderheader.PastOrderHeaderActivity"/>
         <activity android:name=".ui.manageorder.pastorderdproductdetails.PastOrderedProductDetailsActivity"/>
         <activity android:name=".ui.manageproduct.addblockbrand.AddBlockBrandActivity"/>
-        <activity android:name="com.atozcorporation.atoz.ui.manageproduct.blockedbrandlist.BlockedBrandListActivity"/>
+        <activity android:name=".ui.manageproduct.blockedbrandlist.BlockedBrandListActivity"/>
+        <activity android:name=".ui.report.OrderWiseProductQtyActivity"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

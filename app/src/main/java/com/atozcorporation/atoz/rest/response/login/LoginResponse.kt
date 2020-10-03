@@ -35,6 +35,7 @@ data class LoginResponse(
         val aadharCard: String = "",
         val panCard: String = "",
         val other1: String = "",
-        val blockBrand: String = ""
+        val blockBrand: String = "",
+        val isBrandOwner: String = ""
     )
 }

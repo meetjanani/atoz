@@ -51,7 +51,7 @@ class PastOrderHeaderActivity : BaseActivity(), IAdapterOnClick {
         recyclerViewPastOrdersList.adapter = adapter
         val batchId = intent?.extras?.getString("batchId").toString()
         textViewOrderForBatchId.text = batchId
-        viewModel.getPastOrderAPICall(batchId)
+        viewModel.getPastOrderAPICall(batchId, loginUser?.rollId  ?: 0)
     }
 
     override fun onClick(item: Any, position: Int) {

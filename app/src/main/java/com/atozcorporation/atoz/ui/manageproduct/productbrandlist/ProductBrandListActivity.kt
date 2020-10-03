@@ -22,7 +22,6 @@ class ProductBrandListActivity : BaseActivity(), IAdapterOnClick {
 
     private lateinit var viewModel: ProductBrandListViewModel
     protected var adapter = ProductBrandListAdapter(this)
-    var productCategoryId = 0
     var productCategoryName = ""
 
     fun observeState(viewModel: ProductBrandListViewModel) {
@@ -66,7 +65,7 @@ class ProductBrandListActivity : BaseActivity(), IAdapterOnClick {
         }
         buttonAddProductBrand.setOnClickListener {
             activity?.navigateTo<AddProductBrandActivity> {
-                putExtra("productCategoryId", productCategoryId)
+                putExtra("productCategoryId", viewModel.productCategory.value?.toInt() ?: 0)
                 putExtra("productCategoryName", productCategoryName)
             }
         }
@@ -75,7 +74,7 @@ class ProductBrandListActivity : BaseActivity(), IAdapterOnClick {
     override fun onClick(item: Any, position: Int) {
         if(item is ProductBrandListResponse.ProductBrand){
             activity?.navigateTo<ProductListActivity> {
-                putExtra("productCategoryId", productCategoryId)
+                putExtra("productCategoryId", viewModel.productCategory.value)
                 putExtra("productCategoryName", productCategoryName)
                 putExtra("productBrandId", item.id)
                 putExtra("productBrandName", item.name)

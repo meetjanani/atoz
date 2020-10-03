@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.location.*
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -119,6 +120,29 @@ class AddOutletActivity : BaseActivity() {
                 progressBar.visibility = View.GONE
             }
         })
+        viewModel.brandList.observe(this, Observer {
+            it.data.let { response ->
+                val arrayAdapter: ArrayAdapter<*> = ArrayAdapter<Any?>(
+                    this,
+                    android.R.layout.simple_spinner_item,
+                    ArrayList<String>().apply {
+                        response.map { area ->
+                            add(area.name)
+                        }
+                    } as List<String>
+                )
+                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                selectBrand.adapter = arrayAdapter
+                if (viewModel.isEditOutlet.value == true) {
+                    selectBrand.setSelection(
+                        viewModel.outletOnList.value?.data?.indexOf(
+                            viewModel.outletOnList.value?.data?.singleOrNull { it.id == viewModel.outletDetails.value?.outletOnId })
+                            ?: 0
+                    )
+                }
+                progressBar.visibility = View.GONE
+            }
+        })
         viewModel.addOutletAPIState.observe(this, Observer {
             when (it) {
                 is AddOutletViewModel.AddOutletAPIState.Loading -> {
@@ -161,7 +185,8 @@ class AddOutletActivity : BaseActivity() {
         observeState(viewModel)
 
         viewModel.isEditOutlet.value = intent.extras?.getBoolean("isEditMode") ?: false
-        viewModel.outletUserRoll.value = loginUser?.rollId.toString() ?: "3"
+        viewModel.outletUserRoll.value =intent.extras?.getString("outletUserRoll") ?: "3"
+        viewModel.loginUserRoll.value = loginUser?.rollId.toString()
         viewModel.getOutletCategoryAPICall()
         if (viewModel.isEditOutlet.value == true) {
             viewModel.outletDetails.value =
@@ -224,6 +249,22 @@ class AddOutletActivity : BaseActivity() {
             picker!!.show()
             textViewOutletSince.text = year.toString() + "-" + (month + 1) + "-" + day.toString()
             isoutletSinceSelected = true
+        }
+
+        // Spinner selection for brand owner
+        selectOutlet?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                //
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (intent?.extras?.getBoolean("brandOwner") == true && viewModel.outletCategoryList.value?.data?.get(selectOutlet.selectedItemPosition)?.id == 6) {
+                    viewModel.getBrandAPICall()
+                    selectBrand.visibility = View.VISIBLE
+                } else {
+                    selectBrand.visibility = View.GONE
+                }
+            }
         }
     }
 
@@ -350,8 +391,16 @@ class AddOutletActivity : BaseActivity() {
     }
 
     fun insertOutletAPICall(){
+        var brandOwnerQueryParam = ""
+        var brandOwnerQueryValue = ""
+        var userRollID = "'${viewModel.outletUserRoll.value}',"
+        if (intent?.extras?.getBoolean("brandOwner") == true && viewModel.outletCategoryList.value?.data?.get(selectOutlet.selectedItemPosition)?.id == 6) {
+            userRollID = "'4'," // roll Id for brand owner
+            brandOwnerQueryParam = ",`isBrandOwner`"
+            brandOwnerQueryValue = ",'${viewModel.brandList.value?.data?.get(selectBrand.selectedItemPosition)?.id}'"
+        }
             viewModel.addOutletAPICall(
-                "`name`, `personName`, `contactNumber`, `address1`,`address2`, `pinCode`, `gst`,`latitude`,`longitude`,`categoryId`,`categoryName`,`cityId`,`cityName`,`areaId`,`areaName`,`batchId`, `userId`, `userName`, `password`,`rollId`, `outletOnId`,`outletOnName`, `outletSince`,`aadharCard`,`panCard`,`other1`",
+                "`name`, `personName`, `contactNumber`, `address1`,`address2`, `pinCode`, `gst`,`latitude`,`longitude`,`categoryId`,`categoryName`,`cityId`,`cityName`,`areaId`,`areaName`,`batchId`, `userId`, `userName`, `password`,`rollId`, `outletOnId`,`outletOnName`, `outletSince`,`aadharCard`,`panCard`,`other1`" + brandOwnerQueryParam,
                 "'${editTextOutletName.text}', '${editTextPersonName.text}', '${editTextContactNumber.text}', '${editTextAddressPrimary.text}','${editTextAddressSecondary.text}', '${editTextPinCode.text}', '${editTextGst.text}','${currentLocation?.latitude.toString()}','${currentLocation?.longitude.toString()}', " +
                         "'${viewModel.outletCategoryList.value?.data?.get(selectOutlet.selectedItemPosition)?.id}','${
                             viewModel.outletCategoryList.value?.data?.get(
@@ -372,7 +421,7 @@ class AddOutletActivity : BaseActivity() {
                         "'${loginUser?.id}'," +
                         " '${loginUser?.personName}', " +
                         "'${editTextBachNumber.text}'," +
-                        "'${viewModel.outletUserRoll.value}'," + // UserLevel Roll Id = 3
+                        userRollID + // UserLevel Roll Id = 3
                         "'${viewModel.outletOnList.value?.data?.get(selectOutletOn.selectedItemPosition)?.id}','${
                             viewModel.outletOnList.value?.data?.get(
                                 selectOutletOn.selectedItemPosition
@@ -381,7 +430,8 @@ class AddOutletActivity : BaseActivity() {
                         "'${textViewOutletSince.text}'," +
                         "'${editTextAadharCard.text}'," +
                         "'${editTextPanCard.text}'," +
-                        "'${editTextOtherDetail.text}'"
+                        "'${editTextOtherDetail.text}'" +
+                        brandOwnerQueryValue
             )
     }
 }

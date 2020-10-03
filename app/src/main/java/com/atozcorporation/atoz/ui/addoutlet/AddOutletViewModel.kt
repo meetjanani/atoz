@@ -13,6 +13,7 @@ import retrofit2.Response
 
 class AddOutletViewModel : BaseViewModel() {
     val outletUserRoll = MutableLiveData<String>().initWith("3")
+    val loginUserRoll = MutableLiveData<String>().initWith("3")
     val addOutletAPIState = MutableLiveData<AddOutletAPIState>()
     val isEditOutlet = MutableLiveData<Boolean>()
     val outletDetails = MutableLiveData<OutletListResponse.Outlet>()
@@ -24,6 +25,7 @@ class AddOutletViewModel : BaseViewModel() {
     val outletCityList = MutableLiveData<SpinnerMasterResponse>()
     val outletAreaList = MutableLiveData<SpinnerMasterResponse>()
     val outletOnList = MutableLiveData<SpinnerMasterResponse>()
+    val brandList = MutableLiveData<SpinnerMasterResponse>()
 
     sealed class AddOutletAPIState {
         object Loading : AddOutletAPIState()
@@ -112,7 +114,7 @@ class AddOutletViewModel : BaseViewModel() {
 
     fun getOutletCategoryAPICall() {
         var whereCondition = "isActive = 1"
-        if(outletUserRoll.value == "1"){
+        if(loginUserRoll.value == "1"){
             whereCondition = "true"
         }
         addOutletAPIState.postValue(AddOutletAPIState.Loading)
@@ -191,6 +193,28 @@ class AddOutletViewModel : BaseViewModel() {
 
             ) {
                 outletOnList.value = response.body()
+            }
+
+            override fun onFailure(
+                call: Call<SpinnerMasterResponse>,
+                t: Throwable
+            ) {
+                addOutletAPIState.postValue(AddOutletAPIState.Failure(t))
+            }
+        })
+    }
+
+    fun getBrandAPICall() {
+        addOutletAPIState.postValue(AddOutletAPIState.Loading)
+        val call: Call<SpinnerMasterResponse> =
+            apiService.Fill_SpinnerData("GetList", "productBrand", "*", "isActive = 1")
+        call.enqueue(object : Callback<SpinnerMasterResponse> {
+            override fun onResponse(
+                call: Call<SpinnerMasterResponse>,
+                response: Response<SpinnerMasterResponse>
+
+            ) {
+                brandList.value = response.body()
             }
 
             override fun onFailure(

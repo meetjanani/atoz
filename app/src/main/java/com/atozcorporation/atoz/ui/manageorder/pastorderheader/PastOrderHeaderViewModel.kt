@@ -16,10 +16,14 @@ class PastOrderHeaderViewModel : BaseViewModel() {
         data class Failure(val throwable: Throwable) : PastOrderAPIState()
     }
 
-    fun getPastOrderAPICall(loginUserBatchId: String) {
+    fun getPastOrderAPICall(loginUserBatchId: String, rollId : Int = 0) {
         pastOrderAPIState.postValue(PastOrderAPIState.Loading)
-        val call: Call<PastOrderHeaderResponse> =
-            apiService.getPastOrdersByLoginUser("Display_past_Orders_List", loginUserBatchId)
+        val call: Call<PastOrderHeaderResponse>
+        if(rollId == 1){
+            call = apiService.getPastOrdersForAdmin("Display_past_Orders_List_For_Admin")
+        } else {
+            call = apiService.getPastOrdersByLoginUser("Display_past_Orders_List", loginUserBatchId)
+        }
         call.enqueue(object : Callback<PastOrderHeaderResponse> {
             override fun onResponse(
                 call: Call<PastOrderHeaderResponse>,

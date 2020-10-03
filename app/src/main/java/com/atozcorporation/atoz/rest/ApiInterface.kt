@@ -9,6 +9,7 @@ import com.atozcorporation.atoz.rest.response.pastorder.PastOrderHeaderResponse
 import com.atozcorporation.atoz.rest.response.product.ProductBrandListResponse
 import com.atozcorporation.atoz.rest.response.product.ProductCategoryResponse
 import com.atozcorporation.atoz.rest.response.product.ProductListResponse
+import com.atozcorporation.atoz.rest.response.report.OrderWiseProductQtyResponse
 import com.atozcorporation.atoz.rest.response.spinnermaster.SpinnerMasterResponse
 import com.growinginfotech.businesshub.rest.response.insert.InsertResponse
 import okhttp3.MultipartBody
@@ -192,8 +193,23 @@ interface ApiInterface {
 
     @FormUrlEncoded
     @POST("Shooping_Order.php")
+    fun getPastOrdersForAdmin(
+        @Field("methodname") methodname: String?
+    ): Call<PastOrderHeaderResponse>
+
+    @FormUrlEncoded
+    @POST("Shooping_Order.php")
     fun getOrderWiseProducs(
         @Field("methodname") methodname: String?,
         @Field("Order_ID") Order_ID: String?
     ): Call<OrderDetailsResponse>
+
+
+    // Fill Spinner Data
+    @FormUrlEncoded
+    @POST("DynamicQuery.php")
+    fun OrderWiseProductQty(
+        @Field("methodname") methodname: String?,
+        @Field("QQQ") QQQ: String?
+    ): Call<OrderWiseProductQtyResponse>
 }

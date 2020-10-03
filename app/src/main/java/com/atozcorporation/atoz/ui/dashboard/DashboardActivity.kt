@@ -10,6 +10,7 @@ import com.atozcorporation.atoz.ui.login.LoginActivity
 import com.atozcorporation.atoz.ui.manageorder.cart.CartActivity
 import com.atozcorporation.atoz.ui.manageorder.pastorderheader.PastOrderHeaderActivity
 import com.atozcorporation.atoz.ui.manageproduct.productcategorylist.ProductCategoryActivity
+import com.atozcorporation.atoz.ui.report.OrderWiseProductQtyActivity
 import com.growinginfotech.businesshub.base.defaultToast
 import com.growinginfotech.businesshub.base.navigateTo
 import com.growinginfotech.businesshub.base.navigateToAndFinish
@@ -24,26 +25,35 @@ class DashboardActivity : BaseActivity() {
         textViewPersonName.text = loginUser?.personName
         textViewShopName.text = loginUser?.name
 
-        if(loginUser?.rollId == 3 ){
+        if(loginUser?.rollId == 4 ){ // brand Owner
+            cardViewProductCatelog.visibility = View.VISIBLE
+            cardViewMyCart.visibility = View.VISIBLE
+            cardViewPastOrder.visibility = View.VISIBLE
+            logout.visibility = View.VISIBLE
+            cardViewOrderWiseProductQty.visibility = View.VISIBLE
+        }
+        if(loginUser?.rollId == 3 ){ // outlet user
             cardViewProductCatelog.visibility = View.VISIBLE
             cardViewMyCart.visibility = View.VISIBLE
             cardViewPastOrder.visibility = View.VISIBLE
             logout.visibility = View.VISIBLE
         }
-        if(loginUser?.rollId == 2 ){
+        if(loginUser?.rollId == 2 ){ // salse man
             cardViewProductCatelog.visibility = View.VISIBLE
             cardViewMyCart.visibility = View.VISIBLE
             cardViewPastOrder.visibility = View.VISIBLE
             logout.visibility = View.VISIBLE
             cardViewOutlet.visibility = View.VISIBLE
         }
-        if(loginUser?.rollId == 1 ){
+        if(loginUser?.rollId == 1 ){ // super admin
             cardViewProductCatelog.visibility = View.VISIBLE
             cardViewMyCart.visibility = View.VISIBLE
             cardViewPastOrder.visibility = View.VISIBLE
             logout.visibility = View.VISIBLE
             cardViewOutlet.visibility = View.VISIBLE
             cardViewAddSalseMan.visibility = View.VISIBLE
+            cardViewAddBrandOwner.visibility = View.VISIBLE
+            cardViewOrderWiseProductQty.visibility = View.VISIBLE
         }
         cardViewProductCatelog.setOnClickListener {
             if(loginUser?.rollId == 3){
@@ -64,6 +74,17 @@ class DashboardActivity : BaseActivity() {
         cardViewAddSalseMan.setOnClickListener {
             navigateTo<AddOutletActivity> {
                 putExtra("outletUserRoll", "2")
+            }
+        }
+        cardViewAddBrandOwner.setOnClickListener {
+            navigateTo<AddOutletActivity> {
+                putExtra("outletUserRoll", "4")
+                putExtra("brandOwner", true)
+            }
+        }
+        cardViewOrderWiseProductQty.setOnClickListener {
+            navigateTo<OrderWiseProductQtyActivity> {
+                putExtra("brandOwner", true)
             }
         }
         cardViewOutlet.setOnClickListener {
