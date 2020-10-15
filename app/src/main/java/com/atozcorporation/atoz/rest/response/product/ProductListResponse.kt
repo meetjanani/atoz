@@ -19,6 +19,7 @@ data class ProductListResponse(
         val productBrandName: String,
         val Seq: Int,
         val Description: String,
+        val productCode: String,
         val Created_At: String,
         val isActive: Int,
         val URL_1: String,

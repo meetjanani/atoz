@@ -24,7 +24,7 @@ class PastOrderHeaderActivity : BaseActivity(), IAdapterOnClick {
                 }
                 is PastOrderHeaderViewModel.PastOrderAPIState.Success -> {
                     progressBar.visibility = View.GONE
-                    if(it.data.data.isNotEmpty()){
+                    if(it.data.data != null){
                         adapter.PastOrderListAdapter(this, it.data.data, "")
                         adapter.notifyDataSetChanged()
                     }

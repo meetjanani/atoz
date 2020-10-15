@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.atozcorporation.atoz.R
 import com.atozcorporation.atoz.base.BaseActivity
 import com.atozcorporation.atoz.rest.response.login.LoginResponse
+import com.atozcorporation.atoz.rest.response.product.ProductListResponse
 import com.atozcorporation.atoz.ui.manageproduct.addproduct.AddProductsActivity
 import com.atozcorporation.atoz.ui.manageproduct.addproductbrand.AddProductBrandActivity
 import com.atozcorporation.atoz.ui.manageproduct.addproductcategory.AddProductCategoryActivity
@@ -42,9 +43,14 @@ class ProductListActivity : BaseActivity(), IAdapterOnClick {
                 }
                 is ProductListViewModel.ProductListAPIState.Success -> {
                     it.data.data?.let { response ->
-                        adapter.ProductListAdapter(this, response, "")
+                        adapter.ProductListAdapter(this, response, loginUser?.rollId.toString())
                         recyclerViewProductsList.adapter = adapter
                     }
+                    progressBar.visibility = View.GONE
+                }
+                is ProductListViewModel.ProductListAPIState.SuccessDeleteProduct -> {
+//                    viewModel.getProductListAPICall(productCategoryId, productBrandId)
+                    finish()
                     progressBar.visibility = View.GONE
                 }
                 is ProductListViewModel.ProductListAPIState.Failure -> {
@@ -89,6 +95,9 @@ class ProductListActivity : BaseActivity(), IAdapterOnClick {
     override fun onClick(item: Any, position: Int) {
         if(item is Int){
             // item.toString().defaultToast(this)
+        }
+        if (item is ProductListResponse.ProductDetails){
+            viewModel.deleteProductAPICall(item.ID)
         }
     }
 }

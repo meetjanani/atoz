@@ -21,7 +21,7 @@ class OrderWiseProductQtyActivity : BaseActivity(), IAdapterOnClick {
                 }
                 is OrderWiseProductQtyViewModel.OrderWiseProductQtyAPIState.Success -> {
                     progressBar.visibility = View.GONE
-                    if (it.data.data.isNotEmpty()) {
+                    if (it.data.data != null) {
                         adapter.OrderWiseProductQtyAdapter(this, it.data.data, "")
                         adapter.notifyDataSetChanged()
                     }

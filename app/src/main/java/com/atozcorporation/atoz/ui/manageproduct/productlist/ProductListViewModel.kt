@@ -3,6 +3,7 @@ package com.atozcorporation.atoz.ui.manageproduct.productlist
 import androidx.lifecycle.MutableLiveData
 import com.atozcorporation.atoz.rest.response.product.ProductListResponse
 import com.growinginfotech.businesshub.base.BaseViewModel
+import com.growinginfotech.businesshub.rest.response.insert.InsertResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -14,6 +15,7 @@ class ProductListViewModel : BaseViewModel() {
     sealed class ProductListAPIState {
         object Loading : ProductListAPIState()
         data class Success(val data: ProductListResponse) : ProductListAPIState()
+        data class SuccessDeleteProduct(val data: InsertResponse) : ProductListAPIState()
         data class Failure(val throwable: Throwable) : ProductListAPIState()
     }
 
@@ -35,6 +37,27 @@ class ProductListViewModel : BaseViewModel() {
                 t: Throwable
             ) {
                 productListAPIState.postValue(ProductListAPIState.Failure(t))
+            }
+        })
+    }
+
+    fun deleteProductAPICall(productId : Int) {
+        val call: Call<InsertResponse> =
+            apiService.Common_Master_Update("Update", "Product", "`isActive` = '0'", "ID = '${productId}'")
+        call.enqueue(object : Callback<InsertResponse> {
+            override fun onResponse(
+                call: Call<InsertResponse>,
+                response: Response<InsertResponse>
+
+            ) {
+                productListAPIState.postValue(ProductListAPIState.SuccessDeleteProduct(response.body()))
+            }
+
+            override fun onFailure(
+                call: Call<InsertResponse>,
+                t: Throwable
+            ) {
+                //
             }
         })
     }

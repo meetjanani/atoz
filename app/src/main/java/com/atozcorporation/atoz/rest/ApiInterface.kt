@@ -102,6 +102,15 @@ interface ApiInterface {
         @Field("WhereClouse") WhereClouse: String
     ): Call<ProductListResponse>
 
+    @FormUrlEncoded
+    @POST("master.php")
+    fun manageProductStockByProductId(
+        @Field("methodname") methodname: String?,
+        @Field("Avaiable_Stock") Avaiable_Stock: String?,
+        @Field("Total_Stock") Total_Stock: String?,
+        @Field("ID") ID: String?
+    ): Call<InsertResponse>
+
     @Multipart
     @POST("master.php")
     fun addNewProductCategory(
@@ -134,6 +143,7 @@ interface ApiInterface {
         @Part("productBrandId") productBrandId: RequestBody,
         @Part("productBrandName") productBrandName: RequestBody,
         @Part("Description") Description: RequestBody,
+        @Part("productCode") productCode: RequestBody,
         @Part imageFile: MultipartBody.Part?
     ): Call<InsertResponse>
 

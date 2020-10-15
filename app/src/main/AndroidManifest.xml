@@ -43,6 +43,7 @@
         <activity android:name=".ui.manageproduct.addblockbrand.AddBlockBrandActivity"/>
         <activity android:name=".ui.manageproduct.blockedbrandlist.BlockedBrandListActivity"/>
         <activity android:name=".ui.report.OrderWiseProductQtyActivity"/>
+        <activity android:name=".ui.manageorder.managestock.ManageProductStockActivity"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

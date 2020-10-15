@@ -1,7 +1,9 @@
 package com.atozcorporation.atoz.ui.dashboard
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import com.atozcorporation.atoz.BuildConfig
 import com.atozcorporation.atoz.MainActivity
 import com.atozcorporation.atoz.R
 import com.atozcorporation.atoz.base.BaseActivity
@@ -15,6 +17,7 @@ import com.growinginfotech.businesshub.base.defaultToast
 import com.growinginfotech.businesshub.base.navigateTo
 import com.growinginfotech.businesshub.base.navigateToAndFinish
 import kotlinx.android.synthetic.main.activity_dashboard.*
+
 
 class DashboardActivity : BaseActivity() {
 
@@ -93,6 +96,16 @@ class DashboardActivity : BaseActivity() {
         logout.setOnClickListener {
             setSharedPreferenceloginUser(null, false)
             navigateToAndFinish<LoginActivity>()
+        }
+        cardViewShare.setOnClickListener {
+            val sendIntent = Intent()
+            sendIntent.action = Intent.ACTION_SEND
+            sendIntent.putExtra(
+                Intent.EXTRA_TEXT,
+                "Hey check out my app at: https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID
+            )
+            sendIntent.type = "text/plain"
+            startActivity(sendIntent)
         }
     }
 }

@@ -22,9 +22,11 @@ class CartActivity : BaseActivity(), IAdapterOnClick {
             when (it) {
                 is CartViewModel.PlaceOrderAPIState.Loading -> {
                     progressBar.visibility = View.VISIBLE
+                    buttonSubmitOrder.visibility = View.GONE
                 }
                 is CartViewModel.PlaceOrderAPIState.Success -> {
                     progressBar.visibility = View.GONE
+                    buttonSubmitOrder.visibility = View.VISIBLE
                 }
                 is CartViewModel.PlaceOrderAPIState.SuccessProductSubmited -> {
                     deleteProductByProductId(it.productId)
@@ -36,6 +38,7 @@ class CartActivity : BaseActivity(), IAdapterOnClick {
                         Toast.LENGTH_SHORT
                     ).show()
                     progressBar.visibility = View.GONE
+                    buttonSubmitOrder.visibility = View.VISIBLE
                 }
             }
         })
@@ -58,7 +61,6 @@ class CartActivity : BaseActivity(), IAdapterOnClick {
         dbHelper = Order_Summery_Db_Helper(this, null)
         prepareProductList()
         buttonSubmitOrder.setOnClickListener {
-            "Submit Order".defaultToast(this)
             dbHelper.getAllProduct()?.let {
                 it.map { it.orderTotal = dbHelper.getOrderTotal().toString() }
                 viewModel.productsListForPlaceOrder.value = it

@@ -1,24 +1,32 @@
 package com.atozcorporation.atoz.ui.manageproduct.productlist
 
-import android.content.Context
+import android.app.Activity
+import android.app.AlertDialog
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
 import com.atozcorporation.atoz.R
 import com.atozcorporation.atoz.base.offlinedb.Order_Summery_Db_Helper
 import com.atozcorporation.atoz.base.offlinedb.Order_Summery_Ofline_Bean
 import com.atozcorporation.atoz.rest.response.product.ProductListResponse
+import com.atozcorporation.atoz.ui.manageorder.managestock.ManageProductStockActivity
 import com.growinginfotech.businesshub.base.IAdapterOnClick
 import com.growinginfotech.businesshub.base.loadImage
+import com.growinginfotech.businesshub.base.navigateTo
 import com.growinginfotech.businesshub.base.total_amount
 
 class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
     RecyclerView.Adapter<ProductListAdapter.MyViewHolder>() {
 
-    private lateinit var context: Context
+    private lateinit var context: Activity
+    private lateinit var userRoll: String
     private var arrayList: List<ProductListResponse.ProductDetails> = listOf()
     private lateinit var db_helper : Order_Summery_Db_Helper
 
@@ -32,26 +40,38 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
         var Btn_Display_Item: TextView
         var Btn_Add_Item: TextView
         var TextViewProductPrice: TextView
+        var TextViewDiscountedPrice: TextView
+        var TextViewProductCode: TextView
+        var LL_Outer: LinearLayout
+        var ManageProduct: LinearLayout
+        var buttonManageStock: AppCompatButton
+        var buttonDeleteProduct: AppCompatButton
 
         init {
             TextViewCategoryBrandName = itemView.findViewById(R.id.TextViewCategoryBrandName)
+            TextViewProductCode = itemView.findViewById(R.id.TextViewProductCode)
             TextViewProductName = itemView.findViewById(R.id.TextViewProductName)
             Btn_Remove_Item = itemView.findViewById(R.id.Btn_Remove_Item)
             Btn_Display_Item = itemView.findViewById(R.id.Btn_Display_Item)
             Btn_Add_Item = itemView.findViewById(R.id.Btn_Add_Item)
             TextViewProductPrice = itemView.findViewById(R.id.TextViewProductPrice)
+            TextViewDiscountedPrice = itemView.findViewById(R.id.TextViewDiscountedPrice)
             Img_Item = itemView.findViewById(R.id.Img_Item)
+            LL_Outer = itemView.findViewById(R.id.LL_Outer)
+            ManageProduct = itemView.findViewById(R.id.ManageProduct)
+            buttonManageStock = itemView.findViewById(R.id.buttonManageStock)
+            buttonDeleteProduct = itemView.findViewById(R.id.buttonDeleteProduct)
         }
     }
 
     // Removed ContactsAdapterListener listener
     fun ProductListAdapter(
-        context: Context,
+        context: Activity,
         arrayList: List<ProductListResponse.ProductDetails>,
-        string: String?
+        userRoll: String
     ) {
         this.context = context
-        //  this.listener = listener;
+          this.userRoll = userRoll;
         this.arrayList = arrayList
         db_helper = Order_Summery_Db_Helper(context, null)
         getOrderTotal()
@@ -69,6 +89,9 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
             i
         ).productBrandName}"
         holder.TextViewProductName.text = "${arrayList.get(i).Name}"
+        holder.TextViewProductCode.text = "${arrayList.get(i).productCode}"
+        holder.TextViewDiscountedPrice.text = "${arrayList.get(i).MRP_1}"
+        holder.TextViewDiscountedPrice.setPaintFlags(holder.TextViewDiscountedPrice.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
         context?.let { loadImage(arrayList.get(i).URL_1, holder.Img_Item, it) }
 //        holder.category_card.setOnClickListener {
 //            iAdapterOnClick.onClick(arrayList.get(i), i)
@@ -129,7 +152,7 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
                                 productId = arrayList.get(i).ID.toString() + "",
                                 productQty = item_count[0].toString() + "",
                                 productPrice = itemprice.toString() + "",
-                                productTotal =  (   item_count[0] * itemprice).toString() + ""
+                                productTotal = (item_count[0] * itemprice).toString() + ""
                             ), arrayList.get(i).ID.toString()
                         )
                         getOrderTotal()
@@ -223,13 +246,64 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
                     db_helper.updateProduct(
                         Order_Summery_Ofline_Bean(
                             productId = productId,
-                            productQty =  item_count[0].toString() + "",
+                            productQty = item_count[0].toString() + "",
                             productTotal = total.toString() + ""
                         ), productId
                     )
                     getOrderTotal()
                 }
             }
+        }
+
+        holder.buttonDeleteProduct.setOnClickListener {
+            if(userRoll.equals("1")){
+                val alertDialog2 = AlertDialog.Builder(
+                    context
+                )
+                alertDialog2.setTitle("Confirm Delete...")
+                alertDialog2.setMessage("Are you sure you want delete this file?")
+                alertDialog2.setIcon(R.drawable.ic_delete_black_24dp)
+                alertDialog2.setPositiveButton(
+                    "YES"
+                ) { dialog, which -> // Write your code here to execute after dialog
+                    // delete api call
+                    iAdapterOnClick.onClick(arrayList.get(i), -1)
+                }
+
+// Setting Negative "NO" Btn
+
+// Setting Negative "NO" Btn
+                alertDialog2.setNegativeButton(
+                    "NO"
+                ) { dialog, which -> // Write your code here to execute after dialog
+                    Toast.makeText(
+                        context,
+                        "You clicked on NO", Toast.LENGTH_SHORT
+                    )
+                        .show()
+                    dialog.cancel()
+                }
+
+// Showing Alert Dialog
+
+// Showing Alert Dialog
+                alertDialog2.show()
+
+            }
+        }
+        holder.buttonManageStock.setOnClickListener {
+            if(userRoll.equals("1")){
+                context.navigateTo<ManageProductStockActivity> {
+                    putExtra("productId", arrayList.get(i).ID)
+                }
+            }
+        }
+
+        holder.Img_Item.setOnLongClickListener {
+            if(userRoll.equals("1")){
+                holder.ManageProduct.visibility = View.VISIBLE
+            }
+            false
         }
     }
 

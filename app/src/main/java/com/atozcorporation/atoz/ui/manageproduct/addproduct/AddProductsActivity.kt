@@ -73,7 +73,7 @@ class AddProductsActivity : BaseActivity() {
             if(isImageSelected){
                 viewModel.addProductsAPICall(editTextProductName.text.toString(), editTextPackSize.text.toString(), editTextMRP1.text.toString(), editTextMRP2.text.toString(),
                     editTextMinQty.text.toString(), productCategoryId, textViewCategory.text.toString(), productBrandId, textViewCategoryBrand.text.toString(),
-                    editTextDescription.text.toString())
+                    editTextDescription.text.toString(), editTextProductCode.text.toString())
             } else{
                 "Please Select Image".defaultToast(this)
             }

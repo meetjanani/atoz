@@ -77,6 +77,24 @@
                 app:layout_constraintTop_toBottomOf="@+id/textViewCategoryBrand"
                 tools:ignore="MissingConstraints" />
 
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextProductCode"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_field_height"
+                android:layout_margin="15dp"
+                android:background="@drawable/rounded_corners_edittext_dark"
+                android:gravity="start|center_vertical"
+                android:hint="Enter Product Code"
+                android:text=""
+                android:inputType="text|textNoSuggestions"
+                android:padding="6dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColorSecondary"
+                android:textColorHint="@color/textColorPrimaryDark"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextProductName"
+                tools:ignore="MissingConstraints" />
+
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/editTextPackSize"
@@ -94,7 +112,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.888"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextProductName" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextProductCode" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/editTextMRP1"
@@ -173,68 +191,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/editTextMinQty" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/select_brand_own_type"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="15sp"
-                android:layout_marginTop="10sp"
-                android:text="Select Brand Owner Type"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextDescription"
-                />
-
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/selectBrandOwnType"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="15sp"
-                android:layout_marginRight="15sp"
-                android:layout_marginTop="5dp"
-                android:autofillHints="Outlet"
-                android:background="@drawable/rounded_corners_edittext_dark"
-                android:gravity="center"
-                android:padding="6dp"
-                android:textColor="@color/textColorSecondary"
-                android:textColorHint="@color/textColorPrimaryDark"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/select_brand_own_type" />
-
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/select_brand_own"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="15sp"
-                android:layout_marginTop="10sp"
-                android:text="Select Brand Owner"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/selectBrandOwnType"
-                />
-
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/selectBrandOwn"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="15sp"
-                android:layout_marginRight="15sp"
-                android:layout_marginTop="5dp"
-                android:autofillHints="Outlet"
-                android:background="@drawable/rounded_corners_edittext_dark"
-                android:gravity="center"
-                android:padding="6dp"
-                android:textColor="@color/textColorSecondary"
-                android:textColorHint="@color/textColorPrimaryDark"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/select_brand_own" />
-
-
-            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewURL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -250,7 +206,7 @@
                 android:textSize="20dp"
                 android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/selectBrandOwn"
+                app:layout_constraintTop_toBottomOf="@+id/editTextDescription"
                 tools:ignore="RtlCompat" />
 
             <androidx.appcompat.widget.AppCompatImageView
