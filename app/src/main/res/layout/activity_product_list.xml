@@ -15,7 +15,7 @@
         android:gravity="start|center_vertical"
         android:hint="Category Product"
         android:inputType="text|textNoSuggestions"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:padding="4dp"
         android:textAlignment="viewStart"
         android:textColor="#000"
