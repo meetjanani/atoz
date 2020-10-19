@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.atozcorporation.atoz">
+    package="com.basicneedscorporation.basicneeds">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
@@ -19,31 +19,31 @@
         android:usesCleartextTraffic="true"
         android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ui.spalsh.SplashScreenActivity">
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.spalsh.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.login.LoginActivity"/>
-        <activity android:name=".ui.dashboard.DashboardActivity"/>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".ui.manageproduct.productcategorylist.ProductCategoryActivity"/>
-        <activity android:name=".ui.addoutlet.AddOutletActivity"/>
-        <activity android:name=".ui.outlet.OutletListActivity"/>
-        <activity android:name=".ui.manageproduct.addproductcategory.AddProductCategoryActivity"/>
-        <activity android:name=".ui.manageproduct.addproductbrand.AddProductBrandActivity"/>
-        <activity android:name=".ui.manageproduct.productbrandlist.ProductBrandListActivity"/>
-        <activity android:name=".ui.manageproduct.productlist.ProductListActivity"/>
-        <activity android:name=".ui.outlet.outletdetails.OutletDetailsActivity"/>
-        <activity android:name=".ui.manageproduct.addproduct.AddProductsActivity"/>
-        <activity android:name=".ui.manageorder.cart.CartActivity"/>
-        <activity android:name=".ui.manageorder.pastorderheader.PastOrderHeaderActivity"/>
-        <activity android:name=".ui.manageorder.pastorderdproductdetails.PastOrderedProductDetailsActivity"/>
-        <activity android:name=".ui.manageproduct.addblockbrand.AddBlockBrandActivity"/>
-        <activity android:name=".ui.manageproduct.blockedbrandlist.BlockedBrandListActivity"/>
-        <activity android:name=".ui.report.OrderWiseProductQtyActivity"/>
-        <activity android:name=".ui.manageorder.managestock.ManageProductStockActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.login.LoginActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.dashboard.DashboardActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.MainActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.manageproduct.productcategorylist.ProductCategoryActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.addoutlet.AddOutletActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.outlet.OutletListActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.manageproduct.addproductcategory.AddProductCategoryActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.manageproduct.addproductbrand.AddProductBrandActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.manageproduct.productbrandlist.ProductBrandListActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.manageproduct.productlist.ProductListActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.outlet.outletdetails.OutletDetailsActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.manageproduct.addproduct.AddProductsActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.manageorder.cart.CartActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.manageorder.pastorderheader.PastOrderHeaderActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.manageorder.pastorderdproductdetails.PastOrderedProductDetailsActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.manageproduct.addblockbrand.AddBlockBrandActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.manageproduct.blockedbrandlist.BlockedBrandListActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.report.OrderWiseProductQtyActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.manageorder.managestock.ManageProductStockActivity"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

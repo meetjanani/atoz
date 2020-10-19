@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.atozcorporation.atoz.ui.addoutlet.AddOutletViewModel" />
+            type="com.basicneedscorporation.basicneeds.ui.addoutlet.AddOutletViewModel" />
     </data>
 <ScrollView
     android:layout_width="match_parent"

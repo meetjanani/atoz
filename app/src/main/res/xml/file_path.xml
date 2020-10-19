@@ -10,5 +10,5 @@
             path="/" />
     <external-path
             name="my_images_ext"
-            path="Android/data/com.atozcorporation.atoz/files/Pictures" />
+            path="Android/data/com.basicneedscorporation.atoz/files/Pictures" />
 </paths>

@@ -7,7 +7,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.atozcorporation.atoz"
+        applicationId "com.basicneedscorporation.basicneeds"
         minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
