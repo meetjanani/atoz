@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.basicneedscorporation.basicneeds.R
 import com.basicneedscorporation.basicneeds.base.offlinedb.Order_Summery_Db_Helper
@@ -43,6 +44,7 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
         var TextViewDiscountedPrice: TextView
         var TextViewProductCode: TextView
         var LL_Outer: LinearLayout
+        var LL_Past_Order: LinearLayout
         var ManageProduct: LinearLayout
         var buttonManageStock: AppCompatButton
         var buttonDeleteProduct: AppCompatButton
@@ -61,6 +63,7 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
             ManageProduct = itemView.findViewById(R.id.ManageProduct)
             buttonManageStock = itemView.findViewById(R.id.buttonManageStock)
             buttonDeleteProduct = itemView.findViewById(R.id.buttonDeleteProduct)
+            LL_Past_Order = itemView.findViewById(R.id.LL_Past_Order)
         }
     }
 
@@ -85,11 +88,23 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, i: Int) {
+        holder.LL_Past_Order.setOnClickListener {
+            iAdapterOnClick.onClick(arrayList.get(i), -2)
+        }
+
         holder.TextViewCategoryBrandName.text = "${arrayList.get(i).productCategoryName}, ${arrayList.get(
             i
         ).productBrandName}"
+        val perUnitPrice  = (arrayList.get(i).MRP_2.toFloat()/arrayList.get(i).PcsInUnit)
+
         holder.TextViewProductName.text = "${arrayList.get(i).Name}"
-        holder.TextViewProductCode.text = "${arrayList.get(i).productCode}"
+        holder.TextViewProductCode.text = "PC: ${arrayList.get(i).productCode}\nSize:${arrayList.get(
+            i
+        ).Pack_Size}\n" +
+                "Min Qty: ${arrayList.get(i).Min_Qty}\n" +
+                "Per Pcs: (${java.lang.String.format("%.2f", perUnitPrice)})\n" +
+                "1 Unit: ${arrayList.get(i).PcsInUnit} Pcs\n" +
+                "MRP: ${arrayList.get(i).ProductMRP}"
         holder.TextViewDiscountedPrice.text = "${arrayList.get(i).MRP_1}"
         holder.TextViewDiscountedPrice.setPaintFlags(holder.TextViewDiscountedPrice.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
         context?.let { loadImage(arrayList.get(i).URL_1, holder.Img_Item, it) }
@@ -99,12 +114,12 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
 //        Glide.with(context)
 //                .load(Records.get(i).getImageUrl1() +"")
 //                .into(holder.draweeView);
-        val itemprice: Int = arrayList.get(i).MRP_2.toInt()
+        val itemprice: Float = arrayList.get(i).MRP_2.toFloat()
 
         if ((arrayList.get(i).MRP_2.toInt().toString() + "").toInt() > 0) {
 
             // itemprice = Records.get(i).getProductPrice();
-            holder.TextViewProductPrice.setText(itemprice.toString() + "")
+            holder.TextViewProductPrice.setText(itemprice.toString() + " Rs.")
         }
         val item_count = intArrayOf(0)
 
@@ -188,7 +203,11 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
                         arrayList.get(i).productCategoryName,
                         arrayList.get(i).productBrandId.toString(),
                         arrayList.get(i).productBrandName,
-                        arrayList.get(i).URL_1
+                        arrayList.get(i).URL_1,
+                        productCode = arrayList.get(i).productCode,
+                        Pack_Size = arrayList.get(i).Pack_Size,
+                        Min_Qty = arrayList.get(i).Min_Qty.toString(),
+                        PcsInUnit = arrayList.get(i).PcsInUnit.toString()
                     ), productId
                 )
                 if (item_count[0] == 0) {
@@ -202,7 +221,7 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
 
         // Button Add ( + )
         holder.Btn_Add_Item.setOnClickListener {
-            if ((arrayList.get(i).MRP_2.toInt().toString() + "").toInt() > 0) {
+            if ((arrayList.get(i).MRP_2.toFloat().toString() + "").toFloat() > 0) {
                 item_count[0] = item_count[0] + arrayList.get(i).Min_Qty
                 if (item_count[0] == 0) {
                     item_count[0] = arrayList.get(i).Min_Qty
@@ -216,7 +235,7 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
                     total_amount = total_amount + finalItemprice
                     // holder.Tv_total_amount.setText("₹ " + total_amount)
                     val productId: String = arrayList.get(i).ID.toString() + ""
-                    val total: Int = item_count[0] * arrayList.get(i).MRP_2.toInt()
+                    val total: Float = item_count[0] * arrayList.get(i).MRP_2.toFloat()
                     //
                     db_helper.addProduct(
                         Order_Summery_Ofline_Bean(
@@ -229,7 +248,11 @@ class ProductListAdapter(val iAdapterOnClick: IAdapterOnClick) :
                             arrayList.get(i).productCategoryName,
                             arrayList.get(i).productBrandId.toString(),
                             arrayList.get(i).productBrandName,
-                            arrayList.get(i).URL_1
+                            arrayList.get(i).URL_1,
+                            productCode = arrayList.get(i).productCode,
+                            Pack_Size = arrayList.get(i).Pack_Size,
+                            Min_Qty = arrayList.get(i).Min_Qty.toString(),
+                            PcsInUnit = arrayList.get(i).PcsInUnit.toString()
                         ), productId
                     )
                     getOrderTotal()

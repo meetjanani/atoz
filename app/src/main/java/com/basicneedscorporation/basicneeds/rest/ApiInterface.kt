@@ -138,6 +138,8 @@ interface ApiInterface {
         @Part("MRP_1") MRP_1: RequestBody,
         @Part("MRP_2") MRP_2: RequestBody,
         @Part("Min_Qty") Min_Qty: RequestBody,
+        @Part("PcsInUnit") PcsInUnit: RequestBody,
+        @Part("ProductMRP") ProductMRP: RequestBody,
         @Part("productCategoryId") productCategoryId: RequestBody,
         @Part("productCategoryName") productCategoryName: RequestBody,
         @Part("productBrandId") productBrandId: RequestBody,
@@ -198,13 +200,17 @@ interface ApiInterface {
     @POST("Shooping_Order.php")
     fun getPastOrdersByLoginUser(
         @Field("methodname") methodname: String?,
-        @Field("batchId") orderByBatchId: String?
+        @Field("batchId") orderByBatchId: String?,
+        @Field("fromDate") fromDate: String?,
+        @Field("toDate") toDate: String?
     ): Call<PastOrderHeaderResponse>
 
     @FormUrlEncoded
     @POST("Shooping_Order.php")
     fun getPastOrdersForAdmin(
-        @Field("methodname") methodname: String?
+        @Field("methodname") methodname: String?,
+        @Field("fromDate") fromDate: String?,
+        @Field("toDate") toDate: String?
     ): Call<PastOrderHeaderResponse>
 
     @FormUrlEncoded

@@ -21,7 +21,7 @@ class LoginViewModel : BaseViewModel() {
     fun loginAPICall(batch : String, password : String) {
         loginAPIState.postValue(LoginAPIState.Loading)
         val call: Call<LoginResponse> =
-            apiService.login("GetByID", "outlet", "*", "(batchId = '${batch}' OR contactNumber = '${batch}') AND password = '${password}'")
+            apiService.login("GetByID", "outlet", "*", "(batchId = '${batch}' OR contactNumber = '${batch}') AND password = '${password}' AND isActive = 1")
         call.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(
                 call: Call<LoginResponse>,

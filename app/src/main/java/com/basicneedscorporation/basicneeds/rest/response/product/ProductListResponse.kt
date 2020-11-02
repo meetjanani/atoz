@@ -12,6 +12,8 @@ data class ProductListResponse(
         val MRP_1: Double,
         val MRP_2: Double,
         val Min_Qty: Int,
+        val PcsInUnit: Int,
+        val ProductMRP: Int,
         val Brand_Name: String,
         val productCategoryId: Int,
         val productCategoryName: String,

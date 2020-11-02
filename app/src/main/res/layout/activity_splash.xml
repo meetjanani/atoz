@@ -14,7 +14,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="32dp"
-        android:src="@drawable/app_logo"
+        android:src="@drawable/basic_need"
         android:transitionName="logo_image"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"

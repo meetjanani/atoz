@@ -26,6 +26,7 @@ class CartListAdapter(val iAdapterOnClick: IAdapterOnClick) :
         RecyclerView.ViewHolder(itemView) {
         var TextViewCategoryBrandName: TextView
         var TextViewProductName: TextView
+        var TextViewProductCode: TextView
         var Img_Item: ImageView
         var Btn_Remove_Item: TextView
         var Btn_Display_Item: TextView
@@ -34,6 +35,7 @@ class CartListAdapter(val iAdapterOnClick: IAdapterOnClick) :
 
         init {
             TextViewCategoryBrandName = itemView.findViewById(R.id.TextViewCategoryBrandName)
+            TextViewProductCode = itemView.findViewById(R.id.TextViewProductCode)
             TextViewProductName = itemView.findViewById(R.id.TextViewProductName)
             Btn_Remove_Item = itemView.findViewById(R.id.Btn_Remove_Item)
             Btn_Display_Item = itemView.findViewById(R.id.Btn_Display_Item)
@@ -67,7 +69,14 @@ class CartListAdapter(val iAdapterOnClick: IAdapterOnClick) :
         holder.TextViewCategoryBrandName.text = "${arrayList.get(i).productCategoryName}, ${arrayList.get(
             i
         ).productBrandName}"
+        val perUnitPrice  = (arrayList.get(i).productPrice.toFloat()/arrayList.get(i).PcsInUnit.toInt())
         holder.TextViewProductName.text = "${arrayList.get(i).productName}"
+        holder.TextViewProductCode.text = "PC: ${arrayList.get(i).productCode}\nSize:${arrayList.get(
+            i
+        ).Pack_Size}\n" +
+                "Min Qty: ${arrayList.get(i).Min_Qty}\n" +
+                "Per Pcs: (${java.lang.String.format("%.2f", perUnitPrice)})\n" +
+                "1 Unit = ${arrayList.get(i).PcsInUnit} Pcs"
         context?.let { loadImage(arrayList.get(i).productUrl1, holder.Img_Item, it) }
 //        holder.category_card.setOnClickListener {
 //            iAdapterOnClick.onClick(arrayList.get(i), i)
@@ -76,9 +85,9 @@ class CartListAdapter(val iAdapterOnClick: IAdapterOnClick) :
 //                .load(Records.get(i).getImageUrl1() +"")
 //                .into(holder.draweeView);
         // val db_helper = Order_Summery_Db_Helper(context, null)
-        val itemprice: Int = arrayList.get(i).productPrice.toInt()
+        val itemprice: Float = arrayList.get(i).productPrice.toFloat()
 
-        if ((arrayList.get(i).productPrice.toInt().toString() + "").toInt() > 0) {
+        if ((arrayList.get(i).productPrice.toFloat().toString() + "").toFloat() > 0) {
 
             // itemprice = Records.get(i).getProductPrice();
             holder.TextViewProductPrice.setText(itemprice.toString() + "")
@@ -108,7 +117,7 @@ class CartListAdapter(val iAdapterOnClick: IAdapterOnClick) :
                 total_amount = total_amount - finalItemprice;
                // holder.Tv_total_amount.setText("₹ " + total_amount)
             } else {
-                if ((arrayList.get(i).productPrice.toInt().toString() + "").toInt() > 0) {
+                if ((arrayList.get(i).productPrice.toFloat().toString() + "").toFloat() > 0) {
                     item_count[0]--
                     holder.Btn_Display_Item.text = item_count[0].toString() + ""
                     total_amount = total_amount + -finalItemprice
@@ -166,7 +175,7 @@ class CartListAdapter(val iAdapterOnClick: IAdapterOnClick) :
                 total_amount =
                     total_amount + item_count[0] * finalItemprice
                 // holder.Tv_total_amount.setText("₹ " + total_amount)
-                val total: Int = item_count[0] * arrayList.get(i).productPrice.toInt()
+                val total: Float = item_count[0] * arrayList.get(i).productPrice.toFloat()
                 //Toast.makeText(context, item_count[0] + " : " + arrayList.get(i).getId() , Toast.LENGTH_SHORT).show();
                 val productId: String = arrayList.get(i).productId.toString() + ""
                 db_helper.addProduct(
@@ -179,7 +188,11 @@ class CartListAdapter(val iAdapterOnClick: IAdapterOnClick) :
                         arrayList.get(i).productCategoryName,
                         arrayList.get(i).productBrandId.toString(),
                         arrayList.get(i).productBrandName,
-                        arrayList.get(i).productUrl1
+                        arrayList.get(i).productUrl1,
+                        productCode = arrayList.get(i).productCode,
+                        Pack_Size = arrayList.get(i).Pack_Size,
+                        Min_Qty = arrayList.get(i).Min_Qty.toString(),
+                        PcsInUnit = arrayList.get(i).PcsInUnit.toString()
                     ), productId
                 )
                 getOrderTotal()
@@ -200,7 +213,7 @@ class CartListAdapter(val iAdapterOnClick: IAdapterOnClick) :
 //                {
 //                    item_count[0] = 1;
 //                }
-            if ((arrayList.get(i).productPrice.toInt().toString() + "").toInt() > 0) {
+            if ((arrayList.get(i).productPrice.toFloat().toString() + "").toFloat() > 0) {
                 item_count[0] = item_count[0] + 1
                 if (item_count[0] == 0) {
                     item_count[0] = 1
@@ -226,7 +239,11 @@ class CartListAdapter(val iAdapterOnClick: IAdapterOnClick) :
                             arrayList.get(i).productCategoryName,
                             arrayList.get(i).productBrandId.toString(),
                             arrayList.get(i).productBrandName,
-                            arrayList.get(i).productUrl1
+                            arrayList.get(i).productUrl1,
+                            productCode = arrayList.get(i).productCode,
+                            Pack_Size = arrayList.get(i).Pack_Size,
+                            Min_Qty = arrayList.get(i).Min_Qty.toString(),
+                            PcsInUnit = arrayList.get(i).PcsInUnit.toString()
                         ), productId
                     )
                     getOrderTotal()

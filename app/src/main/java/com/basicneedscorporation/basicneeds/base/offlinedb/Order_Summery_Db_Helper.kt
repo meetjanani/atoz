@@ -30,6 +30,10 @@ class Order_Summery_Db_Helper(
     private val productBrandName = "productBrandName"
     private val productUrl1 = "productUrl1"
     private val productorderTotal = "productorderTotal"
+    private val productCode = "productCode"
+    private val Pack_Size = "Pack_Size"
+    private val Min_Qty = "Min_Qty"
+    private val PcsInUnit = "PcsInUnit"
 
     override fun onCreate(db: SQLiteDatabase?) {
         val Create_Table = "CREATE TABLE " + Table_Name +
@@ -45,7 +49,11 @@ class Order_Summery_Db_Helper(
                 productBrandId + " TEXT," +
                 productBrandName + " TEXT," +
                 productUrl1 + " TEXT," +
-                productorderTotal + " TEXT" +
+                productorderTotal + " TEXT," +
+                productCode + " TEXT," +
+                Pack_Size + " TEXT," +
+                Min_Qty + " TEXT," +
+                PcsInUnit + " TEXT" +
                 ")"
         db!!.execSQL(Create_Table)
     }
@@ -79,6 +87,10 @@ class Order_Summery_Db_Helper(
                 product.productBrandId = (cursor.getString(8))
                 product.productBrandName = (cursor.getString(9))
                 product.productUrl1 = (cursor.getString(10))
+                product.productCode = (cursor.getString(11))
+                product.Pack_Size = (cursor.getString(12))
+                product.Min_Qty = (cursor.getString(13))
+                product.PcsInUnit = (cursor.getString(15))
                 // Adding contact to list
                 Product_list.add(product)
             } while (cursor.moveToNext())
@@ -102,6 +114,10 @@ class Order_Summery_Db_Helper(
         cv.put(productBrandId, order_items.productBrandId)
         cv.put(productBrandName, order_items.productBrandName)
         cv.put(productUrl1, order_items.productUrl1)
+        cv.put(productCode, order_items.productCode)
+        cv.put(Pack_Size, order_items.Pack_Size)
+        cv.put(Min_Qty, order_items.Min_Qty)
+        cv.put(PcsInUnit, order_items.PcsInUnit)
         db.insert(Table_Name, null, cv)
         db.close()
     }
@@ -137,16 +153,16 @@ class Order_Summery_Db_Helper(
         }
         return Total_Qty
     }
-    fun getOrderTotal(): Int {
+    fun getOrderTotal(): Float {
         //Item_Details_Bean order = new Item_Details_Bean();
-        var Total = 0
+        var Total = 0F
         val countQuery =
             "SELECT SUM(" + productTotal + ") as productTotal FROM " + Table_Name + ";"
         val db = this.readableDatabase
         val cursor = db.rawQuery(countQuery, null)
         if (cursor.moveToFirst()) {
             do {
-                Total = cursor.getInt(0)
+                Total = cursor.getFloat(0)
             } while (cursor.moveToNext())
             cursor.close()
         }
@@ -154,7 +170,7 @@ class Order_Summery_Db_Helper(
         return Total
     }
 
-    fun updateOrderTotal(orderTotal: Int): Int {
+    fun updateOrderTotal(orderTotal: Float): Int {
         val db = this.writableDatabase
         val cv = ContentValues()
         cv.put(productorderTotal, orderTotal.toString())

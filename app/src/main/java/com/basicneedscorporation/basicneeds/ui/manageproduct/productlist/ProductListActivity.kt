@@ -23,6 +23,7 @@ class ProductListActivity : BaseActivity(), IAdapterOnClick {
     protected var adapter = ProductListAdapter(this)
     var productCategoryId = 0
     var productCategoryName = ""
+    var productId = 0
     var productBrandId = 0
     var productBrandName = ""
     val orderForUserDetails = LoginResponse.UserDetails()
@@ -76,6 +77,7 @@ class ProductListActivity : BaseActivity(), IAdapterOnClick {
         }
         buttonAddProducts.setOnClickListener {
             activity?.navigateTo<AddProductsActivity> {
+                putExtra("isEdit", false)
                 putExtra("productCategoryId", productCategoryId)
                 putExtra("productCategoryName", productCategoryName)
                 putExtra("productBrandId", productBrandId)
@@ -88,7 +90,17 @@ class ProductListActivity : BaseActivity(), IAdapterOnClick {
         if(item is Int){
             // item.toString().defaultToast(this)
         }
-        if (item is ProductListResponse.ProductDetails){
+        else if (item is ProductListResponse.ProductDetails && position == -2){
+            activity?.navigateTo<AddProductsActivity> {
+                putExtra("isEdit", true)
+                putExtra("productId", item.ID)
+                putExtra("productBrandId", productBrandId)
+                putExtra("productCategoryName", productCategoryName)
+                putExtra("productBrandId", productBrandId)
+                putExtra("productBrandName", productBrandName)
+            }
+        }
+        else if (item is ProductListResponse.ProductDetails){
             viewModel.deleteProductAPICall(item.ID)
         }
     }

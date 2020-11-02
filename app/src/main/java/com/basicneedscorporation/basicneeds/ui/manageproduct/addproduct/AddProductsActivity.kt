@@ -28,6 +28,8 @@ class AddProductsActivity : BaseActivity() {
     var isImageSelected = false
     var productCategoryId = 0
     var productCategoryName = ""
+    var productId = 0
+    var isEdit = false
     var productBrandId = 0
     var productBrandName = ""
 
@@ -44,6 +46,22 @@ class AddProductsActivity : BaseActivity() {
                     progressBar.visibility = View.GONE
                     finish()
                 }
+                is  AddProductsViewModel.AddProductsAPIState.SuccessGetProduct -> {
+                    it.data?.let { it ->
+                        Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                        editTextProductName.setText(it.data.get(0).Name.toString() ?: "")
+                        editTextProductCode.setText(it.data.get(0).productCode.toString() ?: "")
+                        editTextPackSize.setText(it.data.get(0).Pack_Size.toString() ?: "")
+                        editTextMRP1.setText(it.data.get(0).MRP_1.toString() ?: "")
+                        editTextMRP2.setText(it.data.get(0).MRP_2.toString() ?: "")
+                        editTextMinQty.setText(it.data.get(0).Min_Qty.toString() ?: "")
+                        editTextPcsInUnit.setText(it.data.get(0).PcsInUnit.toString() ?: "")
+                        editTextProductMRP.setText(it.data.get(0).ProductMRP.toString() ?: "")
+                        editTextDescription.setText(it.data.get(0).Description.toString() ?: "")
+                        loadImage(it.data.get(0).URL_1, imageViewProduct, this)
+                    }
+                    progressBar.visibility = View.GONE
+                }
                 is  AddProductsViewModel.AddProductsAPIState.Failure -> {
                     Toast.makeText(this, it.throwable.message.toString(), Toast.LENGTH_SHORT).show()
                     progressBar.visibility = View.GONE
@@ -57,13 +75,20 @@ class AddProductsActivity : BaseActivity() {
         viewModel =
             ViewModelProviders.of(this).get(AddProductsViewModel::class.java)
         observeState(viewModel)
+        viewModel.isEdit.value = false
 
+        isEdit = intent.extras?.getBoolean("isEdit") ?: false
+        productId = intent.extras?.getInt("productId") ?: 0
         productCategoryId = intent.extras?.getInt("productCategoryId") ?: 0
         productCategoryName =  intent.extras?.getString("productCategoryName").toString()
         productBrandId = intent.extras?.getInt("productBrandId") ?: 0
         productBrandName =  intent.extras?.getString("productBrandName").toString()
         textViewCategory.text = productCategoryName
         textViewCategoryBrand.text = productBrandName
+
+        if(isEdit){
+            viewModel.getProductListAPICall(productId)
+        }
         imageViewProduct.setOnClickListener {
             checkForPermission()
         }
@@ -71,7 +96,7 @@ class AddProductsActivity : BaseActivity() {
         buttonSubmitProduct.setOnClickListener {
             if(isImageSelected){
                 viewModel.addProductsAPICall(editTextProductName.text.toString(), editTextPackSize.text.toString(), editTextMRP1.text.toString(), editTextMRP2.text.toString(),
-                    editTextMinQty.text.toString(), productCategoryId, textViewCategory.text.toString(), productBrandId, textViewCategoryBrand.text.toString(),
+                    editTextMinQty.text.toString(),editTextPcsInUnit.text.toString(),editTextProductMRP.text.toString(), productCategoryId, textViewCategory.text.toString(), productBrandId, textViewCategoryBrand.text.toString(),
                     editTextDescription.text.toString(), editTextProductCode.text.toString())
             } else{
                 "Please Select Image".defaultToast(this)

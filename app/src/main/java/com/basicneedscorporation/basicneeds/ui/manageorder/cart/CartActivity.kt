@@ -69,7 +69,7 @@ class CartActivity : BaseActivity(), IAdapterOnClick {
     }
 
     override fun onClick(item: Any, position: Int) {
-        if (item is Int) {
+        if (item is Float) {
             textViewOrderAmount.text = "₹ " + item.toString()
         }
     }

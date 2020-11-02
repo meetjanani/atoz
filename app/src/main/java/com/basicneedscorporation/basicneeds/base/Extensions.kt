@@ -50,6 +50,7 @@ fun loadImage(
         .placeholder(R.drawable.ic_add_image)
         .error(R.drawable.ic_add_image)
         .load(url)
+        .fitCenter()
         .diskCacheStrategy(DiskCacheStrategy.ALL)
         .skipMemoryCache(true)
         .into(imageView)

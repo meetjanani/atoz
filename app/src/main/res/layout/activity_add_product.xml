@@ -171,6 +171,43 @@
                 app:layout_constraintTop_toBottomOf="@+id/editTextMRP2" />
 
 
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextPcsInUnit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_field_height"
+                android:layout_margin="15dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/rounded_corners_edittext_dark"
+                android:gravity="start|center_vertical"
+                android:hint="Enter Pcs In Unit"
+                android:inputType="number|textNoSuggestions"
+                android:padding="6dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColorSecondary"
+                android:textColorHint="@color/textColorPrimaryDark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.551"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextMinQty" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextProductMRP"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_field_height"
+                android:layout_margin="15dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/rounded_corners_edittext_dark"
+                android:gravity="start|center_vertical"
+                android:hint="Enter Product MRP"
+                android:inputType="number|textNoSuggestions"
+                android:padding="6dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColorSecondary"
+                android:textColorHint="@color/textColorPrimaryDark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.551"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextPcsInUnit" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/editTextDescription"
@@ -188,7 +225,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.888"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextMinQty" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextProductMRP" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textViewURL"
