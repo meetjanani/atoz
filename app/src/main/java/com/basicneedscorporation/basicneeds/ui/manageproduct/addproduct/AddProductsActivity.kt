@@ -94,6 +94,12 @@ class AddProductsActivity : BaseActivity() {
         }
 
         buttonSubmitProduct.setOnClickListener {
+            if(isEdit){
+                viewModel.updateProductAPICall(productId, editTextProductName.text.toString(), editTextPackSize.text.toString(), editTextMRP1.text.toString(), editTextMRP2.text.toString(),
+                    editTextMinQty.text.toString(),editTextPcsInUnit.text.toString(),editTextProductMRP.text.toString(),
+                    editTextDescription.text.toString(), editTextProductCode.text.toString())
+                return@setOnClickListener
+            }
             if(isImageSelected){
                 viewModel.addProductsAPICall(editTextProductName.text.toString(), editTextPackSize.text.toString(), editTextMRP1.text.toString(), editTextMRP2.text.toString(),
                     editTextMinQty.text.toString(),editTextPcsInUnit.text.toString(),editTextProductMRP.text.toString(), productCategoryId, textViewCategory.text.toString(), productBrandId, textViewCategoryBrand.text.toString(),

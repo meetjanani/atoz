@@ -96,7 +96,6 @@ class ProductListActivity : BaseActivity(), IAdapterOnClick {
                 putExtra("productId", item.ID)
                 putExtra("productBrandId", productBrandId)
                 putExtra("productCategoryName", productCategoryName)
-                putExtra("productBrandId", productBrandId)
                 putExtra("productBrandName", productBrandName)
             }
         }

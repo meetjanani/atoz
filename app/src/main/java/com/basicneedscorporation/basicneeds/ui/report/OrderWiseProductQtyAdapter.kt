@@ -64,7 +64,7 @@ class OrderWiseProductQtyAdapter(val iAdapterOnClick: IAdapterOnClick) :
     ) {
         context?.let { loadImage(arrayList.get(position).URL_1, holder.product_image, it) }
         holder.product_name.text = arrayList.get(position).Product_Name
-        holder.product_price.text = (arrayList.get(position).Product_Price.toInt() * arrayList.get(position).ProductWiseOrderQty.toInt()).toString()
+        holder.product_price.text = (arrayList.get(position).Product_Price.toFloat() * arrayList.get(position).ProductWiseOrderQty.toInt()).toString()
         holder.product_quantity.text = "₹ ${arrayList.get(position).Product_Price} X ${arrayList.get(position).ProductWiseOrderQty}"
     }
 

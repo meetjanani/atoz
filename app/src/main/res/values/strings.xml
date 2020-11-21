@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Basic Needs</string>
+    <string name="app_name">BasicNeed</string>
     <string name="title_home">Home</string>
     <string name="title_product">Product</string>
     <string name="title_profile">Profile</string>
@@ -22,4 +22,4 @@
     -->
     <string name="hello_world">Hello Square World!</string>
     <string name="add_outlet">Add Outlet</string>
-</resources>
+</resources> 

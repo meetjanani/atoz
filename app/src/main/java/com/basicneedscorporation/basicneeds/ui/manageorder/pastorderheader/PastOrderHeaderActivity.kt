@@ -69,7 +69,7 @@ class PastOrderHeaderActivity : BaseActivity(), IAdapterOnClick {
             } else {
                 Tv_From_Date.text = "${it.get(Calendar.YEAR)}-${it.get((Calendar.MONTH)) + 1}-01"
             }
-            Tv_To_Date.text = "${it.get(Calendar.YEAR)}-${it.get((Calendar.MONTH)) + 1}-${it.get(Calendar.DAY_OF_MONTH)}"
+            Tv_To_Date.text = "${it.get(Calendar.YEAR)}-${it.get((Calendar.MONTH)) + 1}-${(it.get(Calendar.DAY_OF_MONTH) + 1)}"
         }
 
         val batchId = intent?.extras?.getString("batchId").toString()

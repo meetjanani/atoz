@@ -92,4 +92,25 @@ class AddProductsViewModel : BaseViewModel() {
             }
         })
     }
+
+    fun updateProductAPICall(productId: Int, name: String,packSize: String,mrp1: String,mrp2: String,mimQty: String,PcsInUnit: String,ProductMRP : String, description : String, productCode : String) {
+        val call: Call<InsertResponse> =
+            apiService.Common_Master_Update("Update", "Product", "`Name` = '${name}', `Pack_Size` = '${packSize}', `MRP_1` = '${mrp1}', `MRP_2` = '${mrp2}', `Min_Qty` = '${mimQty}', `PcsInUnit` = '${PcsInUnit}', `ProductMRP` = '${ProductMRP}', `Description` = '${description}', `productCode` = '${productCode}'", "ID = '${productId}'")
+        call.enqueue(object : Callback<InsertResponse> {
+            override fun onResponse(
+                call: Call<InsertResponse>,
+                response: Response<InsertResponse>
+
+            ) {
+                addProductsAPIState.postValue(AddProductsAPIState.Success(response.body()))
+            }
+
+            override fun onFailure(
+                call: Call<InsertResponse>,
+                t: Throwable
+            ) {
+                //
+            }
+        })
+    }
 }
