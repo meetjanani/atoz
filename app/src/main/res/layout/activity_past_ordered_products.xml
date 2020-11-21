@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.manageproduct.productcategorylist.ProductCategoryFragment">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewOrderAmount"
+        android:layout_width="160sp"
+        android:layout_height="40dp"
+        android:layout_margin="15dp"
+        android:layout_marginTop="12dp"
+        android:gravity="start|center_vertical"
+        android:hint="Order Details"
+        android:inputType="text|textNoSuggestions"
+        android:padding="4dp"
+        android:textAlignment="viewStart"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/searchProductBrand"
+        android:layout_width="200sp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rounded_corners_edittext_dark"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="5dp"
+        android:hint="Search"
+        android:imeOptions="actionSearch"
+        android:inputType="textNoSuggestions"
+        android:padding="4dp"
+        android:textColor="@color/textColorSecondaryLight"
+        android:textColorHint="@color/textColorPrimaryDark"
+        android:textSize="14sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.905"
+        app:layout_constraintStart_toStartOf="@+id/textViewOrderAmount"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchProductBrand"
+        app:layout_constraintVertical_bias="0.019" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewOrderStatusLable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15sp"
+        android:text="Update Order Status"
+        android:textColor="@color/black"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spinnerOrderStatus"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="40dp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15sp"
+        android:autofillHints="Outlet"
+        android:background="@drawable/rounded_corners_edittext_dark"
+        android:gravity="center"
+        android:padding="6dp"
+        android:textColor="@color/textColorSecondary"
+        android:textColorHint="@color/textColorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewOrderStatusLable" />
+
+    <Button
+        android:id="@+id/buttonUpdateOrderStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:visibility="gone"
+        android:text="Update Order status"
+        app:layout_constraintTop_toBottomOf="@id/spinnerOrderStatus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <include
+        android:id="@+id/layoutOrderBasicDetails"
+        layout="@layout/pattern_past_order_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/buttonUpdateOrderStatus" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewPastOrderdProductList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutOrderBasicDetails" />
+
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

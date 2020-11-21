@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.atozcorporation.atoz">
+    package="com.basicneedscorporation.basicneeds">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
@@ -14,18 +14,46 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name">
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.spalsh.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.addoutlet.AddOutletActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.login.LoginActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.dashboard.DashboardActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.MainActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.manageproduct.productcategorylist.ProductCategoryActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.addoutlet.AddOutletActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.outlet.OutletListActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.manageproduct.addproductcategory.AddProductCategoryActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.manageproduct.addproductbrand.AddProductBrandActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.manageproduct.productbrandlist.ProductBrandListActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.manageproduct.productlist.ProductListActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.outlet.outletdetails.OutletDetailsActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.manageproduct.addproduct.AddProductsActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.manageorder.cart.CartActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.manageorder.pastorderheader.PastOrderHeaderActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.manageorder.pastorderdproductdetails.PastOrderedProductDetailsActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.manageproduct.addblockbrand.AddBlockBrandActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.manageproduct.blockedbrandlist.BlockedBrandListActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.report.OrderWiseProductQtyActivity"/>
+        <activity android:name="com.basicneedscorporation.basicneeds.ui.manageorder.managestock.ManageProductStockActivity"/>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path" />
+        </provider>
     </application>
 
 </manifest>

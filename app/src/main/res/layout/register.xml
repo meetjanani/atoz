@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="100dp"
+    android:background="#FFF2F2F2">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/logoImg"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/profile"
+        tools:ignore="MissingConstraints" />
+
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/selectOutlet"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/rounded_corners_edittext_dark"
+        android:gravity="center"
+        android:padding="6dp"
+        android:layout_margin="15dp"
+        android:layout_marginTop="15dp"
+        android:autofillHints="Outlet"
+        android:textColor="@color/textColorSecondary"
+        android:textColorHint="@color/textColorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoImg" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editTextOutletName"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_field_height"
+        android:background="@drawable/rounded_corners_edittext_dark"
+        android:gravity="start|center_vertical"
+        android:hint="@string/enter_outlet_name"
+        android:padding="6dp"
+        android:inputType="text|textNoSuggestions"
+        android:layout_margin="15dp"
+        android:textAlignment="viewStart"
+        android:textColor="@color/textColorSecondary"
+        android:textColorHint="@color/textColorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectOutlet" />
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editTextPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_field_height"
+        android:background="@drawable/rounded_corners_edittext_dark"
+        android:padding="6dp"
+        android:gravity="start|center_vertical"
+        android:hint="@string/enter_person_name"
+        android:inputType="text|textNoSuggestions"
+        android:layout_margin="15dp"
+        android:textAlignment="viewStart"
+        android:textColor="@color/textColorSecondary"
+        android:textColorHint="@color/textColorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextOutletName" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editTextContactNumber"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_field_height"
+        android:background="@drawable/rounded_corners_edittext_dark" android:padding="6dp"
+        android:gravity="start|center_vertical"
+        android:hint="@string/enter_contact_number"
+        android:inputType="number|textNoSuggestions"
+        android:layout_margin="15dp"
+        android:textAlignment="viewStart"
+        android:textColor="@color/textColorSecondary"
+        android:textColorHint="@color/textColorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPersonName" />
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editTextGst"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_field_height"
+        android:background="@drawable/rounded_corners_edittext_dark"
+        android:padding="6dp"
+        android:gravity="start|center_vertical"
+        android:hint="@string/enter_gst_number"
+        android:inputType="text|textNoSuggestions"
+        android:layout_margin="15dp"
+        android:textAlignment="viewStart"
+        android:textColor="@color/textColorSecondary"
+        android:textColorHint="@color/textColorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextContactNumber" />
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editTextBachNumber"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_field_height"
+        android:background="@drawable/rounded_corners_edittext_dark"
+        android:padding="6dp"
+        android:gravity="start|center_vertical"
+        android:hint="@string/enter_bach_number"
+        android:inputType="text|textNoSuggestions"
+        android:layout_margin="15dp"
+        android:textAlignment="viewStart"
+        android:textColor="@color/textColorSecondary"
+        android:textColorHint="@color/textColorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextGst" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/selectCity"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/rounded_corners_edittext_dark"
+        android:gravity="center"
+        android:padding="6dp"
+        android:layout_margin="15dp"
+        android:layout_marginTop="15dp"
+        android:autofillHints="Outlet"
+        android:textColor="@color/textColorSecondary"
+        android:textColorHint="@color/textColorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextBachNumber" />
+
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/selectArea"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/rounded_corners_edittext_dark"
+        android:gravity="center"
+        android:padding="6dp"
+        android:layout_margin="15dp"
+        android:layout_marginTop="15dp"
+        android:autofillHints="Outlet"
+        android:textColor="@color/textColorSecondary"
+        android:textColorHint="@color/textColorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectCity" />
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editTextAddressPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_field_height"
+        android:background="@drawable/rounded_corners_edittext_dark"
+        android:padding="6dp"
+        android:gravity="start|center_vertical"
+        android:hint="@string/enter_primary_address"
+        android:inputType="text|textNoSuggestions"
+        android:layout_margin="15dp"
+        android:textAlignment="viewStart"
+        android:textColor="@color/textColorSecondary"
+        android:textColorHint="@color/textColorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectArea" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editTextPinCode"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_field_height"
+        android:background="@drawable/rounded_corners_edittext_dark"
+        android:padding="6dp"
+        android:gravity="start|center_vertical"
+        android:hint="@string/enter_pin_code"
+        android:inputType="text|textNoSuggestions"
+        android:layout_margin="15dp"
+        android:textAlignment="viewStart"
+        android:textColor="@color/textColorSecondary"
+        android:textColorHint="@color/textColorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAddressPrimary" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editTextAddressSecondary"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_field_height"
+        android:background="@drawable/rounded_corners_edittext_dark"
+        android:padding="6dp"
+        android:gravity="start|center_vertical"
+        android:hint="@string/enter_secondary_address"
+        android:inputType="text|textNoSuggestions"
+        android:layout_margin="15dp"
+        android:textAlignment="viewStart"
+        android:textColor="@color/textColorSecondary"
+        android:textColorHint="@color/textColorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPinCode" />
+
+
+
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/user_email"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_field_height"
+        android:background="@drawable/rounded_corners_edittext_dark"
+        android:padding="6dp"
+        android:gravity="start|center_vertical"
+        android:hint="@string/enter_email_address"
+        android:inputType="text|textNoSuggestions"
+        android:layout_margin="15dp"
+        android:textAlignment="viewStart"
+        android:textColor="@color/textColorSecondary"
+        android:textColorHint="@color/textColorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAddressSecondary" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/user_password"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_field_height"
+        android:background="@drawable/rounded_corners_edittext_dark"
+        android:padding="6dp"
+        android:gravity="start|center_vertical"
+        android:hint="@string/enter_password"
+        android:inputType="text|textNoSuggestions"
+        android:layout_margin="15dp"
+        android:textAlignment="viewStart"
+        android:textColor="@color/textColorSecondary"
+        android:textColorHint="@color/textColorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_email" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/loginBtn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginTop="@dimen/button_margin"
+        android:background="@drawable/rounded_corners_button"
+        android:text="@string/register"
+        android:layout_margin="15dp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/button_text_size"
+        app:backgroundTint="@color/colorAccentGreen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_password"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
