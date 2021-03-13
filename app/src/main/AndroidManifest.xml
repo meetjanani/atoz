@@ -44,6 +44,7 @@
         <activity android:name="com.basicneedscorporation.basicneeds.ui.manageproduct.blockedbrandlist.BlockedBrandListActivity"/>
         <activity android:name="com.basicneedscorporation.basicneeds.ui.report.OrderWiseProductQtyActivity"/>
         <activity android:name="com.basicneedscorporation.basicneeds.ui.manageorder.managestock.ManageProductStockActivity"/>
+        <activity android:name=".ui.changepassword.ChangePasswordActivity"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

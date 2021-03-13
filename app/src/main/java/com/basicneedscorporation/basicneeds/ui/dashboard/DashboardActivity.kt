@@ -11,6 +11,7 @@ import com.basicneedscorporation.basicneeds.MainActivity
 import com.basicneedscorporation.basicneeds.R
 import com.basicneedscorporation.basicneeds.base.BaseActivity
 import com.basicneedscorporation.basicneeds.ui.addoutlet.AddOutletActivity
+import com.basicneedscorporation.basicneeds.ui.changepassword.ChangePasswordActivity
 import com.basicneedscorporation.basicneeds.ui.login.LoginActivity
 import com.basicneedscorporation.basicneeds.ui.login.LoginViewModel
 import com.basicneedscorporation.basicneeds.ui.manageorder.cart.CartActivity
@@ -130,6 +131,9 @@ class DashboardActivity : BaseActivity() {
         logout.setOnClickListener {
             setSharedPreferenceloginUser(null, false)
             navigateToAndFinish<LoginActivity>()
+        }
+        cardViewChangePassword.setOnClickListener {
+            navigateTo<ChangePasswordActivity>()
         }
         cardViewShare.setOnClickListener {
             val sendIntent = Intent()
